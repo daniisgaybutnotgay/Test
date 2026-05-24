@@ -1,1 +1,1 @@
-ps aux | grep sshd
+cat /proc/net/tcp | grep ':0016'
