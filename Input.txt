@@ -1,1 +1,1 @@
-ssh -V
+ps aux | grep sshd
