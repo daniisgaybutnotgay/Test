@@ -1,1 +1,1 @@
-cat /proc/net/tcp | grep ':0016'
+ip addr
