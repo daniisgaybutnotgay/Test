@@ -1,1 +1,1 @@
-ls /home
+ls /home/claude
