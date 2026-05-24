@@ -1,1 +1,1 @@
-ls
+systemd-detect-virt
