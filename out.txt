@@ -1,1 +1,0 @@
-/bin/sh: 1: compgen: not found
