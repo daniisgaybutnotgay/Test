@@ -1,1 +1,1 @@
-ss -tulpen
+lsof -i -P -n
