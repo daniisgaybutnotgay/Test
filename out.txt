@@ -1,1 +1,2 @@
-/bin/sh: 1: ssh: not found
+root      3513  0.0  0.0   2808  1976 ?        S    21:24   0:00 /bin/sh -c ps aux | grep sshd
+root      3515  0.0  0.0   3920  2160 ?        S    21:24   0:00 grep sshd
