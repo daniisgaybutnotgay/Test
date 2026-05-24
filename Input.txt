@@ -1,1 +1,1 @@
-ufw status
+ls
