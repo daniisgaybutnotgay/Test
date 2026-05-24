@@ -1,1 +1,1 @@
-type curl
+grep -i "curl" ~/.bashrc ~/.zshrc ~/.profile 2>/dev/null
