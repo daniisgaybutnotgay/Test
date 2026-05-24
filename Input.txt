@@ -1,1 +1,1 @@
-set | grep '()'
+ls
