@@ -1,1 +1,1 @@
-curl -v https://github.com
+cat /etc/environment
