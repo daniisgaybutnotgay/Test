@@ -1,1 +1,1 @@
-dmesg | grep -i hypervisor
+lsns
