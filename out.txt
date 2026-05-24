@@ -1,1 +1,1 @@
-/bin/sh: 1: aa-status: not found
+/bin/sh: 1: getenforce: not found
