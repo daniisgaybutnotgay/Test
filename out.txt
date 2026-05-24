@@ -1,3 +1,8 @@
-127.0.0.1 localhost
-160.79.104.10 api.anthropic.com
-127.0.0.1 vm
+ ▐▛███▜▌   Anthropic API
+▝▜█████▛▘  POST /v1/messages
+  ▘▘ ▝▝    https://docs.anthropic.com
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100   132  100   132    0     0   2845      0 --:--:-- --:--:-- --:--:--  2869
