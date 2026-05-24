@@ -1,8 +1,1 @@
-7:pids:/
-6:blkio:/
-5:freezer:/
-4:devices:/
-3:memory:/
-2:cpuacct:/
-1:cpu:/
-0::/
+docker
