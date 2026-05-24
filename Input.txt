@@ -1,1 +1,1 @@
-aa-status
+getenforce
