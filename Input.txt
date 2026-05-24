@@ -1,1 +1,1 @@
-ls
+cat /container_info.json
