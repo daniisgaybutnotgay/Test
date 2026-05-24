@@ -1,1 +1,1 @@
-cat /proc/1/status | grep -i cap
+systemd-detect-virt && uname -a
