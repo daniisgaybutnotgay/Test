@@ -1,1 +1,1 @@
-/bin/sh: 1: getenforce: not found
+/bin/sh: 1: ufw: not found
