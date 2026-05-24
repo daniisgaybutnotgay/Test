@@ -1,1 +1,1 @@
-lsns
+cat /proc/self/status | grep Seccomp
