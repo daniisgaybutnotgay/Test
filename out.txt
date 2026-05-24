@@ -1,3 +1,1 @@
-{
-  "container_name": "container_019jcrMZiioH513jbjfNJxq6--wiggle--b5ec63"
-}
+/bin/sh: 1: ping: not found
