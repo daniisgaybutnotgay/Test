@@ -1,1 +1,1 @@
-cat /proc/self/status | grep Seccomp
+aa-status
