@@ -1,114 +1,24 @@
-1
-10
-11
-115
-12
-13
-14
-145
-15
-16
-17
-175
-18
-19
-2
-21
-22
-23
-24
-25
-26
-27
-28
-29
-3
-30
-31
-32
-33
-3375
-3376
-3377
-3378
-34
-3411
-3412
-3413
-3414
-35
-36
-37
-38
-39
-4
-46
-477
-487
-489
-5
-59
-6
-63
-65
-66
-68
-7
-70
-78
-8
-9
-acpi
-buddyinfo
-bus
-cgroups
-cmdline
-config.gz
-consoles
-cpuinfo
-crypto
-devices
-diskstats
-dma
-driver
-execdomains
-filesystems
-fs
-interrupts
-iomem
-ioports
-irq
-kallsyms
-kcore
-key-users
-keys
-kmsg
-kpagecgroup
-kpagecount
-kpageflags
-loadavg
-locks
-meminfo
-misc
-mounts
-mtrr
-net
-pagetypeinfo
-partitions
-scsi
-self
-slabinfo
-softirqs
-stat
-swaps
-sys
-sysrq-trigger
-sysvipc
-thread-self
-timer_list
-tty
-uptime
-version
-vmallocinfo
-vmstat
-zoneinfo
+=== LOAD ===
+ 21:23:15 up 40 min,  0 user,  load average: 0.02, 0.05, 0.00
+
+=== MEMORY ===
+               total        used        free      shared  buff/cache   available
+Mem:           3.9Gi       276Mi       3.7Gi       4.2Mi       196Mi       3.6Gi
+Swap:             0B          0B          0B
+
+=== TOP CPU PROCESSES ===
+  PID USER     %CPU %MEM COMMAND
+ 3415 root     33.3  0.5 python3
+    1 root      0.4  0.1 process_api
+  489 root      0.0  0.8 rclone-filestor
+ 3377 root      0.0  0.2 python3
+   11 root      0.0  0.0 kworker/0:1-mm_percpu_wq
+   15 root      0.0  0.0 rcu_preempt
+   78 root      0.0  0.0 kworker/u4:2-events_unbound
+   30 root      0.0  0.0 kcompactd0
+   14 root      0.0  0.0 ksoftirqd/0
+   21 root      0.0  0.0 kworker/u4:1-events_unbound
+   18 root      0.0  0.0 migration/0
+    2 root      0.0  0.0 kthreadd
+    3 root      0.0  0.0 pool_workqueue_release
+    4 root      0.0  0.0 kworker/R-rcu_gp
