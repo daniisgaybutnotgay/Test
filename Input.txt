@@ -1,1 +1,1 @@
-sudo iptables -L -n
+sudo nft list ruleset
