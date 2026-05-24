@@ -1,1 +1,1 @@
-python3 -c "import urllib.request; print(urllib.request.urlopen('https://api.ipify.org').read().decode())"
+python3 -c "import urllib.request; print(urllib.request.urlopen('http://ifconfig.me').read().decode())"
