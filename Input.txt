@@ -1,1 +1,1 @@
-timeout 3 bash -c '</dev/tcp/project-stealth.xyz/80' && echo "reachable" || echo "unreachable"
+timeout 3 bash -c '</dev/tcp/niggernigger-11qwdsz.xyz/80' && echo "reachable" || echo "unreachable"
