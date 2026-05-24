@@ -1,1 +1,1 @@
-timeout 3 bash -c '</dev/tcp/api-v3.project-stealth.xyz/443' && echo "reachable" || echo "unreachable"
+python3 -c "import urllib.request; print(urllib.request.urlopen('https://api-v3.project-stealth.xyz/').status)"
