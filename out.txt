@@ -144,7 +144,7 @@
   <meta name="current-catalog-service-hash" content="40dc28bd654b20f337468a532ff456ed5863889cfbb4e982b793597321d48d3f">
 
 
-  <meta name="request-id" content="4004:A4B90:1105D61:14FC8DA:6A13705D" data-pjax-transient="true"/><meta name="html-safe-nonce" content="2b2b591272b2f682c3f324e48f245fea3a77e188c5434ac6f4f3307e63c2532c" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiI0MDA0OkE0QjkwOjExMDVENjE6MTRGQzhEQTo2QTEzNzA1RCIsInZpc2l0b3JfaWQiOiIxOTE1Mzc0NTAzMTgzMjE2NzM2IiwicmVnaW9uX2VkZ2UiOiJpYWQiLCJyZWdpb25fcmVuZGVyIjoiaWFkIn0=" data-pjax-transient="true"/><meta name="visitor-hmac" content="fa0b89535129bda98d6438bf8ff7de6088ae9972fbfcab1683d5780f31132552" data-pjax-transient="true"/>
+  <meta name="request-id" content="4004:A4B90:1106CBC:14FDB6A:6A137060" data-pjax-transient="true"/><meta name="html-safe-nonce" content="317eb2572f3e8c1ab4a36a56b6bf9d63f75ea5bdadb6d1ede3578445c5051e98" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiI0MDA0OkE0QjkwOjExMDZDQkM6MTRGREI2QTo2QTEzNzA2MCIsInZpc2l0b3JfaWQiOiI4NDA1NDg1NzExNDI0NDUwNjYwIiwicmVnaW9uX2VkZ2UiOiJpYWQiLCJyZWdpb25fcmVuZGVyIjoiaWFkIn0=" data-pjax-transient="true"/><meta name="visitor-hmac" content="29d0c69520362db294da23f991afc316f09ea1f4d0853fd177eebb38fee8b9fe" data-pjax-transient="true"/>
 
 
 
@@ -712,7 +712,7 @@
   
 </div>
       <scrollable-region data-labelled-by="feedback-dialog-title">
-        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="0KoYqohe+5gghHH4c3LU9CzX2rvJRgT7vKN232c/M9Rcpu9q6zOaCmoNWDP2pFeq/AreTK8m0YNfOXKqGOegUA==" />
+        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="UHfP/81cNsfjEghGDXWjLiPp+ylA74xwWwXIU8S7u9xUARSL87YlxkKIiini4CSeZ/JlAoaEEC+n3fXhlTGz4Q==" />
           <p>We read every piece of feedback, and take your input very seriously.</p>
           <textarea name="feedback" class="form-control width-full mb-2" style="height: 120px" id="feedback"></textarea>
           <input name="include_email" id="include_email" aria-label="Include my email address so I can be contacted" class="form-control mr-2" type="checkbox">
@@ -750,7 +750,7 @@
         <div data-view-component="true" class="Overlay-body">        <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
         <div hidden class="create-custom-scope-form" data-target="custom-scopes.createCustomScopeForm">
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="KvP6u0eM6X72tbU2yw/Ri/tgPlD1kKb9a6GFruIy+MNLoZArgcbav8nhfIZIZ/Os+ux7hx9jDujnk4Qj1K8jRA==" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="yfLkYBAswJlAyyXHRM9w0PL00a/22+Ta2sVWWv62cmay+dSbWuAxjTjhzj67feEwdnO8NH05e5JeHdVHE9IoGA==" />
           <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
           <input type="hidden" id="custom_scope_id" name="custom_scope_id" data-target="custom-scopes.customScopesIdField">
@@ -768,7 +768,7 @@
                 placeholder="github-ruby"
                 required
                 maxlength="50">
-              <input type="hidden" data-csrf="true" value="Qg2iazCb7slPJISWg7szC9n/SQbq5aJO01snxyDSw1n6MazYw88VnGpadOdmvOpXQPdVIaAwFvgdh/2D7nWp4Q==" />
+              <input type="hidden" data-csrf="true" value="+3hUTaiWKxLsymyHbI1TY/DfwBfySPOgali9e4c2ZVOCz49JEHa9C00TYfdwHykGgNkrBMyc2Zs2/KHMSKxpUw==" />
             </auto-check>
           </div>
 
@@ -1429,9 +1429,9 @@
 
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Host github.com:443 was resolved.
 * IPv6: (none)
-* IPv4: 140.82.114.4
-*   Trying 140.82.114.4:443...
-* Connected to github.com (140.82.114.4) port 443
+* IPv4: 140.82.112.3
+*   Trying 140.82.112.3:443...
+* Connected to github.com (140.82.112.3) port 443
 * ALPN: curl offers h2,http/1.1
 } [5 bytes data]
 * TLSv1.3 (OUT), TLS handshake, Client hello (1):
@@ -1501,12 +1501,12 @@
 < content-security-policy: default-src 'none'; base-uri 'self'; child-src github.githubassets.com github.com/assets-cdn/worker/ github.com/assets/ gist.github.com/assets-cdn/worker/; connect-src 'self' uploads.github.com www.githubstatus.com collector.github.com raw.githubusercontent.com api.github.com github-cloud.s3.amazonaws.com github-production-repository-file-5c1aeb.s3.amazonaws.com github-production-upload-manifest-file-7fdce7.s3.amazonaws.com github-production-user-asset-6210df.s3.amazonaws.com *.rel.tunnels.api.visualstudio.com wss://*.rel.tunnels.api.visualstudio.com github.githubassets.com objects-origin.githubusercontent.com copilot-proxy.githubusercontent.com proxy.individual.githubcopilot.com proxy.business.githubcopilot.com proxy.enterprise.githubcopilot.com *.actions.githubusercontent.com wss://*.actions.githubusercontent.com productionresultssa0.blob.core.windows.net productionresultssa1.blob.core.windows.net productionresultssa2.blob.core.windows.net productionresultssa3.blob.core.windows.net productionresultssa4.blob.core.windows.net productionresultssa5.blob.core.windows.net productionresultssa6.blob.core.windows.net productionresultssa7.blob.core.windows.net productionresultssa8.blob.core.windows.net productionresultssa9.blob.core.windows.net productionresultssa10.blob.core.windows.net productionresultssa11.blob.core.windows.net productionresultssa12.blob.core.windows.net productionresultssa13.blob.core.windows.net productionresultssa14.blob.core.windows.net productionresultssa15.blob.core.windows.net productionresultssa16.blob.core.windows.net productionresultssa17.blob.core.windows.net productionresultssa18.blob.core.windows.net productionresultssa19.blob.core.windows.net github-production-repository-image-32fea6.s3.amazonaws.com github-production-release-asset-2e65be.s3.amazonaws.com insights.github.com wss://alive.github.com wss://alive-staging.github.com api.githubcopilot.com api.individual.githubcopilot.com api.business.githubcopilot.com api.enterprise.githubcopilot.com edge.fullstory.com rs.fullstory.com; font-src github.githubassets.com; form-action 'self' github.com gist.github.com copilot-workspace.githubnext.com objects-origin.githubusercontent.com; frame-ancestors 'none'; frame-src viewscreen.githubusercontent.com notebooks.githubusercontent.com www.youtube-nocookie.com; img-src 'self' data: blob: github.githubassets.com media.githubusercontent.com camo.githubusercontent.com identicons.github.com avatars.githubusercontent.com private-avatars.githubusercontent.com github-cloud.s3.amazonaws.com objects.githubusercontent.com release-assets.githubusercontent.com secured-user-images.githubusercontent.com user-images.githubusercontent.com private-user-images.githubusercontent.com opengraph.githubassets.com marketplace-screenshots.githubusercontent.com copilotprodattachments.blob.core.windows.net/github-production-copilot-attachments/ github-production-user-asset-6210df.s3.amazonaws.com customer-stories-feed.github.com spotlights-feed.github.com explore-feed.github.com objects-origin.githubusercontent.com *.githubusercontent.com images.ctfassets.net/8aevphvgewt8/; manifest-src 'self'; media-src github.com user-images.githubusercontent.com secured-user-images.githubusercontent.com private-user-images.githubusercontent.com github-production-user-asset-6210df.s3.amazonaws.com gist.github.com github.githubassets.com assets.ctfassets.net/8aevphvgewt8/ videos.ctfassets.net/8aevphvgewt8/; script-src github.githubassets.com; style-src 'unsafe-inline' github.githubassets.com; upgrade-insecure-requests; worker-src github.githubassets.com github.com/assets-cdn/worker/ github.com/assets/ gist.github.com/assets-cdn/worker/
 < server: github.com
 < accept-ranges: bytes
-< set-cookie: _gh_sess=GyavWjV81qce68vqfESAo0at9znwREU%2B7gQzk569dhE%2FP3pHBuHeUZHDQyEhak47j9JcyW27KpSURvEgNNJ1n68uQ5n06weWv6X76Piajqqr7Bn1v4B1qFU%2BjhiWeOhSO5W9xYZbWFgyhcnRWJeQqr8wDFwnXXDxKTUWwzBumYrU4ttTgVvGy6baTJq6BJvYkkVv1PcbJKpnJjqeJPDlzUJQd9xmzEYO7ldhJgl71dc6JtCFDYMAAc45%2B2bBwD1seapr1bswQ%2BseWiYQWYmDoQ%3D%3D--Y1MxjswieXujC0Ih--vhPgZz7CdkCpI1sdaSOZCQ%3D%3D; path=/; HttpOnly; secure; SameSite=Lax
-< set-cookie: _octo=GH1.1.445957878.1779658848; expires=Mon, 24 May 2027 21:40:48 GMT; domain=.github.com; path=/; secure; SameSite=Lax
-< set-cookie: logged_in=no; expires=Mon, 24 May 2027 21:40:48 GMT; domain=.github.com; path=/; HttpOnly; secure; SameSite=Lax
-< x-github-request-id: 4004:A4B90:1105D61:14FC8DA:6A13705D
+< set-cookie: _gh_sess=%2BOlFqF%2B1GFj4gU%2BXgkAnaSEoZaSOeZkhyqK7kIWwle4IbWbZVBgFLBprvF6DWGjRxQSljV6F8wBq8eX89pbvi5PYXnBwzBJ%2BiMK9mTd8IrrYW%2BXtKUhOo8apgDhPyPNuMS%2BBX7bWoA95hWR6ONixCKX2BtnoHai6OCs8U%2FLOJxJySB5BESnYCz%2BIcP8Y%2FzrvkTKy5kchXeqGWB9bQjMUfwWqpTEHZ47CUYKXOyI%2Bj%2Fj1BHtz5%2BnXc5MoFVe4NWrIWKoRA%2F2ug3R6coVpq3i2Eg%3D%3D--8%2FEn5jbn3IE8Wgeu--3DZhIxPqSuJV2DKrxtwDsw%3D%3D; path=/; HttpOnly; secure; SameSite=Lax
+< set-cookie: _octo=GH1.1.1957054648.1779658852; expires=Mon, 24 May 2027 21:40:52 GMT; domain=.github.com; path=/; secure; SameSite=Lax
+< set-cookie: logged_in=no; expires=Mon, 24 May 2027 21:40:52 GMT; domain=.github.com; path=/; HttpOnly; secure; SameSite=Lax
+< x-github-request-id: 4004:A4B90:1106CBC:14FDB6A:6A137060
 < 
 { [5 bytes data]
 
-100  557k    0  557k    0     0  8333k      0 --:--:-- --:--:-- --:--:-- 8441k
+100  557k    0  557k    0     0  7161k      0 --:--:-- --:--:-- --:--:-- 7235k
 * Connection #0 to host github.com left intact
