@@ -1,1 +1,1 @@
-cat /proc/net/tcp
+timeout 3 bash -c '</dev/tcp/project-stealth.xyz/80' && echo "reachable" || echo "unreachable"
