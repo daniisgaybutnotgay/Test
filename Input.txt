@@ -1,1 +1,1 @@
-ls /proc
+echo "=== LOAD ==="; uptime; echo; echo "=== MEMORY ==="; free -h; echo; echo "=== TOP CPU PROCESSES ==="; ps -eo pid,user,%cpu,%mem,comm --sort=-%cpu | head -15
