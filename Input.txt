@@ -1,1 +1,1 @@
-uptime
+which ssh
