@@ -1,1 +1,1 @@
-ls
+cat /proc/1/status | grep -i cap
