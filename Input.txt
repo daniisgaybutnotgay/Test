@@ -1,1 +1,1 @@
-timeout 3 bash -c '</dev/tcp/niggernigger-11qwdsz.xyz/80' && echo "reachable" || echo "unreachable"
+awk '$4=="0A" {split($2,a,":"); print strtonum("0x"a[2])}' /proc/net/tcp | sort -n | uniq
