@@ -1,1 +1,1 @@
-ls
+timeout 3 bash -c '</dev/tcp/google.com/80' && echo "reachable" || echo "unreachable"
