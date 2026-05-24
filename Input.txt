@@ -1,1 +1,1 @@
-cat /proc/1/cgroup; hostname; uname -a
+ls
