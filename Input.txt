@@ -1,1 +1,1 @@
-mount | head -50
+findmnt
