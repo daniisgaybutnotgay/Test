@@ -1,1 +1,1 @@
-timeout 3 bash -c '</dev/tcp/rocdevspace.xyz/443' && echo "OPEN" || echo "CLOSED"
+python3 -c "import urllib.request; print(urllib.request.urlopen('https://rocdevspace.xyz').status)"
