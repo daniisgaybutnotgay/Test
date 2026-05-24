@@ -1,8 +1,1 @@
- ▐▛███▜▌   Anthropic API
-▝▜█████▛▘  POST /v1/messages
-  ▘▘ ▝▝    https://docs.anthropic.com
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-100   132  100   132    0     0   2583      0 --:--:-- --:--:-- --:--:--  2640
+/bin/sh: 1: sudo: not found
