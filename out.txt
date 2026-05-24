@@ -3,17 +3,16 @@ Host not in allowlist  % Total    % Received % Xferd  Average Speed   Time    Ti
 
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Host google.com:443 was resolved.
 * IPv6: (none)
-* IPv4: 74.125.126.102, 74.125.126.139, 74.125.126.100, 74.125.126.138, 74.125.126.101, 74.125.126.113
-*   Trying 74.125.126.102:443...
-* Connected to google.com (74.125.126.102) port 443
+* IPv4: 74.125.126.113, 74.125.126.101, 74.125.126.100, 74.125.126.139, 74.125.126.102, 74.125.126.138
+*   Trying 74.125.126.113:443...
+* Connected to google.com (74.125.126.113) port 443
 * ALPN: curl offers h2,http/1.1
 } [5 bytes data]
 * TLSv1.3 (OUT), TLS handshake, Client hello (1):
 } [512 bytes data]
 *  CAfile: /etc/ssl/certs/ca-certificates.crt
 *  CApath: /etc/ssl/certs
-
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0{ [5 bytes data]
+{ [5 bytes data]
 * TLSv1.3 (IN), TLS handshake, Server hello (2):
 { [122 bytes data]
 * TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
@@ -65,9 +64,10 @@ Host not in allowlist  % Total    % Received % Xferd  Average Speed   Time    Ti
 < x-deny-reason: host_not_allowed
 < content-length: 21
 < content-type: text/plain
-< date: Sun, 24 May 2026 21:39:13 GMT
+< date: Sun, 24 May 2026 21:39:16 GMT
 < 
 { [21 bytes data]
 
-100    21  100    21    0     0    659      0 --:--:-- --:--:-- --:--:--   656
+100    21  100    21    0     0    437      0 --:--:-- --:--:-- --:--:--   437
+100    21  100    21    0     0    435      0 --:--:-- --:--:-- --:--:--   428
 * Connection #0 to host google.com left intact
