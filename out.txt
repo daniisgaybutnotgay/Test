@@ -1,5 +1,5 @@
 === LOAD ===
- 21:23:27 up 41 min,  0 user,  load average: 0.02, 0.04, 0.00
+ 21:23:30 up 41 min,  0 user,  load average: 0.02, 0.04, 0.00
 
 === MEMORY ===
                total        used        free      shared  buff/cache   available
@@ -8,14 +8,14 @@ Swap:             0B          0B          0B
 
 === TOP CPU PROCESSES ===
   PID USER     %CPU %MEM COMMAND
- 3441 root     33.3  0.5 python3
- 3440 root      4.3  0.2 python3
+ 3448 root     22.5  0.5 python3
+ 3447 root      6.0  0.2 python3
     1 root      0.4  0.1 process_api
  3377 root      0.0  0.2 python3
   489 root      0.0  0.8 rclone-filestor
    11 root      0.0  0.0 kworker/0:1-pm
    15 root      0.0  0.0 rcu_preempt
-   78 root      0.0  0.0 kworker/u4:2-flush-254:0
+   78 root      0.0  0.0 kworker/u4:2-events_unbound
    30 root      0.0  0.0 kcompactd0
    14 root      0.0  0.0 ksoftirqd/0
    21 root      0.0  0.0 kworker/u4:1-events_unbound
