@@ -1,1 +1,1 @@
-/bin/sh: 1: ifconfig: not found
+Host not in allowlist
