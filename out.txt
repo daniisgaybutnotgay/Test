@@ -1,5 +1,2 @@
-CapInh:	0000000000000000
-CapPrm:	000001ffffffffff
-CapEff:	000001ffffffffff
-CapBnd:	000001fffeffffff
-CapAmb:	0000000000000000
+docker
+Linux vm 6.18.5 #2 SMP PREEMPT_DYNAMIC Wed Jan 14 17:56:08 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
