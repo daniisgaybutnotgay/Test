@@ -1,1 +1,1 @@
-ls: cannot access '/root/.local/bin': No such file or directory
+/bin/sh: 1: compgen: not found
