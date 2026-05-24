@@ -1,2 +1,0 @@
-root      3522  0.0  0.0   2808  1972 ?        S    21:24   0:00 /bin/sh -c ps aux | grep sshd
-root      3524  0.0  0.0   3920  2168 ?        S    21:24   0:00 grep sshd
