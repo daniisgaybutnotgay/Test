@@ -1,1 +1,1 @@
-ls /bin
+cat /proc/1/cgroup
