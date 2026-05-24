@@ -1,1 +1,1 @@
-ifconfig
+curl -s ifconfig.me
