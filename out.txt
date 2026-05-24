@@ -64,9 +64,9 @@ Host not in allowlist  % Total    % Received % Xferd  Average Speed   Time    Ti
 < x-deny-reason: host_not_allowed
 < content-length: 21
 < content-type: text/plain
-< date: Sun, 24 May 2026 21:39:07 GMT
+< date: Sun, 24 May 2026 21:39:10 GMT
 < 
 { [21 bytes data]
 
-100    21  100    21    0     0    337      0 --:--:-- --:--:-- --:--:--   338
+100    21  100    21    0     0    285      0 --:--:-- --:--:-- --:--:--   287
 * Connection #0 to host example.com left intact
