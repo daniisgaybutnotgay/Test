@@ -1,1 +1,1 @@
-cat /container_info.json
+ping -c 4 google.com
