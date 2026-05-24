@@ -1,19 +1,13 @@
-PIP_ROOT_USER_ACTION=ignore
-NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
-RUST_BACKTRACE=1
-PIP_CACHE_DIR=/home/claude/.cache/pip
-HOME=/root
-PYTHONUNBUFFERED=1
-SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
-LC_CTYPE=C.UTF-8
-PIP_CONFIG_FILE=/root/.config/pip/pip.conf
-TERM=linux
-PATH=/home/claude/.npm-global/bin:/home/claude/.local/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-NPM_CONFIG_USERCONFIG=/root/.npmrc
-REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers
-DEBIAN_FRONTEND=noninteractive
-NODE_PATH=/usr/local/lib/node_modules_global
-JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-PWD=/
-IS_SANDBOX=yes
+Current: =ep cap_sys_resource-ep
+Bounding set =cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read,cap_perfmon,cap_bpf,cap_checkpoint_restore
+Ambient set =
+Current IAB: !cap_sys_resource
+Securebits: 00/0x0/1'b0 (no-new-privs=0)
+ secure-noroot: no (unlocked)
+ secure-no-suid-fixup: no (unlocked)
+ secure-keep-caps: no (unlocked)
+ secure-no-ambient-raise: no (unlocked)
+uid=0(root) euid=0(root)
+gid=0(root)
+groups=
+Guessed mode: HYBRID (4)
