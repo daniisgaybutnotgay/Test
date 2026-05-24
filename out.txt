@@ -1,10 +1,2 @@
-        NS TYPE   NPROCS PID USER COMMAND
-4026531832 mnt        58   1 root /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-4026531833 net        59   1 root /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-4026531834 time       59   1 root /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-4026531835 cgroup     59   1 root /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-4026531836 pid        59   1 root /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-4026531837 user       59   1 root /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-4026531838 uts        59   1 root /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-4026531839 ipc        59   1 root /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-4026531860 mnt         1  22 root kdevtmpfs
+Seccomp:	0
+Seccomp_filters:	0
