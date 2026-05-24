@@ -138,13 +138,13 @@
   <meta name="route-pattern" content="/" data-turbo-transient>
   <meta name="route-controller" content="dashboard" data-turbo-transient>
   <meta name="route-action" content="index" data-turbo-transient>
-  <meta name="fetch-nonce" content="v2:6350f947-e5d1-f947-df43-2ecb71ed68d9">
+  <meta name="fetch-nonce" content="v2:23c55fc5-b862-fef7-02f6-5499abb766ea">
 
     
   <meta name="current-catalog-service-hash" content="40dc28bd654b20f337468a532ff456ed5863889cfbb4e982b793597321d48d3f">
 
 
-  <meta name="request-id" content="4003:155571:114A551:1545D4A:6A13701D" data-pjax-transient="true"/><meta name="html-safe-nonce" content="d81b7a202aefcabad7c3b77e3187af13696cae7e0f71d9dcc36abd1b52d77527" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiI0MDAzOjE1NTU3MToxMTRBNTUxOjE1NDVENEE6NkExMzcwMUQiLCJ2aXNpdG9yX2lkIjoiNjEyODgyNjcxNzIyNDI2NzgwOCIsInJlZ2lvbl9lZGdlIjoiaWFkIiwicmVnaW9uX3JlbmRlciI6ImlhZCJ9" data-pjax-transient="true"/><meta name="visitor-hmac" content="95eeacd2133284429d090883de2976c4a3ee205e453178cf852986b008e14b88" data-pjax-transient="true"/>
+  <meta name="request-id" content="4004:A4B90:10F4594:14E7653:6A137019" data-pjax-transient="true"/><meta name="html-safe-nonce" content="c41c580d5ede4982eab552a4f6faf7aefab6d6e325f71489b255afab0b0342ed" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiI0MDA0OkE0QjkwOjEwRjQ1OTQ6MTRFNzY1Mzo2QTEzNzAxOSIsInZpc2l0b3JfaWQiOiI4OTMzMTc2Mzc1NjQyMzg2NDY4IiwicmVnaW9uX2VkZ2UiOiJpYWQiLCJyZWdpb25fcmVuZGVyIjoiaWFkIn0=" data-pjax-transient="true"/><meta name="visitor-hmac" content="a6a8a60414ef1a8c9d20ec74f0d9346732728c2765e1e0b0d54629a78a7dad9b" data-pjax-transient="true"/>
 
 
 
@@ -237,7 +237,7 @@
   <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
 
     <meta name="release" content="d81e5ef035ea5218d2be3322c4950b97e6bd21fd" data-turbo-track="reload">
-  <meta name="ui-target" content="canary-2">
+  <meta name="ui-target" content="full">
 
   <link rel="mask-icon" href="https://github.githubassets.com/assets/pinned-octocat-093da3e6fa40.svg" color="#000000">
   <link rel="alternate icon" class="js-site-favicon" type="image/png" href="https://github.githubassets.com/favicons/favicon.png">
@@ -366,7 +366,7 @@
                 
 
 
-<qbsearch-input class="search-input" data-scope="" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="M5T55Aw14kp57RFeIn6cbSaxGolZChAm0apiwbGCKMw9Bd3wdrIvALB0K81Nl9HLAI8ciu1lxYRwdH8qAWHQ-g" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="" data-current-org="" data-current-owner="" data-logged-in="false" data-copilot-chat-enabled="false" data-nl-search-enabled="false" data-retain-scroll-position="true">
+<qbsearch-input class="search-input" data-scope="" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="MrfKymjhuDlrm-yQCohYCDX6K_BiC-ptvzqlu2ND2PBNgDx1Bj__tySb4K2Di_s_bXeJvpgJtK59vGid0JHvYA" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="" data-current-org="" data-current-owner="" data-logged-in="false" data-copilot-chat-enabled="false" data-nl-search-enabled="false" data-retain-scroll-position="true">
   <div
     class="search-input-container search-with-dialog position-relative d-flex flex-row flex-items-center tmp-mr-4 rounded"
     data-action="click:qbsearch-input#searchInputContainerClicked"
@@ -430,7 +430,7 @@
           ></div>
           <div class="QueryBuilder-InputWrapper">
             <div aria-hidden="true" class="QueryBuilder-Sizer" data-target="query-builder.sizer"></div>
-            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-ba2a1334-a588-4df3-9a99-0f157492beca" data-target="query-builder.input" data-action="
+            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-d4037a1a-11af-4c62-8c07-417b90bc04e5" data-target="query-builder.input" data-action="
           input:query-builder#inputChange
           blur:query-builder#inputBlur
           keydown:query-builder#inputKeydown
@@ -671,7 +671,7 @@
             ></ul>
 
         </div>
-      <div class="FormControl-inlineValidation" id="validation-ba2a1334-a588-4df3-9a99-0f157492beca" hidden="hidden">
+      <div class="FormControl-inlineValidation" id="validation-d4037a1a-11af-4c62-8c07-417b90bc04e5" hidden="hidden">
         <span class="FormControl-inlineValidation--visual">
           <svg aria-hidden="true" data-component="Octicon" height="12" viewBox="0 0 12 12" version="1.1" width="12" data-view-component="true" class="octicon octicon-alert-fill">
     <path d="M4.855.708c.5-.896 1.79-.896 2.29 0l4.675 8.351a1.312 1.312 0 0 1-1.146 1.954H1.33A1.313 1.313 0 0 1 .183 9.058ZM7 7V3H5v4Zm-1 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path>
@@ -712,7 +712,7 @@
   
 </div>
       <scrollable-region data-labelled-by="feedback-dialog-title">
-        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="8S5epUTNLXu80PyKtz4TJdBIWyaZszx21H0DDhiE0aMYED81TsRYDIIltyEeaEqv5eDKhsRAoThHjmegpzkOog==" />
+        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="ga29+MdkLNFVgVfge5we5j+j0kZkhOZnnxBzsJYZ3grDEXcmhnw4pT9ppu7HaW3752fqcG48QfJy1iz9MynQag==" />
           <p>We read every piece of feedback, and take your input very seriously.</p>
           <textarea name="feedback" class="form-control width-full mb-2" style="height: 120px" id="feedback"></textarea>
           <input name="include_email" id="include_email" aria-label="Include my email address so I can be contacted" class="form-control mr-2" type="checkbox">
@@ -750,7 +750,7 @@
         <div data-view-component="true" class="Overlay-body">        <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
         <div hidden class="create-custom-scope-form" data-target="custom-scopes.createCustomScopeForm">
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="qH3x7QW0XMmEN1MxfKwDh7xqk85g0xGdxwZrf3oxgIK/3yZaYZQ6rsyWEgEq4LXjoxWx7EVor0sDKaBqrKdWJw==" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="c1HFzaSkoc32QykX7XdLE6u9yF6u7omNYvx3aVq37kPyDe+/3/Ib7TK7SfwAzEALtjd8YiNM4YUIHzgflfwfzg==" />
           <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
           <input type="hidden" id="custom_scope_id" name="custom_scope_id" data-target="custom-scopes.customScopesIdField">
@@ -768,7 +768,7 @@
                 placeholder="github-ruby"
                 required
                 maxlength="50">
-              <input type="hidden" data-csrf="true" value="y9MRGAkUyhAWrgWZhArPXrhJxDQ9dcrKPszI6k5UjIpsda8+ba+nm+h00PAdrq7l5AQBwME1gx6VQwQTu5RkRg==" />
+              <input type="hidden" data-csrf="true" value="RkkOFgMAl5qrCI/gZb/tZgdDTIlbAJzkO3oPxT2UG6X110Dn471GEcSWCVRt6bbvgCrC4ilLMILBSuyP2SSLow==" />
             </auto-check>
           </div>
 
@@ -844,10 +844,10 @@
         <span class="js-stale-session-flash-signed-out" hidden>You signed out in another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
         <span class="js-stale-session-flash-switched" hidden>You switched accounts on another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
 
-    <button id="icon-button-caccab76-330c-4201-ab60-737ea8a3f8a7" aria-labelledby="tooltip-14bb5c80-fe79-49ff-882a-093b33d4f213" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
+    <button id="icon-button-388c0686-5061-4122-b3e4-9e64837c7de7" aria-labelledby="tooltip-6afbcc3d-bf71-46db-8d55-2bc97dc4a9a2" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
     <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
 </svg>
-</button><tool-tip id="tooltip-14bb5c80-fe79-49ff-882a-093b33d4f213" for="icon-button-caccab76-330c-4201-ab60-737ea8a3f8a7" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
+</button><tool-tip id="tooltip-6afbcc3d-bf71-46db-8d55-2bc97dc4a9a2" for="icon-button-388c0686-5061-4122-b3e4-9e64837c7de7" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
 
 
   
@@ -1487,11 +1487,11 @@
 * old SSL session ID is stale, removing
 { [5 bytes data]
 < HTTP/2 200 
-< date: Sun, 24 May 2026 21:39:35 GMT
+< date: Sun, 24 May 2026 21:39:41 GMT
 < content-type: text/html; charset=utf-8
 < vary: X-PJAX, X-PJAX-Container, Turbo-Visit, Turbo-Frame, X-Requested-With, Accept-Language, Sec-Fetch-Site,Accept-Encoding, Accept, X-Requested-With
 < content-language: en-US
-< etag: W/"569b09259ba41f726253bb8dbebbd459"
+< etag: W/"000a4f5040bd0c992e3992e3804626cc"
 < cache-control: max-age=0, private, must-revalidate
 < strict-transport-security: max-age=31536000; includeSubdomains; preload
 < x-frame-options: deny
@@ -1501,12 +1501,12 @@
 < content-security-policy: default-src 'none'; base-uri 'self'; child-src github.githubassets.com github.com/assets-cdn/worker/ github.com/assets/ gist.github.com/assets-cdn/worker/; connect-src 'self' uploads.github.com www.githubstatus.com collector.github.com raw.githubusercontent.com api.github.com github-cloud.s3.amazonaws.com github-production-repository-file-5c1aeb.s3.amazonaws.com github-production-upload-manifest-file-7fdce7.s3.amazonaws.com github-production-user-asset-6210df.s3.amazonaws.com *.rel.tunnels.api.visualstudio.com wss://*.rel.tunnels.api.visualstudio.com github.githubassets.com objects-origin.githubusercontent.com copilot-proxy.githubusercontent.com proxy.individual.githubcopilot.com proxy.business.githubcopilot.com proxy.enterprise.githubcopilot.com *.actions.githubusercontent.com wss://*.actions.githubusercontent.com productionresultssa0.blob.core.windows.net productionresultssa1.blob.core.windows.net productionresultssa2.blob.core.windows.net productionresultssa3.blob.core.windows.net productionresultssa4.blob.core.windows.net productionresultssa5.blob.core.windows.net productionresultssa6.blob.core.windows.net productionresultssa7.blob.core.windows.net productionresultssa8.blob.core.windows.net productionresultssa9.blob.core.windows.net productionresultssa10.blob.core.windows.net productionresultssa11.blob.core.windows.net productionresultssa12.blob.core.windows.net productionresultssa13.blob.core.windows.net productionresultssa14.blob.core.windows.net productionresultssa15.blob.core.windows.net productionresultssa16.blob.core.windows.net productionresultssa17.blob.core.windows.net productionresultssa18.blob.core.windows.net productionresultssa19.blob.core.windows.net github-production-repository-image-32fea6.s3.amazonaws.com github-production-release-asset-2e65be.s3.amazonaws.com insights.github.com wss://alive.github.com wss://alive-staging.github.com api.githubcopilot.com api.individual.githubcopilot.com api.business.githubcopilot.com api.enterprise.githubcopilot.com edge.fullstory.com rs.fullstory.com; font-src github.githubassets.com; form-action 'self' github.com gist.github.com copilot-workspace.githubnext.com objects-origin.githubusercontent.com; frame-ancestors 'none'; frame-src viewscreen.githubusercontent.com notebooks.githubusercontent.com www.youtube-nocookie.com; img-src 'self' data: blob: github.githubassets.com media.githubusercontent.com camo.githubusercontent.com identicons.github.com avatars.githubusercontent.com private-avatars.githubusercontent.com github-cloud.s3.amazonaws.com objects.githubusercontent.com release-assets.githubusercontent.com secured-user-images.githubusercontent.com user-images.githubusercontent.com private-user-images.githubusercontent.com opengraph.githubassets.com marketplace-screenshots.githubusercontent.com copilotprodattachments.blob.core.windows.net/github-production-copilot-attachments/ github-production-user-asset-6210df.s3.amazonaws.com customer-stories-feed.github.com spotlights-feed.github.com explore-feed.github.com objects-origin.githubusercontent.com *.githubusercontent.com images.ctfassets.net/8aevphvgewt8/; manifest-src 'self'; media-src github.com user-images.githubusercontent.com secured-user-images.githubusercontent.com private-user-images.githubusercontent.com github-production-user-asset-6210df.s3.amazonaws.com gist.github.com github.githubassets.com assets.ctfassets.net/8aevphvgewt8/ videos.ctfassets.net/8aevphvgewt8/; script-src github.githubassets.com; style-src 'unsafe-inline' github.githubassets.com; upgrade-insecure-requests; worker-src github.githubassets.com github.com/assets-cdn/worker/ github.com/assets/ gist.github.com/assets-cdn/worker/
 < server: github.com
 < accept-ranges: bytes
-< set-cookie: _gh_sess=yjO5RXOtGiJYqsHQ0QwhD2S3wqKVIPCpZ%2BN7rSLPDK9iDWUBVE%2FcJ9QHNKDPlSWzYwMBVUDZjfKX4TLmR%2F1MCPeFNmEm8CcL%2BAYEXsyjrugehxHv6FOw%2BRt6Ec5QX0zFqFqfS1XJSf8YExc%2B5t6ksPHfp1%2B6fxmfdzuJ87vBtfQhMyvJujGY5JX9saqGpcntzIueYEvoav%2Bc7dsw24bCOgudKAq%2FC1rP7Ps8IQTwSaqry6Ab2%2FYABcHpiz%2FsWK8t%2FwbmlTH49heKWfmXhJ0a5w%3D%3D--vS5xU26qMAgSmMnT--qY3LKWZ0seqOJlHgaMbNtg%3D%3D; path=/; HttpOnly; secure; SameSite=Lax
-< set-cookie: _octo=GH1.1.1426978669.1779658784; expires=Mon, 24 May 2027 21:39:44 GMT; domain=.github.com; path=/; secure; SameSite=Lax
-< set-cookie: logged_in=no; expires=Mon, 24 May 2027 21:39:44 GMT; domain=.github.com; path=/; HttpOnly; secure; SameSite=Lax
-< x-github-request-id: 4003:155571:114A551:1545D4A:6A13701D
+< set-cookie: _gh_sess=kCCedjDy%2Bo5B8n81E4ZFk0pp%2FYNHJOcPkRSdtzGIkaUpz6dSBRAwZoA4FiO4ipmuiq4EvFhkYV7czb8e4y9VRMlXr8EhVvkNeSwC%2BtEUcgidPg2GzCV6HuQxP31j%2B2ImPOfxkb%2BNG9pWHg8bv4Pi5n8JxNQcbcK1sFznbDG2ntukXD9nsxCFfA4ZAd4IjFqCna3zar0er%2BhGVtt1eSPCVZfMvEZxY99x1lJAM%2BEq4HAwViJ6EBaSMA38t%2B9ItAlAlEH1TdszuGrKvqYiw7u0jg%3D%3D--sEIbVt16O3DqyYpG--%2F52w8dEfNmGB85eLq1u7vQ%3D%3D; path=/; HttpOnly; secure; SameSite=Lax
+< set-cookie: _octo=GH1.1.2079917205.1779658788; expires=Mon, 24 May 2027 21:39:48 GMT; domain=.github.com; path=/; secure; SameSite=Lax
+< set-cookie: logged_in=no; expires=Mon, 24 May 2027 21:39:48 GMT; domain=.github.com; path=/; HttpOnly; secure; SameSite=Lax
+< x-github-request-id: 4004:A4B90:10F4594:14E7653:6A137019
 < 
 { [5 bytes data]
 
-100  557k    0  557k    0     0  6106k      0 --:--:-- --:--:-- --:--:-- 6122k
+100  557k    0  557k    0     0  6889k      0 --:--:-- --:--:-- --:--:-- 6964k
 * Connection #0 to host github.com left intact
