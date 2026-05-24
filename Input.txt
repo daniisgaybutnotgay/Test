@@ -1,1 +1,1 @@
-env | grep -i proxy
+cat ~/.curlrc
