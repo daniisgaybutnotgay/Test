@@ -1,1 +1,1 @@
-/bin/sh: 1: [: missing ]
+ls: cannot access '/root/.local/bin': No such file or directory
