@@ -1,1 +1,1 @@
-capsh --print
+cat /proc/1/cgroup
