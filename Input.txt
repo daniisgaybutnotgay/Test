@@ -1,1 +1,1 @@
-ls /home/ubuntu
+ls
