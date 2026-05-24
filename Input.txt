@@ -1,1 +1,1 @@
-ls /home/claude
+ls /home/ubuntu
