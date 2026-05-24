@@ -1,1 +1,1 @@
-cat /etc/hosts
+curl https://api.anthropic.com
