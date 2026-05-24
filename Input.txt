@@ -1,1 +1,1 @@
-cat /proc/1/cgroup
+systemd-detect-virt
