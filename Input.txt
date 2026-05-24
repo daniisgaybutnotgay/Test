@@ -1,1 +1,1 @@
-cat ~/.curlrc
+cat /etc/curlrc
