@@ -1,8 +1,25 @@
-Reading package lists...
-Building dependency tree...
-Reading state information...
-nload is already the newest version (0.7.4-2build3).
-0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-
-WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
-
+bin
+bin.usr-is-merged
+boot
+container_info.json
+dev
+etc
+home
+lib
+lib.usr-is-merged
+lib64
+lost+found
+media
+mnt
+old_root
+opt
+proc
+root
+run
+sbin
+sbin.usr-is-merged
+srv
+sys
+tmp
+usr
+var
