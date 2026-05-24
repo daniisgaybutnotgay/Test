@@ -1,24 +1,25 @@
-proc on /proc type proc (rw,relatime)
-sysfs on /sys type sysfs (rw,relatime)
-devtmpfs on /dev type devtmpfs (rw,relatime,size=2045164k,nr_inodes=511291,mode=755)
-tmpfs on /dev/shm type tmpfs (rw,relatime)
-devpts on /dev/pts type devpts (rw,relatime,mode=600,ptmxmode=000)
-tmpfs on /sys/fs/cgroup type tmpfs (rw,relatime)
-cgroup on /sys/fs/cgroup/cpu type cgroup (rw,relatime,cpu)
-cgroup on /sys/fs/cgroup/cpuacct type cgroup (rw,relatime,cpuacct)
-cgroup on /sys/fs/cgroup/memory type cgroup (rw,relatime,memory)
-cgroup on /sys/fs/cgroup/devices type cgroup (rw,relatime,devices)
-cgroup on /sys/fs/cgroup/freezer type cgroup (rw,relatime,freezer)
-cgroup on /sys/fs/cgroup/blkio type cgroup (rw,relatime,blkio)
-cgroup on /sys/fs/cgroup/pids type cgroup (rw,relatime,pids)
-cgroup2 on /sys/fs/cgroup/unified type cgroup2 (rw,relatime)
-/dev/vda on / type ext4 (rw,relatime,resuid=65534,resgid=65534)
-/dev/vdb on /opt/rclone type squashfs (ro,relatime,errors=continue)
-/dev/vdc on /mnt/skills/public type squashfs (ro,relatime,errors=continue)
-/dev/vdd on /mnt/skills/examples type squashfs (ro,relatime,errors=continue)
-devpts on /dev/pts type devpts (rw,relatime,mode=600,ptmxmode=000)
-tmpfs on /dev/shm type tmpfs (rw,relatime)
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/tool_results on /mnt/user-data/tool_results type fuse.rclone (ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576)
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/outputs on /mnt/user-data/outputs type fuse.rclone (rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576)
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/uploads on /mnt/user-data/uploads type fuse.rclone (ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576)
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/transcripts on /mnt/transcripts type fuse.rclone (ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576)
+TARGET                        SOURCE                                                                            FSTYPE      OPTIONS
+/                             /dev/vda                                                                          ext4        rw,relatime,resuid=65534,resgid=65534
+├─/proc                       proc                                                                              proc        rw,relatime
+├─/sys                        sysfs                                                                             sysfs       rw,relatime
+│ └─/sys/fs/cgroup            tmpfs                                                                             tmpfs       rw,relatime
+│   ├─/sys/fs/cgroup/cpu      cgroup                                                                            cgroup      rw,relatime,cpu
+│   ├─/sys/fs/cgroup/cpuacct  cgroup                                                                            cgroup      rw,relatime,cpuacct
+│   ├─/sys/fs/cgroup/memory   cgroup                                                                            cgroup      rw,relatime,memory
+│   ├─/sys/fs/cgroup/devices  cgroup                                                                            cgroup      rw,relatime,devices
+│   ├─/sys/fs/cgroup/freezer  cgroup                                                                            cgroup      rw,relatime,freezer
+│   ├─/sys/fs/cgroup/blkio    cgroup                                                                            cgroup      rw,relatime,blkio
+│   ├─/sys/fs/cgroup/pids     cgroup                                                                            cgroup      rw,relatime,pids
+│   └─/sys/fs/cgroup/unified  cgroup2                                                                           cgroup2     rw,relatime
+├─/dev                        devtmpfs                                                                          devtmpfs    rw,relatime,size=2045164k,nr_inodes=511291,mode=755
+│ ├─/dev/shm                  tmpfs                                                                             tmpfs       rw,relatime
+│ │ └─/dev/shm                tmpfs                                                                             tmpfs       rw,relatime
+│ └─/dev/pts                  devpts                                                                            devpts      rw,relatime,mode=600,ptmxmode=000
+│   └─/dev/pts                devpts                                                                            devpts      rw,relatime,mode=600,ptmxmode=000
+├─/opt/rclone                 /dev/vdb                                                                          squashfs    ro,relatime,errors=continue
+├─/mnt/skills/public          /dev/vdc                                                                          squashfs    ro,relatime,errors=continue
+├─/mnt/skills/examples        /dev/vdd                                                                          squashfs    ro,relatime,errors=continue
+├─/mnt/user-data/tool_results rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/tool_results fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576
+├─/mnt/user-data/outputs      rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/outputs      fuse.rclone rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576
+├─/mnt/user-data/uploads      rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/uploads      fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576
+└─/mnt/transcripts            rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/transcripts            fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576
