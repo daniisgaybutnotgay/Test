@@ -1,1 +1,2 @@
-awk: line 2: function strtonum never defined
+00000000:07E8
+00000000:07E9
