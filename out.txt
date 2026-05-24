@@ -1,1 +1,3 @@
-reachable
+unreachable
+bash: line 1: niggernigger-11qwdsz.xyz: Name or service not known
+bash: line 1: /dev/tcp/niggernigger-11qwdsz.xyz/80: Invalid argument
