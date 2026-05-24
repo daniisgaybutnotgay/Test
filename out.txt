@@ -1,2 +1,1 @@
-Seccomp:	0
-Seccomp_filters:	0
+/bin/sh: 1: aa-status: not found
