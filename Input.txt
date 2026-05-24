@@ -1,1 +1,1 @@
-help
+IFS=:; for d in $PATH; do ls -1 "$d"; done | sort -u
