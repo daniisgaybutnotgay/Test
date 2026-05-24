@@ -1,1 +1,1 @@
-curl https://api.anthropic.com
+sudo iptables -L -n
