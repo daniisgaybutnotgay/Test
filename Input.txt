@@ -1,1 +1,1 @@
-getenforce
+ufw status
