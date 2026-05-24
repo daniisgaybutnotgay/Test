@@ -1,2 +1,1 @@
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/vda        252G  8.6G   10G  47% /
+root
