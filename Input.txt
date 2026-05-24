@@ -1,1 +1,1 @@
-python3 -c "import urllib.request; print(urllib.request.urlopen('https://rocdevspace.xyz').status)"
+type curl
