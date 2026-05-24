@@ -1,1 +1,1 @@
-grep -i "allow" ~/.bashrc ~/.zshrc ~/.profile 2>/dev/null
+env | grep -i proxy
