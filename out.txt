@@ -1,4 +1,8 @@
-pidfd_open: 3
-pidfd_getfd(11): 4 errno=0
+Stolen fd: 4
+Socket family: 2
 Socket type: 1
-splice from fd 11: -1 errno=0
+No data available (non-blocking)
+Peer: ('192.0.2.1', 45024)
+Local: ('192.0.2.2', 2024)
+Send buffer: 69120, Recv buffer: 131072
+Socket test complete
