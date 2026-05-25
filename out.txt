@@ -1,8 +1,5 @@
-Stolen fd: 4
-Socket family: 2
-Socket type: 1
-No data available (non-blocking)
-Peer: ('192.0.2.1', 45024)
-Local: ('192.0.2.2', 2024)
-Send buffer: 69120, Recv buffer: 131072
-Socket test complete
+Ping sent: 2 bytes
+Response: 6 bytes: 8a803a492e2c
+Unexpected response: b'\x8a\x80:I.,'
+Socket still connected
+Test complete
