@@ -1,14 +1,15 @@
-=== promisc sniff test ===
-No traffic captured in 2s
-=== arp request/response timing ===
-IP address       HW type     Flags       HW address            Mask     Device
-192.0.2.1        0x1         0x2         02:fc:00:00:00:05     *        eth0
-=== bridge isolation ===
-=== multicast membership ===
-Idx	Device    : Count Querier	Group    Users Timer	Reporter
-1	lo        :     1      V3
-				010000E0     1 0:00000000		0
-2	eth0      :     1      V3
-				010000E0     1 0:00000000		0
-=== neighbor table ===
-cat: /proc/net/neigh: No such file or directory
+=== ping gateway ===
+ping unavailable or failed
+=== traceroute ===
+traceroute unavailable
+=== TCP SYN to gateway ===
+TCP 2024: 111 (ECONNREFUSED)
+=== UDP to gateway ===
+UDP 53: timeout
+=== network interfaces ===
+Inter-|   Receive                                                |  Transmit
+ face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
+    lo:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
+  eth0: 4112697    5441    0   21    0     0          0         0   957087    6015    0    0    0     0       0          0
+=== routing cache ===
+Iface	Destination	Gateway 	Flags		RefCnt	Use	Metric	Source		MTU	Window	IRTT	TOS	HHRef	HHUptod	SpecDst                          
