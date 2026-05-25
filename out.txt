@@ -1,3 +1,2 @@
-google.com (SNI via github.com): 403
-cloudflare.com (SNI via github.com): 403
-DoH (cloudflare-dns.com): 403
+DNS response from ('8.8.8.8', 53): 124 bytes, TXID=1234
+UDP 9999 timeout
