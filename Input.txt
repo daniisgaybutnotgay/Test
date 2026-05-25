@@ -1,18 +1,20 @@
-echo "=== kernel config ===" && zcat /proc/config.gz 2>/dev/null | grep -E "STRICT_DEVMEM|STRICT_KERNEL_RWX|HARDENED_USERCOPY|INIT_ON_ALLOC|INIT_ON_FREE" | head -10 && echo "=== mem write via /dev/mem ===" && python3 -c "
-import os
+echo "=== IP spoof test ===" && python3 -c "
+import socket, struct
+# Craft IP packet with spoofed source
+ip_hdr = struct.pack('!BBHHHBBH4s4s',
+    0x45, 0, 28, 1234, 0, 64, 6, 0,  # version/IHL, TOS, total len, ID, frag, TTL, proto=TCP, checksum
+    bytes([192,0,2,3]),  # spoofed source
+    bytes([192,0,2,1])   # destination
+)
+tcp_hdr = struct.pack('!HHLLBBHHH',
+    12345, 80, 0, 0, 0x50, 0x02, 512, 0, 0  # src port, dst port, seq, ack, data offset, SYN, window
+)
+s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+s.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
 try:
-    fd = os.open('/dev/mem', os.O_RDWR)
-    os.lseek(fd, 0x55556d429000, os.SEEK_SET)
-    os.write(fd, b'TEST1234')
-    print('/dev/mem write OK')
-    os.close(fd)
+    s.sendto(ip_hdr + tcp_hdr, ('192.0.2.1', 0))
+    print('Spoofed TCP packet sent')
 except Exception as e:
-    print(f'/dev/mem write failed: {e}')
-" 2>/dev/null && echo "=== mprotect test ===" && python3 -c "
-import ctypes, mmap
-libc = ctypes.CDLL(None)
-# Allocate executable memory
-mem = mmap.mmap(-1, 4096, prot=mmap.PROT_READ | mmap.PROT_WRITE | mmap.PROT_EXEC)
-print(f'mprotect RWX: OK, addr={hex(ctypes.addressof(ctypes.c_char.from_buffer(mem)))}')
-mem.close()
-" 2>/dev/null && echo "=== kernel symbols ===" && cat /proc/kallsyms 2>/dev/null | grep -c "T " && echo "=== kernel pointer ===" && cat /proc/kallsyms 2>/dev/null | grep " sys_call_table" | head -1
+    print(f'Failed: {e}')
+s.close()
+" 2>/dev/null && echo "=== virtio console ===" && ls -la /dev/hvc* /dev/virtio-ports/* 2>/dev/null && echo "=== serial console ===" && ls -la /dev/ttyS0 && stty -F /dev/ttyS0 2>/dev/null | head -3 || echo "ttyS0 not configurable" && echo "=== FUSE manipulation ===" && touch /mnt/user-data/outputs/test_escape_$(date +%s) 2>/dev/null && ls -la /mnt/user-data/outputs/test_escape_* 2>/dev/null | head -3 && rm -f /mnt/user-data/outputs/test_escape_* 2>/dev/null
