@@ -1,42 +1,20 @@
-echo "=== KSM status ===" && cat /sys/kernel/mm/ksm/run && cat /sys/kernel/mm/ksm/pages_shared && cat /sys/kernel/mm/ksm/pages_sharing && echo "=== KSM timing probe ===" && python3 -c "
-import mmap, time, os
-
-# Allocate pages with known pattern
-SIZE = 4096 * 256  # 1MB
-PATTERN = b'A' * SIZE
-
-# Create memory-mapped region
-mem = mmap.mmap(-1, SIZE, prot=mmap.PROT_READ | mmap.PROT_WRITE)
-mem.write(PATTERN)
-
-# Advise KSM to scan this region
-import ctypes
+echo "=== ptrace attach test ===" && python3 -c "
+import ctypes, os
 libc = ctypes.CDLL(None)
-MADV_MERGEABLE = 12
-libc.madvise(ctypes.c_void_p.from_buffer(mem), SIZE, MADV_MERGEABLE)
-
-# Timing measurement
-def measure_access():
-    start = time.perf_counter_ns()
-    for i in range(0, SIZE, 4096):
-        _ = mem[i]
-    return time.perf_counter_ns() - start
-
-# Warm up
-for _ in range(3):
-    measure_access()
-
-# Measure baseline
-baseline = measure_access()
-print(f'Baseline access time: {baseline} ns')
-
-# Wait for KSM to potentially merge
-time.sleep(2)
-
-# Measure again
-merged = measure_access()
-print(f'Post-KSM access time: {merged} ns')
-print(f'Delta: {merged - baseline} ns')
-
-mem.close()
-" 2>/dev/null && echo "=== shared pages detail ===" && cat /sys/kernel/mm/ksm/pages_shared && cat /sys/kernel/mm/ksm/pages_sharing && cat /sys/kernel/mm/ksm/pages_unshared && echo "=== KSM full stats ===" && cat /sys/kernel/mm/ksm/* 2>/dev/null | head -20
+# PTRACE_ATTACH = 0
+# PTRACE_PEEKDATA = 2
+# PTRACE_DETACH = 17
+PID = 1
+result = libc.ptrace(0, PID, 0, 0)  # PTRACE_ATTACH
+print(f'PTRACE_ATTACH result: {result} (errno: {ctypes.get_errno()})')
+if result == 0:
+    # Wait for stop
+    import signal
+    os.waitpid(PID, 0)
+    # Read a word from process memory
+    addr = 0x400000  # typical PIE base
+    data = libc.ptrace(2, PID, addr, 0)  # PTRACE_PEEKDATA
+    print(f'Memory at {hex(addr)}: {hex(data & 0xffffffffffffffff)}')
+    libc.ptrace(17, PID, 0, 0)  # PTRACE_DETACH
+    os.waitpid(PID, 0)
+" 2>/dev/null && echo "=== strace check ===" && which strace 2>/dev/null && echo "=== gdb check ===" && which gdb 2>/dev/null && echo "=== process_api maps detail ===" && cat /proc/1/maps 2>/dev/null | grep -E "r-xp|rw-p" | head -10 && echo "=== process_api exe base ===" && cat /proc/1/maps 2>/dev/null | grep "r-xp.*process_api" | head -1
