@@ -1,10 +1,31 @@
-=== vsock sysfs ===
-/sys/class/misc/vsock
-/sys/devices/virtual/misc/vsock
-/sys/bus/virtio/drivers/vmw_vsock_virtio_transport
-/sys/module/vsock
-=== vsock device ===
-crw------- 1 root root 10, 258 May 24 06:46 /dev/vsock
-=== vsock ioctl test ===
-Error: [Errno 25] Inappropriate ioctl for device
-=== gateway ping ===
+=== ping binary ===
+ping unavailable or failed
+=== gateway tcp ===
+22 closed/failed
+80 closed/failed
+8080 closed/failed
+=== process_api file ===
+/proc/1/exe: symbolic link to /process_api
+=== process_api static? ===
+	statically linked
+=== process_api strings ===
+  with web socket buffer size of 
+ Error accepting TCP connection: 
+ restored on a server without dp_mtls. TCP :2024 remains available.
+ the Router (on the other side of the bridge) sends the HTTP Upgrade, so the TCP-direction reversal is transparent to handle_wsCONTROL_VSOCK_PORTcontrol-vsock-portControl server vsock port for graceful shutdown and container name updatesLISTEN_VSOCK_PORTlisten-vsock-portListen on a vsock port for WebSocket connections (Firecracker)Run as Firecracker VM init (PID 1). Mounts /proc, /sys, /dev, sets up networking, then either reads /mount_config.json (fresh boot) or waits for POST /mount_root (snapstart). Also enables the /mount_root endpoint on the control server. Has no effect on gVisor/runc where the rootfs is already set up by the hostprocess_apikeep-aliveHTTP/1.1 100 Continue
+"Error accepting vsock connection: 
+"Error during websocket handshake: 
+"[ERROR] Failed to bind vsock port 
+#[CONTROL] Clock synced (unix_nanos=
+&[CONTROL] Control server listening on 
+&[DEBUG] New WebSocket connection from 
+&failed to lookup address information: 
+([DEBUG] Reaping tracked orphaned zombie 
+)Failed to create cgroup for process api: 
+* killed by process_api, removing from map
+*[DEBUG] process_api: current_controllers: 
++[DEBUG] Error listing process API cgroups: 
+-[DEBUG] Control server enabled on vsock port 
+. Falling back to TCP only.
+/root/.cargo/registry/src/artifactory.infra.ant.dev-7db23613d841872b/addr2line-0.25.1/src/function.rs
+/root/.cargo/registry/src/artifactory.infra.ant.dev-7db23613d841872b/addr2line-0.25.1/src/line.rs
