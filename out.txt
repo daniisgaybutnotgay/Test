@@ -1,7 +1,4 @@
-SEIZE rclone: 0 errno=0
-PEEK rclone heap: 0xffffffffffffffff errno=0
-POKE rclone: -1 errno=0
-VERIFY rclone: 0xffffffffffffffff
-Traceback (most recent call last):
-  File "<string>", line 34, in <module>
-ChildProcessError: [Errno 10] No child processes
+pidfd_open: 3
+pidfd_getfd(11): 4 errno=0
+Socket type: 1
+splice from fd 11: -1 errno=0
