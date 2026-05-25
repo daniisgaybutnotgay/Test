@@ -1,26 +1,23 @@
 python3 -c "
-import socket, struct
+import socket, ssl
 
-# Test IPv4 direct to Google
 for ip in ['142.250.80.46', '142.250.185.78']:
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.settimeout(3)
+        s.settimeout(5)
         s.connect((ip, 443))
-        print(f'TCP {ip}:443 connected')
-        s.close()
+        
+        # TLS without SNI (server_hostname=None)
+        context = ssl.create_default_context()
+        context.check_hostname = False
+        context.verify_mode = ssl.CERT_NONE
+        
+        ss = context.wrap_socket(s, server_hostname=None)
+        print(f'TLS to {ip}: cipher={ss.cipher()[0]} version={ss.version()}')
+        ss.send(b'GET / HTTP/1.1\r\nHost: www.google.com\r\nConnection: close\r\n\r\n')
+        data = ss.recv(1024)
+        print(f'Response: {data[:100]}')
+        ss.close()
     except Exception as e:
-        print(f'TCP {ip}:443 failed: {e}')
-
-# Test ICMP (raw socket)
-try:
-    icmp = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
-    icmp.settimeout(3)
-    # ICMP echo request
-    packet = struct.pack('!BBHHH', 8, 0, 0, 1234, 1) + b'hello'
-    icmp.sendto(packet, ('8.8.8.8', 0))
-    data, addr = icmp.recvfrom(1024)
-    print(f'ICMP echo reply from {addr[0]}: {len(data)} bytes')
-except Exception as e:
-    print(f'ICMP failed: {e}')
+        print(f'TLS {ip} failed: {e}')
 " 2>/dev/null
