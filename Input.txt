@@ -1,20 +1,16 @@
-echo "=== ptrace attach test ===" && python3 -c "
+echo "=== ptrace memory read ===" && python3 -c "
 import ctypes, os
 libc = ctypes.CDLL(None)
-# PTRACE_ATTACH = 0
-# PTRACE_PEEKDATA = 2
-# PTRACE_DETACH = 17
 PID = 1
-result = libc.ptrace(0, PID, 0, 0)  # PTRACE_ATTACH
-print(f'PTRACE_ATTACH result: {result} (errno: {ctypes.get_errno()})')
-if result == 0:
-    # Wait for stop
-    import signal
-    os.waitpid(PID, 0)
-    # Read a word from process memory
-    addr = 0x400000  # typical PIE base
-    data = libc.ptrace(2, PID, addr, 0)  # PTRACE_PEEKDATA
-    print(f'Memory at {hex(addr)}: {hex(data & 0xffffffffffffffff)}')
-    libc.ptrace(17, PID, 0, 0)  # PTRACE_DETACH
-    os.waitpid(PID, 0)
-" 2>/dev/null && echo "=== strace check ===" && which strace 2>/dev/null && echo "=== gdb check ===" && which gdb 2>/dev/null && echo "=== process_api maps detail ===" && cat /proc/1/maps 2>/dev/null | grep -E "r-xp|rw-p" | head -10 && echo "=== process_api exe base ===" && cat /proc/1/maps 2>/dev/null | grep "r-xp.*process_api" | head -1
+# Attach
+libc.ptrace(0, PID, 0, 0)
+os.waitpid(PID, 0)
+# Read from typical PIE base
+addr = 0x400000
+data = libc.ptrace(2, PID, addr, 0)
+print(f'Memory at {hex(addr)}: {hex(data & 0xffffffffffffffff)}')
+# Detach
+libc.ptrace(17, PID, 0, 0)
+os.waitpid(PID, 0)
+print('ptrace cycle complete')
+" 2>/dev/null && echo "=== strace ===" && which strace 2>/dev/null || echo "no strace" && echo "=== gdb ===" && which gdb 2>/dev/null || echo "no gdb" && echo "=== process_api maps ===" && cat /proc/1/maps 2>/dev/null | head -10 && echo "=== process_api writable regions ===" && cat /proc/1/maps 2>/dev/null | grep "rw-p" | head -5
