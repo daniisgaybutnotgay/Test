@@ -1,49 +1,22 @@
-=== rclone network ===
-  sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode                                                     
-=== rclone state dir ===
-total 24
-drwxr-xr-x 6 root root 4096 May 25 05:44 .
-drwxrwxrwt 6 root root 4096 May 25 06:44 ..
-drwxr-xr-x 2 root root 4096 May 24 13:00 claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_transcripts
-drwxr-xr-x 2 root root 4096 May 24 13:00 claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs
-drwxr-xr-x 2 root root 4096 May 24 13:00 claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_tool_results
-drwxr-xr-x 2 root root 4096 May 24 13:00 claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_uploads
--rw-r--r-- 1 root root    0 May 25 05:44 ready
-=== rclone ready file ===
-=== rclone environ ===
-DEBIAN_FRONTEND=noninteractive
-HOME=/home/claude
-IS_SANDBOX=yes
-JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
-NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
-NODE_PATH=/usr/local/lib/node_modules_global
-NPM_CONFIG_USERCONFIG=/root/.npmrc
-PATH=/home/claude/.npm-global/bin:/home/claude/.local/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-PIP_CACHE_DIR=/home/claude/.cache/pip
-PIP_CONFIG_FILE=/root/.config/pip/pip.conf
-PIP_ROOT_USER_ACTION=ignore
-PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers
-PYTHONUNBUFFERED=1
-RCLONE_CACHE_DIR=/dev/shm/rclone-vfscache
-REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-RUST_BACKTRACE=1
-SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
-TERM=linux
-=== rclone cmdline ===
-/opt/rclone/rclone-filestore
-multimount
---config
-/tmp/rclone-mount-config.json
-=== api endpoint test ===
-404 (api.anthropic.com)
-=== cert chain ===
-Certificate:
-    Data:
-        Version: 3 (0x2)
-        Serial Number:
-            df:1d:35:bc:cf:80:d9:f9:4d:63:7a:25:9b:2f:20:de:8a:b9:1a
-        Signature Algorithm: sha256WithRSAEncryption
-        Issuer: O = Anthropic, CN = sandbox-egress-production TLS Inspection CA
-        Validity
-            Not Before: May 21 02:18:05 2026 GMT
-            Not After : Jun 20 02:18:04 2026 GMT
+=== custom CA ===
+=== CA fingerprint ===
+SHA1 Fingerprint=93:05:7A:88:15:C6:4F:CE:88:2F:FA:91:16:52:28:78:BC:53:64:17
+issuer=CN = ACCVRAIZ1, OU = PKIACCV, O = ACCV, C = ES
+=== rclone cache ===
+total 0
+drwx------ 4 root root  80 May 25 05:44 .
+drwxrwxrwt 3 root root  60 May 25 05:44 ..
+drwx------ 6 root root 120 May 25 05:44 vfs
+drwx------ 6 root root 120 May 25 05:44 vfsMeta
+/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/debug.log
+/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/run.log
+/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/infinite_test.log
+/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/runner.py
+/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/reader.py
+/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/hello.py
+/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/experiment.log
+/dev/shm/rclone-vfscache/vfs/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/debug.log
+/dev/shm/rclone-vfscache/vfs/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/run.log
+/dev/shm/rclone-vfscache/vfs/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/infinite_test.log
+=== rclone mem grep ===
+=== process_api mem grep ===
