@@ -1,19 +1,9 @@
-=== VM IP ===
-192.0.2.0
-192.0.2.2
-192.0.2.255
-=== interface IP ===
-/sys/class/net/eth0/address: 02:fc:00:00:00:01
-/sys/class/net/eth0/ifindex: 2
-02:fc:00:00:00:01
-=== API from eth0 ===
-000 (192.0.2.0:2024 via eth0)
-=== unix sockets ===
-lrwx------ 1 root root 64 May 25 06:37 10 -> socket:[601]
-lrwx------ 1 root root 64 May 25 06:37 11 -> socket:[6170]
-lrwx------ 1 root root 64 May 25 06:37 6 -> socket:[597]
-lrwx------ 1 root root 64 May 25 06:37 7 -> socket:[598]
-lrwx------ 1 root root 64 May 25 06:37 8 -> socket:[597]
-lrwx------ 1 root root 64 May 25 06:37 9 -> socket:[600]
-=== process_api config ===
-/tmp/process_api_copy
+=== socket mapping ===
+--- inode 597 ---
+--- inode 598 ---
+--- inode 600 ---
+/proc/net/tcp:   0: 00000000:07E8 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 600 1 00000000ec8748a8 100 0 0 10 0                       
+--- inode 601 ---
+/proc/net/tcp:   1: 00000000:07E9 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 601 1 00000000878e3de6 100 0 0 10 0                       
+--- inode 6170 ---
+/proc/net/tcp:   3: 020200C0:07E8 010200C0:BE22 01 00000000:00000000 00:00000000 00000000     0        0 6170 1 000000004fccb7c8 20 4 28 12 -1                     
