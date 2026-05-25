@@ -10,6 +10,6 @@ UDP 53: timeout
 Inter-|   Receive                                                |  Transmit
  face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed
     lo:       0       0    0    0    0     0          0         0        0       0    0    0    0     0       0          0
-  eth0: 4112697    5441    0   21    0     0          0         0   957087    6015    0    0    0     0       0          0
+  eth0: 4225530    5593    0   21    0     0          0         0   983275    6180    0    0    0     0       0          0
 === routing cache ===
 Iface	Destination	Gateway 	Flags		RefCnt	Use	Metric	Source		MTU	Window	IRTT	TOS	HHRef	HHUptod	SpecDst                          
