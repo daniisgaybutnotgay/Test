@@ -1,2 +1,21 @@
-=== ptrace attach test ===
-PTRACE_ATTACH result: 0 (errno: 0)
+=== ptrace memory read ===
+no strace
+=== gdb ===
+/usr/bin/gdb
+=== process_api maps ===
+55556d428000-55556d429000 ---p 00000000 00:00 0                          [heap]
+55556d429000-55556d42b000 rw-p 00000000 00:00 0                          [heap]
+7fbdcd4da000-7fbdcd4db000 ---p 00000000 00:00 0 
+7fbdcd4db000-7fbdcd4de000 rw-p 00000000 00:00 0 
+7fbdcd4de000-7fbdcd4e0000 ---p 00000000 00:00 0 
+7fbdcd4e0000-7fbdcd6e1000 rw-p 00000000 00:00 0 
+7fbdcd6e1000-7fbdcd6e3000 ---p 00000000 00:00 0 
+7fbdcd6e3000-7fbdcd8ed000 rw-p 00000000 00:00 0 
+7fbdcd8ed000-7fbdcd8ee000 ---p 00000000 00:00 0 
+7fbdcd8ee000-7fbdcd8f1000 rw-p 00000000 00:00 0 
+=== process_api writable regions ===
+55556d429000-55556d42b000 rw-p 00000000 00:00 0                          [heap]
+7fbdcd4db000-7fbdcd4de000 rw-p 00000000 00:00 0 
+7fbdcd4e0000-7fbdcd6e1000 rw-p 00000000 00:00 0 
+7fbdcd6e3000-7fbdcd8ed000 rw-p 00000000 00:00 0 
+7fbdcd8ee000-7fbdcd8f1000 rw-p 00000000 00:00 0 
