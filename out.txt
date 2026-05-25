@@ -1,17 +1,24 @@
-A
-modules_disabled unreadable
-B
-/sys/bus/pci/devices/0000:00:01.0/config
-C
-11000101101110110000000000000100100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-D
-2
-E
-crw------- 1 root root 4, 64 May 25 07:13 /dev/ttyS0
-F
-0
-G
-0
-H
-I
-2
+=== PCI config read ===
+000000 f4 1a 42 10 06 04 10 00 01 00 80 01 00 00 00 00
+000010 04 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+000020 00 00 00 00 00 00 00 00 00 00 00 00 f4 1a 42 10
+000030 00 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+000040 09 50 10 01 00 00 00 00 00 00 00 00 38 00 00 00
+=== PCI config write test ===
+write OK
+=== virtio status ===
+0x0000000f
+=== virtio config ===
+=== virtio reset test ===
+reset blocked
+=== device after reset ===
+0x0000000f
+=== kallsyms ===
+47919
+=== dmesg tail ===
+[   11.994402] virtio_blk virtio0: [vda] new size: 536870912 512-byte logical blocks (275 GB/256 GiB)
+[   11.996364] random: crng reseeded due to virtual machine fork
+[   12.006821] tokio-rt-worker (484): drop_caches: 3
+[   12.015063] EXT4-fs (vda): warning: mounting unchecked fs, running e2fsck is recommended
+[   12.023139] EXT4-fs (vda): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+/bin/sh: 1: cannot create /sys/bus/virtio/devices/virtio4/status: Permission denied
