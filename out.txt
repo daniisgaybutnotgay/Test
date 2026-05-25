@@ -1,3 +1,3 @@
-  File "<string>", line 1
-    import os  # Test 1: Symlink escape attempt base = '/mnt/user-data/outputs' try:     os.symlink('/etc/passwd', base + '/link_to_passwd')     print('Symlink created')     target = os.readlink(base + '/link_to_passwd')     print(f'Symlink target: {target}')     # Try to read through it     with open(base + '/link_to_passwd', 'r') as f:         print(f'Read through symlink: {f.readline().strip()[:50]}') except Exception as e:     print(f'Symlink test: {e}') finally:     try:         os.remove(base + '/link_to_passwd')     except:         pass  # Test 2: Hardlink attempt try:     os.link('/etc/passwd', base + '/hardlink_passwd')     print('Hardlink created (ESCAPE!)')     os.remove(base + '/hardlink_passwd') except Exception as e:     print(f'Hardlink test: {e}')  # Test 3: Device node creation in FUSE try:     os.mknod(base + '/test_dev', 0o666 | 0o020000, os.makedev(1, 3))  # char device     print('Device node created in FUSE')     os.remove(base + '/test_dev') except Exception as e:     print(f'Device node test: {e}') 
-IndentationError: unexpected indent
+Symlink test: [Errno 38] Function not implemented: '/etc/passwd' -> '/mnt/user-data/outputs/link_to_passwd'
+Hardlink test: [Errno 18] Invalid cross-device link: '/etc/passwd' -> '/mnt/user-data/outputs/hardlink_passwd'
+Device node test: [Errno 95] Operation not supported
