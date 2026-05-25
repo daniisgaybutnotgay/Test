@@ -1,6 +1,6 @@
-google.com: HTTP 403
-cloudflare.com: HTTP 403
-github.com: HTTP 200
-raw.githubusercontent.com: HTTP 301
-pypi.org: HTTP 200
-npmjs.com: HTTP 301
+google.com (HTTP): 403
+google.com resolved to: 2607:f8b0:4001:c05::65
+google.com (HTTPS via 2607:f8b0:4001:c05::65): 000
+cloudflare.com (HTTP): 403
+cloudflare.com resolved to: 2606:4700::6810:84e5
+cloudflare.com (HTTPS via 2606:4700::6810:84e5): 000
