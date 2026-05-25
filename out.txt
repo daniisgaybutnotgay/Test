@@ -1,26 +1,32 @@
-bin
-bin.usr-is-merged
-boot
-container.env
-container_info.json
-dev
-etc
-home
-lib
-lib.usr-is-merged
-lib64
-lost+found
-media
-mnt
-old_root
-opt
-proc
-root
-run
-sbin
-sbin.usr-is-merged
-srv
-sys
-tmp
-usr
-var
+uid=0(root) gid=0(root) groups=0(root)
+---
+7:pids:/
+6:blkio:/
+5:freezer:/
+4:devices:/
+3:memory:/
+2:cpuacct:/
+1:cpu:/
+0::/
+---
+total 0
+dr-x--x--x 2 root root 0 May 25 06:27 .
+dr-xr-xr-x 9 root root 0 May 25 06:27 ..
+lrwxrwxrwx 1 root root 0 May 25 06:27 cgroup -> cgroup:[4026531835]
+lrwxrwxrwx 1 root root 0 May 25 06:27 ipc -> ipc:[4026531839]
+lrwxrwxrwx 1 root root 0 May 25 06:27 mnt -> mnt:[4026531832]
+lrwxrwxrwx 1 root root 0 May 25 06:27 net -> net:[4026531833]
+lrwxrwxrwx 1 root root 0 May 25 06:27 pid -> pid:[4026531836]
+lrwxrwxrwx 1 root root 0 May 25 06:27 pid_for_children -> pid:[4026531836]
+lrwxrwxrwx 1 root root 0 May 25 06:27 time -> time:[4026531834]
+lrwxrwxrwx 1 root root 0 May 25 06:27 time_for_children -> time:[4026531834]
+lrwxrwxrwx 1 root root 0 May 25 06:27 user -> user:[4026531837]
+lrwxrwxrwx 1 root root 0 May 25 06:27 uts -> uts:[4026531838]
+---
+CapInh:	0000000000000000
+CapPrm:	000001fffeffffff
+CapEff:	000001fffeffffff
+CapBnd:	000001fffeffffff
+CapAmb:	0000000000000000
+Seccomp:	0
+Seccomp_filters:	0
