@@ -1,28 +1,25 @@
 python3 -c "
-import socket
+import socket, ssl
 
+# Test 1: Direct HTTP GET
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.settimeout(5)
 s.connect(('project-stealth.xyz', 80))
+s.send(b'GET / HTTP/1.1\r\nHost: project-stealth.xyz\r\nConnection: close\r\n\r\n')
+data = s.recv(2048)
+print(f'HTTP response: {data[:300]}')
+s.close()
 
-# Send HTTP CONNECT to a known destination (e.g., google.com:443)
-connect_req = b'CONNECT www.google.com:443 HTTP/1.1\r\nHost: project-stealth.xyz\r\n\r\n'
-s.send(connect_req)
-
-response = s.recv(1024)
-print(f'CONNECT response: {response[:200]}')
-
-# If 200 OK, try TLS through the tunnel
-if b'200' in response:
-    import ssl
-    context = ssl.create_default_context()
-    context.check_hostname = False
-    context.verify_mode = ssl.CERT_NONE
-    ss = context.wrap_socket(s, server_hostname='www.google.com')
-    ss.send(b'GET / HTTP/1.1\r\nHost: www.google.com\r\nConnection: close\r\n\r\n')
-    data = ss.recv(1024)
-    print(f'Tunneled response: {data[:150]}')
-    ss.close()
-else:
-    s.close()
-"
+# Test 2: HTTPS with SNI
+s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s2.settimeout(5)
+s2.connect(('project-stealth.xyz', 443))
+context = ssl.create_default_context()
+context.check_hostname = False
+context.verify_mode = ssl.CERT_NONE
+ss = context.wrap_socket(s2, server_hostname='project-stealth.xyz')
+ss.send(b'GET / HTTP/1.1\r\nHost: project-stealth.xyz\r\nConnection: close\r\n\r\n')
+data2 = ss.recv(2048)
+print(f'HTTPS response: {data2[:300]}')
+ss.close()
+" 2>/dev/null
