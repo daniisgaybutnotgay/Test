@@ -1,5 +1,25 @@
-Ping sent: 2 bytes
-Response: 6 bytes: 8a803a492e2c
-Unexpected response: b'\x8a\x80:I.,'
-Socket still connected
-Test complete
+bin
+bin.usr-is-merged
+boot
+container_info.json
+dev
+etc
+home
+lib
+lib.usr-is-merged
+lib64
+lost+found
+media
+mnt
+old_root
+opt
+proc
+root
+run
+sbin
+sbin.usr-is-merged
+srv
+sys
+tmp
+usr
+var
