@@ -1,1 +1,49 @@
-rm -f /etc/apt/sources.list.d/nodesource.list && apt update && apt install -y openssh-server curl && service ssh start && echo -e "\nSSH READY\nUser: $(whoami)\nIP: $(curl -s ifconfig.me)\nPort: 22\n"
+python3 -c "
+import os, socket, ctypes, struct, fcntl
+
+libc = ctypes.CDLL(None)
+PID = 1
+
+# Re-acquire socket
+pidfd = os.pidfd_open(PID, 0)
+dup_fd = libc.syscall(438, pidfd, 11, 0)
+os.close(pidfd)
+
+s = socket.socket(fileno=dup_fd)
+
+# Check receive queue size without consuming data
+SIOCINQ = 0x541B  # FIONREAD
+buf = struct.pack('I', 0)
+try:
+    fcntl.ioctl(s, SIOCINQ, buf)
+    pending = struct.unpack('I', buf)[0]
+    print(f'Bytes in socket recv buffer: {pending}')
+except Exception as e:
+    print(f'ioctl failed: {e}')
+
+# If data exists, peek at it without removing from queue
+if pending > 0:
+    try:
+        data = s.recv(min(pending, 256), socket.MSG_PEEK)
+        print(f'Peek data ({len(data)} bytes): {data[:64].hex()}')
+        # Try to decode as text
+        text = data.decode('utf-8', errors='replace')
+        print(f'As text: {text[:100]}')
+    except Exception as e:
+        print(f'Peek failed: {e}')
+else:
+    print('No pending data in buffer')
+
+# Check send queue
+SIOCOUTQ = 0x5411
+buf = struct.pack('I', 0)
+try:
+    fcntl.ioctl(s, SIOCOUTQ, buf)
+    pending_send = struct.unpack('I', buf)[0]
+    print(f'Bytes in socket send buffer: {pending_send}')
+except Exception as e:
+    print(f'Send queue check: {e}')
+
+s.close()
+print('Inspection complete')
+"
