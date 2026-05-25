@@ -1,48 +1,105 @@
-=== CA bundle structure ===
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
------BEGIN CERTIFICATE-----
-=== cert count ===
-150
-=== last cert ===
-issuer=O = Anthropic, CN = sandbox-egress-staging TLS Inspection CA
-subject=O = Anthropic, CN = sandbox-egress-staging TLS Inspection CA
-notBefore=Jul 21 22:26:25 2025 GMT
-notAfter=Jul 19 22:26:24 2035 GMT
-=== proxy detection ===
-HTTP 403 | size_download=82 | time_total=0.047533
-=== SNI test ===
-000 (direct to gateway)
-=== gateway port scan extended ===
-192.0.2.1:443 closed
-192.0.2.1:8080 closed
-192.0.2.1:8443 closed
-192.0.2.1:9443 closed
-192.0.2.1:10443 closed
+=== mount namespace ===
+lrwxrwxrwx 1 root root 0 May 25 06:47 /proc/self/ns/mnt -> mnt:[4026531832]
+mnt:[4026531832]
+=== host root access ===
+total 92
+drwxr-xr-x  22 claude ubuntu  4096 May 25 06:15 .
+drwxr-xr-x  22 claude ubuntu  4096 May 25 06:15 ..
+lrwxrwxrwx   1 root   root       7 Apr 22  2024 bin -> usr/bin
+drwxr-xr-x   2 root   root    4096 Apr  8  2024 bin.usr-is-merged
+=== cgroup v1/v2 ===
+blkio
+cpu
+cpuacct
+devices
+freezer
+memory
+pids
+unified
+7:pids:/
+6:blkio:/
+5:freezer:/
+4:devices:/
+3:memory:/process_api/0ed15f76e0b96cef6dc0953aae54a391
+2:cpuacct:/
+1:cpu:/
+0::/
+=== device whitelist ===
+crw-------  1 root   root     5,   1 May 24 06:46 console
+crw-rw-rw-  1 root   root     1,   7 May 24 06:46 full
+crw-------  1 root   root    10, 229 May 24 06:46 fuse
+crw-rw-rw-  1 root   root     1,   3 May 24 06:46 null
+crw-rw-rw-  1 root   root     5,   2 May 24 06:46 ptmx
+crw-rw-rw-  1 root   root     1,   8 May 24 06:46 random
+crw-rw-rw-  1 root   root     5,   0 May 24 06:46 tty
+crw-------  1 root   root     4,   0 May 24 06:46 tty0
+crw-------  1 root   root     4,   1 May 24 06:46 tty1
+crw-------  1 root   root     4,  10 May 24 06:46 tty10
+crw-------  1 root   root     4,  11 May 24 06:46 tty11
+crw-------  1 root   root     4,  12 May 24 06:46 tty12
+crw-------  1 root   root     4,  13 May 24 06:46 tty13
+crw-------  1 root   root     4,  14 May 24 06:46 tty14
+crw-------  1 root   root     4,  15 May 24 06:46 tty15
+crw-------  1 root   root     4,  16 May 24 06:46 tty16
+crw-------  1 root   root     4,  17 May 24 06:46 tty17
+crw-------  1 root   root     4,  18 May 24 06:46 tty18
+crw-------  1 root   root     4,  19 May 24 06:46 tty19
+crw-------  1 root   root     4,   2 May 24 06:46 tty2
+crw-------  1 root   root     4,  20 May 24 06:46 tty20
+crw-------  1 root   root     4,  21 May 24 06:46 tty21
+crw-------  1 root   root     4,  22 May 24 06:46 tty22
+crw-------  1 root   root     4,  23 May 24 06:46 tty23
+crw-------  1 root   root     4,  24 May 24 06:46 tty24
+crw-------  1 root   root     4,  25 May 24 06:46 tty25
+crw-------  1 root   root     4,  26 May 24 06:46 tty26
+crw-------  1 root   root     4,  27 May 24 06:46 tty27
+crw-------  1 root   root     4,  28 May 24 06:46 tty28
+crw-------  1 root   root     4,  29 May 24 06:46 tty29
+crw-------  1 root   root     4,   3 May 24 06:46 tty3
+crw-------  1 root   root     4,  30 May 24 06:46 tty30
+crw-------  1 root   root     4,  31 May 24 06:46 tty31
+crw-------  1 root   root     4,  32 May 24 06:46 tty32
+crw-------  1 root   root     4,  33 May 24 06:46 tty33
+crw-------  1 root   root     4,  34 May 24 06:46 tty34
+crw-------  1 root   root     4,  35 May 24 06:46 tty35
+crw-------  1 root   root     4,  36 May 24 06:46 tty36
+crw-------  1 root   root     4,  37 May 24 06:46 tty37
+crw-------  1 root   root     4,  38 May 24 06:46 tty38
+crw-------  1 root   root     4,  39 May 24 06:46 tty39
+crw-------  1 root   root     4,   4 May 24 06:46 tty4
+crw-------  1 root   root     4,  40 May 24 06:46 tty40
+crw-------  1 root   root     4,  41 May 24 06:46 tty41
+crw-------  1 root   root     4,  42 May 24 06:46 tty42
+crw-------  1 root   root     4,  43 May 24 06:46 tty43
+crw-------  1 root   root     4,  44 May 24 06:46 tty44
+crw-------  1 root   root     4,  45 May 24 06:46 tty45
+crw-------  1 root   root     4,  46 May 24 06:46 tty46
+crw-------  1 root   root     4,  47 May 24 06:46 tty47
+crw-------  1 root   root     4,  48 May 24 06:46 tty48
+crw-------  1 root   root     4,  49 May 24 06:46 tty49
+crw-------  1 root   root     4,   5 May 24 06:46 tty5
+crw-------  1 root   root     4,  50 May 24 06:46 tty50
+crw-------  1 root   root     4,  51 May 24 06:46 tty51
+crw-------  1 root   root     4,  52 May 24 06:46 tty52
+crw-------  1 root   root     4,  53 May 24 06:46 tty53
+crw-------  1 root   root     4,  54 May 24 06:46 tty54
+crw-------  1 root   root     4,  55 May 24 06:46 tty55
+crw-------  1 root   root     4,  56 May 24 06:46 tty56
+crw-------  1 root   root     4,  57 May 24 06:46 tty57
+crw-------  1 root   root     4,  58 May 24 06:46 tty58
+crw-------  1 root   root     4,  59 May 24 06:46 tty59
+crw-------  1 root   root     4,   6 May 24 06:46 tty6
+crw-------  1 root   root     4,  60 May 24 06:46 tty60
+crw-------  1 root   root     4,  61 May 24 06:46 tty61
+crw-------  1 root   root     4,  62 May 24 06:46 tty62
+crw-------  1 root   root     4,  63 May 24 06:46 tty63
+crw-------  1 root   root     4,   7 May 24 06:46 tty7
+crw-------  1 root   root     4,   8 May 24 06:46 tty8
+crw-------  1 root   root     4,   9 May 24 06:46 tty9
+crw-------  1 root   root     4,  64 May 24 06:46 ttyS0
+crw-rw-rw-  1 root   root     1,   9 May 24 06:46 urandom
+crw-rw-rw-  1 root   root     1,   5 May 24 06:46 zero
+=== mknod test ===
+crw-r--r-- 1 root root 1, 3 May 25 06:47 /tmp/testnull
+=== new mount test ===
+tmpfs mount OK
