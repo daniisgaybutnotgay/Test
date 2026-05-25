@@ -3,4 +3,4 @@ Spoofed TCP packet sent
 === virtio console ===
 ttyS0 not configurable
 === FUSE manipulation ===
--rw-r--r-- 1 claude ubuntu 0 May 25 09:34 /mnt/user-data/outputs/test_escape_1779701651
+-rw-r--r-- 1 claude ubuntu 0 May 25 09:36 /mnt/user-data/outputs/test_escape_1779701772
