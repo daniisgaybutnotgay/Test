@@ -1,22 +1,48 @@
-=== custom CA ===
-=== CA fingerprint ===
-SHA1 Fingerprint=93:05:7A:88:15:C6:4F:CE:88:2F:FA:91:16:52:28:78:BC:53:64:17
-issuer=CN = ACCVRAIZ1, OU = PKIACCV, O = ACCV, C = ES
-=== rclone cache ===
-total 0
-drwx------ 4 root root  80 May 25 05:44 .
-drwxrwxrwt 3 root root  60 May 25 05:44 ..
-drwx------ 6 root root 120 May 25 05:44 vfs
-drwx------ 6 root root 120 May 25 05:44 vfsMeta
-/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/debug.log
-/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/run.log
-/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/infinite_test.log
-/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/runner.py
-/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/reader.py
-/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/hello.py
-/dev/shm/rclone-vfscache/vfsMeta/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/experiment.log
-/dev/shm/rclone-vfscache/vfs/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/debug.log
-/dev/shm/rclone-vfscache/vfs/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/run.log
-/dev/shm/rclone-vfscache/vfs/claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs/outputs/infinite_test.log
-=== rclone mem grep ===
-=== process_api mem grep ===
+=== CA bundle structure ===
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+=== cert count ===
+150
+=== last cert ===
+issuer=O = Anthropic, CN = sandbox-egress-staging TLS Inspection CA
+subject=O = Anthropic, CN = sandbox-egress-staging TLS Inspection CA
+notBefore=Jul 21 22:26:25 2025 GMT
+notAfter=Jul 19 22:26:24 2035 GMT
+=== proxy detection ===
+HTTP 403 | size_download=82 | time_total=0.047533
+=== SNI test ===
+000 (direct to gateway)
+=== gateway port scan extended ===
+192.0.2.1:443 closed
+192.0.2.1:8080 closed
+192.0.2.1:8443 closed
+192.0.2.1:9443 closed
+192.0.2.1:10443 closed
