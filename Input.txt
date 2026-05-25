@@ -1,1 +1,1 @@
-ls
+apt install -y zip && mkdir -p /mnt/user-data/outputs && zip -r /mnt/user-data/outputs/main.zip / -x "/proc/*" "/sys/*" "/dev/*" "/run/*" "/tmp/*" "/mnt/user-data/outputs/main.zip"
