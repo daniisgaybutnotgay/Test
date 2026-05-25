@@ -1,25 +1,4 @@
-bin
-bin.usr-is-merged
-boot
-container_info.json
-dev
-etc
-home
-lib
-lib.usr-is-merged
-lib64
-lost+found
-media
-mnt
-old_root
-opt
-proc
-root
-run
-sbin
-sbin.usr-is-merged
-srv
-sys
-tmp
-usr
-var
+=== filesystem_id injection ===
+ (filesystem API)
+=== rclone process injection ===
+ls: cannot access '/proc/489/fd/': No such file or directory
