@@ -1,15 +1,12 @@
-=== current MAC ===
-02:fc:00:00:00:01
-=== MAC change test ===
-MAC change blocked
-=== promiscuous mode ===
-promisc blocked
-=== raw socket test ===
-RAW socket OK
-=== virtio-net stats ===
-4498
-4969
-=== virtio-net config ===
-=== virtio-net features writable ===
-features read-only
-/bin/sh: 9: cannot create /sys/bus/virtio/devices/virtio4/features: Permission denied
+=== raw socket capabilities ===
+Raw socket with ETH_P_IP: OK
+Raw ICMP socket: OK
+Raw TCP socket: OK
+=== scapy check ===
+scapy not available
+=== tcpdump check ===
+tcpdump not available
+=== packet injection test ===
+ARP packet injected
+=== arp table after ===
+192.0.2.1        0x1         0x2         02:fc:00:00:00:05     *        eth0
