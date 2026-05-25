@@ -1,17 +1,16 @@
-=== uptime ===
-2604.84 2563.46
-=== boot time ===
-btime 1779698907
-=== ptrace with interrupt ===
-SEIZE: 0 errno=0
-INTERRUPT: 0 errno=0
-WAITID: 0 errno=0 si_signo=17 si_code=4
-PEEKDATA: 0xffffffffffffffff errno=0
-POKEDATA: -1 errno=0
-VERIFY: 0xffffffffffffffff errno=0
-DETACH: 0 errno=0
-=== process state after ===
-State:	S (sleeping)
-Threads:	8
-voluntary_ctxt_switches:	208
-nonvoluntary_ctxt_switches:	55
+=== kernel config ===
+CONFIG_ARCH_HAS_STRICT_KERNEL_RWX=y
+CONFIG_STRICT_KERNEL_RWX=y
+# CONFIG_INIT_ON_ALLOC_DEFAULT_ON is not set
+# CONFIG_INIT_ON_FREE_DEFAULT_ON is not set
+CONFIG_HARDENED_USERCOPY=y
+CONFIG_HARDENED_USERCOPY_DEFAULT_ON=y
+CONFIG_STRICT_DEVMEM=y
+# CONFIG_IO_STRICT_DEVMEM is not set
+=== mem write via /dev/mem ===
+/dev/mem write failed: [Errno 14] Bad address
+=== mprotect test ===
+mprotect RWX: OK, addr=0x7f306a40a000
+=== kernel symbols ===
+47919
+=== kernel pointer ===
