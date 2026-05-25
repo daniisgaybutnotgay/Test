@@ -1,3 +1,7 @@
-Symlink test: [Errno 38] Function not implemented: '/etc/passwd' -> '/mnt/user-data/outputs/link_to_passwd'
-Hardlink test: [Errno 18] Invalid cross-device link: '/etc/passwd' -> '/mnt/user-data/outputs/hardlink_passwd'
-Device node test: [Errno 95] Operation not supported
+SEIZE rclone: 0 errno=0
+PEEK rclone heap: 0xffffffffffffffff errno=0
+POKE rclone: -1 errno=0
+VERIFY rclone: 0xffffffffffffffff
+Traceback (most recent call last):
+  File "<string>", line 34, in <module>
+ChildProcessError: [Errno 10] No child processes
