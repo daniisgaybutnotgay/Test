@@ -1,103 +1,49 @@
-=== rclone config ===
-{
-  "mounts": [
-    {
-      "cache_duration_s": 3600.0,
-      "destination": "/mnt/user-data/outputs",
-      "dir_perms": "0755",
-      "file_perms": "0644",
-      "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
-      "gid": 1000,
-      "readonly": false,
-      "source": "/outputs",
-      "uid": 999,
-      "vfs_cache_max_size": "1G",
-      "vfs_cache_mode": "full"
-    },
-    {
-      "cache_duration_s": 1.0,
-      "destination": "/mnt/user-data/uploads",
-      "dir_perms": "0755",
-      "file_perms": "0644",
-      "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
-      "gid": 1000,
-      "readonly": true,
-      "source": "/uploads",
-      "uid": 999,
-      "vfs_cache_max_size": "1G",
-      "vfs_cache_mode": "full"
-    },
-    {
-      "cache_duration_s": 10.0,
-      "destination": "/mnt/transcripts",
-      "dir_perms": "0755",
-      "file_perms": "0644",
-      "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
-      "gid": 1000,
-      "readonly": true,
-      "source": "/transcripts",
-      "uid": 999,
-      "vfs_cache_max_size": "1G",
-      "vfs_cache_mode": "full"
-    },
-    {
-      "cache_duration_s": 3.0,
-      "destination": "/mnt/user-data/tool_results",
-      "dir_perms": "0755",
-      "file_perms": "0644",
-      "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
-      "gid": 1000,
-      "readonly": true,
-      "source": "/tool_results",
-      "uid": 999,
-      "vfs_cache_max_size": "1G",
-      "vfs_cache_mode": "full"
-    }
-  ],
-  "ready_file": "/tmp/rclone-mounts/ready",
-  "service_url": "https://api.anthropic.com",
-  "state_dir": "/tmp/rclone-mounts"
-}=== rclone binary ===
-/opt/rclone/rclone-filestore: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=caa0cec4bdbea9160315d234086ba748b309643e, for GNU/Linux 3.2.0, stripped
-total 29471
-drwx------ 2 root root       39 May 24 06:39 .
-drwxr-xr-x 5 root root     4096 May 24 13:00 ..
--rwxr-xr-x 1 root root 30173944 May 24 06:39 rclone-filestore
-=== rclone mounts ===
-/dev/vdb /opt/rclone squashfs ro,relatime,errors=continue 0 0
-/dev/vdc /mnt/skills/public squashfs ro,relatime,errors=continue 0 0
-/dev/vdd /mnt/skills/examples squashfs ro,relatime,errors=continue 0 0
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/tool_results /mnt/user-data/tool_results fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/outputs /mnt/user-data/outputs fuse.rclone rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/uploads /mnt/user-data/uploads fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/transcripts /mnt/transcripts fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
-=== rclone fd ===
-total 0
-dr-x------ 2 root root 11 May 25 06:37 .
-dr-xr-xr-x 9 root root  0 May 25 05:44 ..
-lrwx------ 1 root root 64 May 25 06:40 0 -> /dev/console
-l-wx------ 1 root root 64 May 25 06:40 1 -> /dev/null
-lrwx------ 1 root root 64 May 25 06:40 10 -> /dev/fuse
-lrwx------ 1 root root 64 May 25 06:40 13 -> /dev/fuse
-lrwx------ 1 root root 64 May 25 06:40 2 -> /dev/console
-lr-x------ 1 root root 64 May 25 06:40 3 -> /sys/fs/cgroup/cpu/cpu.cfs_quota_us
-lr-x------ 1 root root 64 May 25 06:40 4 -> /sys/fs/cgroup/cpu/cpu.cfs_period_us
-lrwx------ 1 root root 64 May 25 06:40 5 -> /dev/fuse
-lrwx------ 1 root root 64 May 25 06:40 6 -> anon_inode:[eventpoll]
-lrwx------ 1 root root 64 May 25 06:40 7 -> anon_inode:[eventfd]
-lrwx------ 1 root root 64 May 25 06:40 9 -> /dev/fuse
-=== rclone maps ===
-100
-=== user-data path ===
-total 8
-drwxr-xr-x 5 root   root   4096 May 24 13:00 .
-drwxr-xr-x 5 root   root   4096 May 24 13:00 ..
-drwxr-xr-x 1 claude ubuntu    0 May 25 06:07 outputs
-drwxr-xr-x 1 claude ubuntu    0 May 25 05:44 tool_results
-drwxr-xr-x 1 claude ubuntu    0 May 25 05:44 uploads
-=== skills mounts ===
-total 8
-drwxr-xr-x  4 root root 4096 May 24 13:00 .
-drwxr-xr-x  5 root root 4096 May 24 13:00 ..
-drwxr-xr-x 24 root root 1151 May 20 21:45 examples
-drwxr-xr-x 10 root root  341 May 20 21:45 public
+=== rclone network ===
+  sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode                                                     
+=== rclone state dir ===
+total 24
+drwxr-xr-x 6 root root 4096 May 25 05:44 .
+drwxrwxrwt 6 root root 4096 May 25 06:44 ..
+drwxr-xr-x 2 root root 4096 May 24 13:00 claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_transcripts
+drwxr-xr-x 2 root root 4096 May 24 13:00 claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_outputs
+drwxr-xr-x 2 root root 4096 May 24 13:00 claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_tool_results
+drwxr-xr-x 2 root root 4096 May 24 13:00 claude_chat_01MmVZCWZSfYbvEBTPaXx7j1_mnt_user-data_uploads
+-rw-r--r-- 1 root root    0 May 25 05:44 ready
+=== rclone ready file ===
+=== rclone environ ===
+DEBIAN_FRONTEND=noninteractive
+HOME=/home/claude
+IS_SANDBOX=yes
+JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+NODE_PATH=/usr/local/lib/node_modules_global
+NPM_CONFIG_USERCONFIG=/root/.npmrc
+PATH=/home/claude/.npm-global/bin:/home/claude/.local/bin:/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PIP_CACHE_DIR=/home/claude/.cache/pip
+PIP_CONFIG_FILE=/root/.config/pip/pip.conf
+PIP_ROOT_USER_ACTION=ignore
+PLAYWRIGHT_BROWSERS_PATH=/opt/pw-browsers
+PYTHONUNBUFFERED=1
+RCLONE_CACHE_DIR=/dev/shm/rclone-vfscache
+REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+RUST_BACKTRACE=1
+SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+TERM=linux
+=== rclone cmdline ===
+/opt/rclone/rclone-filestore
+multimount
+--config
+/tmp/rclone-mount-config.json
+=== api endpoint test ===
+404 (api.anthropic.com)
+=== cert chain ===
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            df:1d:35:bc:cf:80:d9:f9:4d:63:7a:25:9b:2f:20:de:8a:b9:1a
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: O = Anthropic, CN = sandbox-egress-production TLS Inspection CA
+        Validity
+            Not Before: May 21 02:18:05 2026 GMT
+            Not After : Jun 20 02:18:04 2026 GMT
