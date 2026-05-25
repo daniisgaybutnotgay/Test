@@ -1,3 +1,3 @@
-Absolute URI test: b'HTTP/1.1 403 Forbidden\r\nx-deny-reason: host_not_allowed\r\ncontent-length: 21\r\ncontent-type: text/plain\r\ndate: Mon, 25 May 2026 11:11:22 GMT\r\nconnection'
-Double Host test: b'HTTP/1.1 403 Forbidden\r\nx-deny-reason: host_not_allowed\r\ncontent-length: 21\r\ncontent-type: text/plain\r\ndate: Mon, 25 May 2026 11:11:22 GMT\r\nconnection'
-Host with port: b'HTTP/1.1 200 OK\r\ndate: Mon, 25 May 2026 11:11:19 GMT\r\ncontent-type: text/html; charset=utf-8\r\nvary: X-PJAX, X-PJAX-Container, Turbo-Visit, Turbo-Frame'
+Absolute URI test: b'HTTP/1.1 403 Forbidden\r\nx-deny-reason: host_not_allowed\r\ncontent-length: 21\r\ncontent-type: text/plain\r\ndate: Mon, 25 May 2026 11:11:52 GMT\r\nconnection'
+Double Host test: b'HTTP/1.1 403 Forbidden\r\nx-deny-reason: host_not_allowed\r\ncontent-length: 21\r\ncontent-type: text/plain\r\ndate: Mon, 25 May 2026 11:11:52 GMT\r\nconnection'
+Host with port: b'HTTP/1.1 200 OK\r\ndate: Mon, 25 May 2026 11:11:45 GMT\r\ncontent-type: text/html; charset=utf-8\r\nvary: X-PJAX, X-PJAX-Container, Turbo-Visit, Turbo-Frame'
