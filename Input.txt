@@ -1,38 +1,26 @@
 python3 -c "
 import socket, struct
 
-# Test 1: UDP DNS query to 8.8.8.8
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.settimeout(3)
-# DNS query for google.com A record
-query = bytes([
-    0x12, 0x34,  # Transaction ID
-    0x01, 0x00,  # Flags: standard query
-    0x00, 0x01,  # Questions: 1
-    0x00, 0x00,  # Answer RRs: 0
-    0x00, 0x00,  # Authority RRs: 0
-    0x00, 0x00,  # Additional RRs: 0
-    # Query: google.com
-    0x06, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x03, 0x63, 0x6f, 0x6d, 0x00,
-    0x00, 0x01,  # Type A
-    0x00, 0x01,  # Class IN
-])
-s.sendto(query, ('8.8.8.8', 53))
-try:
-    data, addr = s.recvfrom(512)
-    print(f'DNS response from {addr}: {len(data)} bytes, TXID={data[:2].hex()}')
-except socket.timeout:
-    print('DNS timeout')
-s.close()
+# Test IPv4 direct to Google
+for ip in ['142.250.80.46', '142.250.185.78']:
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(3)
+        s.connect((ip, 443))
+        print(f'TCP {ip}:443 connected')
+        s.close()
+    except Exception as e:
+        print(f'TCP {ip}:443 failed: {e}')
 
-# Test 2: UDP to arbitrary high port
-s2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s2.settimeout(2)
-s2.sendto(b'hello', ('192.0.2.1', 9999))
+# Test ICMP (raw socket)
 try:
-    data, addr = s2.recvfrom(512)
-    print(f'UDP 9999 response: {len(data)} bytes from {addr}')
-except socket.timeout:
-    print('UDP 9999 timeout')
-s2.close()
+    icmp = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
+    icmp.settimeout(3)
+    # ICMP echo request
+    packet = struct.pack('!BBHHH', 8, 0, 0, 1234, 1) + b'hello'
+    icmp.sendto(packet, ('8.8.8.8', 0))
+    data, addr = icmp.recvfrom(1024)
+    print(f'ICMP echo reply from {addr[0]}: {len(data)} bytes')
+except Exception as e:
+    print(f'ICMP failed: {e}')
 " 2>/dev/null
