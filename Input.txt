@@ -1,47 +1,18 @@
-echo "=== uptime ===" && cat /proc/uptime && echo "=== boot time ===" && cat /proc/stat | grep btime && echo "=== ptrace with interrupt ===" && python3 -c "
-import ctypes, os, time
-
+echo "=== kernel config ===" && zcat /proc/config.gz 2>/dev/null | grep -E "STRICT_DEVMEM|STRICT_KERNEL_RWX|HARDENED_USERCOPY|INIT_ON_ALLOC|INIT_ON_FREE" | head -10 && echo "=== mem write via /dev/mem ===" && python3 -c "
+import os
+try:
+    fd = os.open('/dev/mem', os.O_RDWR)
+    os.lseek(fd, 0x55556d429000, os.SEEK_SET)
+    os.write(fd, b'TEST1234')
+    print('/dev/mem write OK')
+    os.close(fd)
+except Exception as e:
+    print(f'/dev/mem write failed: {e}')
+" 2>/dev/null && echo "=== mprotect test ===" && python3 -c "
+import ctypes, mmap
 libc = ctypes.CDLL(None)
-PID = 1
-PTRACE_SEIZE = 0x4206
-PTRACE_INTERRUPT = 0x4207
-PTRACE_PEEKDATA = 2
-PTRACE_POKEDATA = 5
-PTRACE_DETACH = 17
-
-# Seize
-r = libc.ptrace(PTRACE_SEIZE, PID, 0, 0)
-print(f'SEIZE: {r} errno={ctypes.get_errno()}')
-
-# Interrupt (async stop)
-r = libc.ptrace(PTRACE_INTERRUPT, PID, 0, 0)
-print(f'INTERRUPT: {r} errno={ctypes.get_errno()}')
-time.sleep(0.2)
-
-# Wait for stop using waitid
-class Siginfo(ctypes.Structure):
-    _fields_ = [
-        ('si_signo', ctypes.c_int), ('si_errno', ctypes.c_int), ('si_code', ctypes.c_int),
-        ('_pad', ctypes.c_int * 29)
-    ]
-siginfo = Siginfo()
-r = libc.waitid(1, PID, ctypes.byref(siginfo), 4)  # WEXITED=4, P_PID=1
-print(f'WAITID: {r} errno={ctypes.get_errno()} si_signo={siginfo.si_signo} si_code={siginfo.si_code}')
-
-# Now peek
-addr = 0x55556d429000
-data = libc.ptrace(PTRACE_PEEKDATA, PID, addr, 0)
-print(f'PEEKDATA: {hex(data & 0xffffffffffffffff)} errno={ctypes.get_errno()}')
-
-# Poke
-r = libc.ptrace(PTRACE_POKEDATA, PID, addr, 0x4443424144434241)
-print(f'POKEDATA: {r} errno={ctypes.get_errno()}')
-
-# Verify
-data2 = libc.ptrace(PTRACE_PEEKDATA, PID, addr, 0)
-print(f'VERIFY: {hex(data2 & 0xffffffffffffffff)} errno={ctypes.get_errno()}')
-
-# Detach
-r = libc.ptrace(PTRACE_DETACH, PID, 0, 0)
-print(f'DETACH: {r} errno={ctypes.get_errno()}')
-" 2>/dev/null && echo "=== process state after ===" && cat /proc/1/status | grep -E "State|Threads|voluntary"
+# Allocate executable memory
+mem = mmap.mmap(-1, 4096, prot=mmap.PROT_READ | mmap.PROT_WRITE | mmap.PROT_EXEC)
+print(f'mprotect RWX: OK, addr={hex(ctypes.addressof(ctypes.c_char.from_buffer(mem)))}')
+mem.close()
+" 2>/dev/null && echo "=== kernel symbols ===" && cat /proc/kallsyms 2>/dev/null | grep -c "T " && echo "=== kernel pointer ===" && cat /proc/kallsyms 2>/dev/null | grep " sys_call_table" | head -1
