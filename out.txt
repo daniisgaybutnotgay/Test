@@ -1,67 +1,13 @@
-=== full maps ===
-55556d428000-55556d429000 ---p 00000000 00:00 0                          [heap]
-55556d429000-55556d42b000 rw-p 00000000 00:00 0                          [heap]
-7fbdcd4da000-7fbdcd4db000 ---p 00000000 00:00 0 
-7fbdcd4db000-7fbdcd4de000 rw-p 00000000 00:00 0 
-7fbdcd4de000-7fbdcd4e0000 ---p 00000000 00:00 0 
-7fbdcd4e0000-7fbdcd6e1000 rw-p 00000000 00:00 0 
-7fbdcd6e1000-7fbdcd6e3000 ---p 00000000 00:00 0 
-7fbdcd6e3000-7fbdcd8ed000 rw-p 00000000 00:00 0 
-7fbdcd8ed000-7fbdcd8ee000 ---p 00000000 00:00 0 
-7fbdcd8ee000-7fbdcd8f1000 rw-p 00000000 00:00 0 
-7fbdcd8f1000-7fbdcd8f3000 ---p 00000000 00:00 0 
-7fbdcd8f3000-7fbdcdaf4000 rw-p 00000000 00:00 0 
-7fbdcdaf4000-7fbdcdaf5000 ---p 00000000 00:00 0 
-7fbdcdaf5000-7fbdcdaf8000 rw-p 00000000 00:00 0 
-7fbdcdaf8000-7fbdcdba5000 rw-p 00000000 00:00 0 
-7fbdcdba5000-7fbdcdba6000 ---p 00000000 00:00 0 
-7fbdcdba6000-7fbdcdba9000 rw-p 00000000 00:00 0 
-7fbdcdba9000-7fbdcdbab000 ---p 00000000 00:00 0 
-7fbdcdbab000-7fbdcddae000 rw-p 00000000 00:00 0 
-7fbdcddae000-7fbdcddaf000 ---p 00000000 00:00 0 
-7fbdcddaf000-7fbdcddb2000 rw-p 00000000 00:00 0 
-7fbdcddb2000-7fbdcddb4000 ---p 00000000 00:00 0 
-7fbdcddb4000-7fbdcdfb5000 rw-p 00000000 00:00 0 
-7fbdcdfb7000-7fbdcdfb8000 ---p 00000000 00:00 0 
-7fbdcdfb8000-7fbdcdfbb000 rw-p 00000000 00:00 0 
-7fbdcdfbb000-7fbdcdfbd000 ---p 00000000 00:00 0 
-7fbdcdfbd000-7fbdce1be000 rw-p 00000000 00:00 0 
-7fbdce1c2000-7fbdce1c4000 rw-p 00000000 00:00 0 
-7fbdce1c4000-7fbdce1fd000 rw-p 00000000 00:00 0 
-7fbdce1fd000-7fbdce1fe000 ---p 00000000 00:00 0 
-7fbdce1fe000-7fbdce201000 rw-p 00000000 00:00 0 
-7fbdce201000-7fbdce203000 ---p 00000000 00:00 0 
-7fbdce203000-7fbdce417000 rw-p 00000000 00:00 0 
-7fbdce417000-7fbdce418000 ---p 00000000 00:00 0 
-7fbdce418000-7fbdce41b000 rw-p 00000000 00:00 0 
-7fbdce41b000-7fbdce41f000 r--p 00000000 00:00 0                          [vvar]
-7fbdce41f000-7fbdce421000 r--p 00000000 00:00 0                          [vvar_vclock]
-7fbdce421000-7fbdce423000 r-xp 00000000 00:00 0                          [vdso]
-7fbdce423000-7fbdce43b000 r--p 00000000 00:02 5                          /process_api
-7fbdce43b000-7fbdce79e000 r-xp 00018000 00:02 5                          /process_api
-7fbdce79e000-7fbdce83d000 r--p 0037b000 00:02 5                          /process_api
-7fbdce83d000-7fbdce83e000 rw-p 00000000 00:00 0 
-7fbdce83e000-7fbdce851000 rw-p 0041a000 00:02 5                          /process_api
-7fbdce851000-7fbdce852000 rw-p 00000000 00:00 0 
-7ffd3c0da000-7ffd3c14f000 rw-p 00000000 00:00 0                          [stack]
-ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
-=== string search in writable memory ===
-Memory scan complete
-=== process_api threads ===
-1
-481
-482
-483
-484
-525
-674
-675
-=== thread details ===
-1: process_api
-481: tokio-rt-worker
-482: tokio-rt-worker
-483: tokio-rt-worker
-484: tokio-rt-worker
-525: tokio-rt-worker
-674: tokio-rt-worker
-675: tokio-rt-worker
+=== stack scan ===
+Found b'process_api' at offset 0x7ffd3c14ef71: b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00/process_api\x00--firecracker-init\x00--addr\x000.0.0.0:2024\x00--max-ws-buff'
+Stack scan complete
+=== binary string scan ===
+Found b'192.0.2.1' at offset 0x7fbdce7bb8d7
+Found b'websocket' at offset 0x7fbdce7ad07f
+Found b'Upgrade' at offset 0x7fbdce79ea90
+Found b'process_api' at offset 0x7fbdce7acae6
+Found b'mount_root' at offset 0x7fbdce7abe80
+Found b'control' at offset 0x7fbdce7a2327
+Binary scan complete
+=== active connections ===
+  sl  local_address rem_address   st tx_queue rx_queue tr tm->when retrnsmt   uid  timeout inode                                                     
