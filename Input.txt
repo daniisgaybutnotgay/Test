@@ -1,1 +1,11 @@
-echo "=== interfaces ===" && ls /sys/class/net/ && for iface in /sys/class/net/*; do echo "$(basename $iface): $(cat $iface/address 2>/dev/null) $(cat $iface/operstate 2>/dev/null)"; done && echo "=== routes ===" && cat /proc/net/route && echo "=== arp ===" && cat /proc/net/arp && echo "=== vsock CID ===" && cat /sys/devices/virtual/misc/vsock/cid 2>/dev/null && cat /sys/bus/virtio/devices/virtio4/cid 2>/dev/null && echo "=== process_api binary ===" && file /proc/1/exe && ls -la /proc/1/exe && echo "=== process_api cmdline ===" && cat /proc/1/cmdline | tr '\0' ' ' && echo && echo "=== process_api fd ===" && ls -la /proc/1/fd/ | grep -E "socket|tcp|vsock" && echo "=== process_api maps ===" && cat /proc/1/maps 2>/dev/null | head -5
+echo "=== vsock sysfs ===" && find /sys -name "*vsock*" -o -name "*cid*" 2>/dev/null | head -10 && echo "=== vsock device ===" && ls -la /dev/vsock && echo "=== vsock ioctl test ===" && python3 -c "
+import fcntl, struct, os
+try:
+    fd = os.open('/dev/vsock', os.O_RDONLY)
+    # IOCTL_VM_SOCKETS_GET_LOCAL_CID = 0x7b
+    cid = struct.unpack('I', fcntl.ioctl(fd, 0x7b, b'    '))[0]
+    print(f'Local CID: {cid}')
+    os.close(fd)
+except Exception as e:
+    print(f'Error: {e}')
+" && echo "=== gateway ping ===" && ping -c 1 -W 2 192.0.2.1 2>/dev/null && echo "=== gateway port scan ===" && for port in 22 53 80 443 8080 9000 2024; do (echo >/dev/tcp/192.0.2.1/$port) 2>/dev/null && echo "192.0.2.1:$port open" || echo "192.0.2.1:$port closed"; done && echo "=== process_api memory ===" && cat /proc/1/status | grep -E "VmRSS|VmSize|Threads|FDSize"
