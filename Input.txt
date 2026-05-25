@@ -1,12 +1,19 @@
-echo "=== promisc sniff test ===" && python3 -c "
-import socket, select, time
-s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0003))
-s.setblocking(0)
-ready, _, _ = select.select([s], [], [], 2)
-if ready:
-    pkt = s.recvfrom(2048)[0]
-    print(f'Captured: {len(pkt)} bytes, dst={pkt[0:6].hex()}, src={pkt[6:12].hex()}, type={pkt[12:14].hex()}')
-else:
-    print('No traffic captured in 2s')
+echo "=== ping gateway ===" && ping -c 3 -W 2 192.0.2.1 2>/dev/null || echo "ping unavailable or failed" && echo "=== traceroute ===" && traceroute -m 2 192.0.2.1 2>/dev/null || echo "traceroute unavailable" && echo "=== TCP SYN to gateway ===" && python3 -c "
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.settimeout(2)
+result = s.connect_ex(('192.0.2.1', 2024))
+print(f'TCP 2024: {result} ({socket.errno.errorcode.get(result, \"UNKNOWN\")})')
 s.close()
-" 2>/dev/null && echo "=== arp request/response timing ===" && cat /proc/net/arp && echo "=== bridge isolation ===" && cat /sys/class/net/eth0/brport/ 2>/dev/null | head -5 && echo "=== multicast membership ===" && cat /proc/net/igmp && echo "=== neighbor table ===" && cat /proc/net/neigh && echo "=== route cache ===" && cat /proc/net/rt_cache 2>/dev/null | head -5
+" && echo "=== UDP to gateway ===" && python3 -c "
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.settimeout(2)
+s.sendto(b'test', ('192.0.2.1', 53))
+try:
+    data, addr = s.recvfrom(1024)
+    print(f'UDP 53 response: {len(data)} bytes')
+except socket.timeout:
+    print('UDP 53: timeout')
+s.close()
+" && echo "=== network interfaces ===" && cat /proc/net/dev && echo "=== routing cache ===" && cat /proc/net/rt_cache 2>/dev/null || cat /proc/net/route
