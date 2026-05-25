@@ -1,37 +1,36 @@
 python3 -c "
-import os
+import ctypes, os, time
 
-# Test 1: Symlink escape attempt
-base = '/mnt/user-data/outputs'
-try:
-    os.symlink('/etc/passwd', base + '/link_to_passwd')
-    print('Symlink created')
-    target = os.readlink(base + '/link_to_passwd')
-    print(f'Symlink target: {target}')
-    # Try to read through it
-    with open(base + '/link_to_passwd', 'r') as f:
-        print(f'Read through symlink: {f.readline().strip()[:50]}')
-except Exception as e:
-    print(f'Symlink test: {e}')
-finally:
-    try:
-        os.remove(base + '/link_to_passwd')
-    except:
-        pass
+libc = ctypes.CDLL(None)
+PID = 490  # rclone
+PTRACE_SEIZE = 0x4206
+PTRACE_INTERRUPT = 0x4207
+PTRACE_PEEKDATA = 2
+PTRACE_POKEDATA = 5
+PTRACE_DETACH = 17
 
-# Test 2: Hardlink attempt
-try:
-    os.link('/etc/passwd', base + '/hardlink_passwd')
-    print('Hardlink created (ESCAPE!)')
-    os.remove(base + '/hardlink_passwd')
-except Exception as e:
-    print(f'Hardlink test: {e}')
+# Seize rclone
+r = libc.ptrace(PTRACE_SEIZE, PID, 0, 0)
+print(f'SEIZE rclone: {r} errno={ctypes.get_errno()}')
 
-# Test 3: Device node creation in FUSE
-try:
-    os.mknod(base + '/test_dev', 0o666 | 0o020000, os.makedev(1, 3))  # char device
-    print('Device node created in FUSE')
-    os.remove(base + '/test_dev')
-except Exception as e:
-    print(f'Device node test: {e}')
+if r == 0:
+    libc.ptrace(PTRACE_INTERRUPT, PID, 0, 0)
+    time.sleep(0.2)
+    os.waitpid(PID, 0)
+    
+    # Read from rclone heap
+    addr = 0x7f306a400000
+    data = libc.ptrace(PTRACE_PEEKDATA, PID, addr, 0)
+    print(f'PEEK rclone heap: {hex(data & 0xffffffffffffffff)} errno={ctypes.get_errno()}')
+    
+    # Try write
+    r = libc.ptrace(PTRACE_POKEDATA, PID, addr, 0x4443424144434241)
+    print(f'POKE rclone: {r} errno={ctypes.get_errno()}')
+    
+    verify = libc.ptrace(PTRACE_PEEKDATA, PID, addr, 0)
+    print(f'VERIFY rclone: {hex(verify & 0xffffffffffffffff)}')
+    
+    libc.ptrace(PTRACE_DETACH, PID, 0, 0)
+    os.waitpid(PID, 0)
+    print('rclone ptrace complete')
 "
