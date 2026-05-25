@@ -1,41 +1,42 @@
 python3 -c "
-import ctypes, os
+import ctypes, os, time
 
 libc = ctypes.CDLL(None)
 PID = 1
 
-# Test 1: process_vm_writev to PID 1 heap
+# Use PTRACE_SEIZE (0x4206) instead of PTRACE_ATTACH - no SIGSTOP needed
+PTRACE_SEIZE = 0x4206
+PTRACE_INTERRUPT = 0x4207
+PTRACE_POKEDATA = 5
+PTRACE_PEEKDATA = 2
+PTRACE_DETACH = 17
+
+# Test 1: process_vm_readv (less intrusive than write)
 class iovec(ctypes.Structure):
     _fields_ = [('iov_base', ctypes.c_void_p), ('iov_len', ctypes.c_size_t)]
 
-buf = b'TEST1234'
-local_iov = iovec(ctypes.cast(buf, ctypes.c_void_p), len(buf))
-remote_iov = iovec(0x55556d429000, len(buf))
-result = libc.syscall(311, PID, ctypes.byref(local_iov), 1, ctypes.byref(remote_iov), 1, 0)
-print(f'process_vm_writev: {result} (errno={ctypes.get_errno()})')
+buf = ctypes.create_string_buffer(8)
+local_iov = iovec(ctypes.cast(buf, ctypes.c_void_p), 8)
+remote_iov = iovec(0x55556d429000, 8)
+result = libc.syscall(310, PID, ctypes.byref(local_iov), 1, ctypes.byref(remote_iov), 1, 0)
+print(f'process_vm_readv: {result} bytes (errno={ctypes.get_errno()})')
+if result > 0:
+    print(f'Read: {buf.raw.hex()}')
 
-# Test 2: ptrace register read
-class user_regs_struct(ctypes.Structure):
-    _fields_ = [
-        ('r15', ctypes.c_ulonglong), ('r14', ctypes.c_ulonglong), ('r13', ctypes.c_ulonglong),
-        ('r12', ctypes.c_ulonglong), ('rbp', ctypes.c_ulonglong), ('rbx', ctypes.c_ulonglong),
-        ('r11', ctypes.c_ulonglong), ('r10', ctypes.c_ulonglong), ('r9', ctypes.c_ulonglong),
-        ('r8', ctypes.c_ulonglong), ('rax', ctypes.c_ulonglong), ('rcx', ctypes.c_ulonglong),
-        ('rdx', ctypes.c_ulonglong), ('rsi', ctypes.c_ulonglong), ('rdi', ctypes.c_ulonglong),
-        ('orig_rax', ctypes.c_ulonglong), ('rip', ctypes.c_ulonglong), ('cs', ctypes.c_ulonglong),
-        ('eflags', ctypes.c_ulonglong), ('rsp', ctypes.c_ulonglong), ('ss', ctypes.c_ulonglong),
-        ('fs_base', ctypes.c_ulonglong), ('gs_base', ctypes.c_ulonglong), ('ds', ctypes.c_ulonglong),
-        ('es', ctypes.c_ulonglong), ('fs', ctypes.c_ulonglong), ('gs', ctypes.c_ulonglong),
-    ]
-
-libc.ptrace(0, PID, 0, 0)
-os.waitpid(PID, 0)
-regs = user_regs_struct()
-result = libc.ptrace(12, PID, 0, ctypes.byref(regs))
-print(f'PTRACE_GETREGS: {result} (errno={ctypes.get_errno()})')
+# Test 2: PTRACE_SEIZE + PEEKDATA
+result = libc.ptrace(PTRACE_SEIZE, PID, 0, 0)
+print(f'PTRACE_SEIZE: {result} (errno={ctypes.get_errno()})')
 if result == 0:
-    print(f'RIP={hex(regs.rip)} RSP={hex(regs.rsp)} RAX={hex(regs.rax)}')
-libc.ptrace(17, PID, 0, 0)
-os.waitpid(PID, 0)
-print('ptrace cycle complete')
+    time.sleep(0.1)
+    # Read from heap
+    data = libc.ptrace(PTRACE_PEEKDATA, PID, 0x55556d429000, 0)
+    print(f'PEEKDATA: {hex(data & 0xffffffffffffffff)}')
+    # Try to write
+    result = libc.ptrace(PTRACE_POKEDATA, PID, 0x55556d429000, 0x4443424144434241)
+    print(f'POKEDATA: {result} (errno={ctypes.get_errno()})')
+    # Verify
+    verify = libc.ptrace(PTRACE_PEEKDATA, PID, 0x55556d429000, 0)
+    print(f'Verify: {hex(verify & 0xffffffffffffffff)}')
+    libc.ptrace(PTRACE_DETACH, PID, 0, 0)
+    print('ptrace cycle complete')
 "
