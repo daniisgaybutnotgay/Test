@@ -1,1 +1,42 @@
-uname -a && cat /proc/version_signature 2>/dev/null || cat /proc/version && echo "=== kernel config ===" && zcat /proc/config.gz 2>/dev/null | grep -E "CONFIG_KVM|CONFIG_VIRTIO|CONFIG_IOMMU|CONFIG_SECCOMP|CONFIG_USER_NS|CONFIG_PID_NS|CONFIG_NET_NS|CONFIG_CHECKPOINT_RESTORE|CONFIG_KSM" | head -15
+echo "=== KSM status ===" && cat /sys/kernel/mm/ksm/run && cat /sys/kernel/mm/ksm/pages_shared && cat /sys/kernel/mm/ksm/pages_sharing && echo "=== KSM timing probe ===" && python3 -c "
+import mmap, time, os
+
+# Allocate pages with known pattern
+SIZE = 4096 * 256  # 1MB
+PATTERN = b'A' * SIZE
+
+# Create memory-mapped region
+mem = mmap.mmap(-1, SIZE, prot=mmap.PROT_READ | mmap.PROT_WRITE)
+mem.write(PATTERN)
+
+# Advise KSM to scan this region
+import ctypes
+libc = ctypes.CDLL(None)
+MADV_MERGEABLE = 12
+libc.madvise(ctypes.c_void_p.from_buffer(mem), SIZE, MADV_MERGEABLE)
+
+# Timing measurement
+def measure_access():
+    start = time.perf_counter_ns()
+    for i in range(0, SIZE, 4096):
+        _ = mem[i]
+    return time.perf_counter_ns() - start
+
+# Warm up
+for _ in range(3):
+    measure_access()
+
+# Measure baseline
+baseline = measure_access()
+print(f'Baseline access time: {baseline} ns')
+
+# Wait for KSM to potentially merge
+time.sleep(2)
+
+# Measure again
+merged = measure_access()
+print(f'Post-KSM access time: {merged} ns')
+print(f'Delta: {merged - baseline} ns')
+
+mem.close()
+" 2>/dev/null && echo "=== shared pages detail ===" && cat /sys/kernel/mm/ksm/pages_shared && cat /sys/kernel/mm/ksm/pages_sharing && cat /sys/kernel/mm/ksm/pages_unshared && echo "=== KSM full stats ===" && cat /sys/kernel/mm/ksm/* 2>/dev/null | head -20
