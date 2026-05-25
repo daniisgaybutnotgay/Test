@@ -1,67 +1,103 @@
-=== PID 1 environ vars ===
-HOME=/
-TERM=linux
-=== /proc/1/mem dump ===
-000000
-=== all processes ===
-  PID  PPID COMMAND         COMMAND
-    1     0 process_api     /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-    2     0 kthreadd        [kthreadd]
-    3     2 pool_workqueue_ [pool_workqueue_release]
-    4     2 kworker/R-rcu_g [kworker/R-rcu_gp]
-    5     2 kworker/R-sync_ [kworker/R-sync_wq]
-    6     2 kworker/R-kvfre [kworker/R-kvfree_rcu_reclaim]
-    7     2 kworker/R-slub_ [kworker/R-slub_flushwq]
-    8     2 kworker/R-netns [kworker/R-netns]
-    9     2 kworker/0:0-eve [kworker/0:0-events]
-   10     2 kworker/0:0H-ev [kworker/0:0H-events_highpri]
-   11     2 kworker/0:1-eve [kworker/0:1-events]
-   12     2 kworker/u4:0-ev [kworker/u4:0-events_unbound]
-   13     2 kworker/R-mm_pe [kworker/R-mm_percpu_wq]
-   14     2 ksoftirqd/0     [ksoftirqd/0]
-   15     2 rcu_preempt     [rcu_preempt]
-   16     2 rcu_exp_par_gp_ [rcu_exp_par_gp_kthread_worker/0]
-   17     2 rcu_exp_gp_kthr [rcu_exp_gp_kthread_worker]
-   18     2 migration/0     [migration/0]
-   19     2 cpuhp/0         [cpuhp/0]
-   21     2 kworker/u4:1-ev [kworker/u4:1-events_unbound]
-   22     2 kdevtmpfs       [kdevtmpfs]
-   23     2 kworker/R-inet_ [kworker/R-inet_frag_wq]
-   24     2 rcu_tasks_kthre [rcu_tasks_kthread]
-   25     2 rcu_tasks_trace [rcu_tasks_trace_kthread]
-   26     2 kauditd         [kauditd]
-   27     2 khungtaskd      [khungtaskd]
-   28     2 oom_reaper      [oom_reaper]
-   29     2 kworker/R-write [kworker/R-writeback]
-   30     2 kcompactd0      [kcompactd0]
-   31     2 ksmd            [ksmd]
-   32     2 khugepaged      [khugepaged]
-   33     2 kworker/R-kbloc [kworker/R-kblockd]
-   34     2 kworker/R-kinte [kworker/R-kintegrityd]
-   35     2 watchdogd       [watchdogd]
-   36     2 kworker/R-quota [kworker/R-quota_events_unbound]
-   37     2 kworker/R-rpcio [kworker/R-rpciod]
-   38     2 kworker/0:1H-kb [kworker/0:1H-kblockd]
-   39     2 kworker/R-xprti [kworker/R-xprtiod]
-   46     2 kswapd0         [kswapd0]
-   59     2 kworker/R-nfsio [kworker/R-nfsiod]
-   63     2 kworker/R-xfsal [kworker/R-xfsalloc]
-   65     2 kworker/R-xfs_m [kworker/R-xfs_mru_cache]
-   66     2 kworker/R-kthro [kworker/R-kthrotld]
-   68     2 irq/24-ACPI:Ged [irq/24-ACPI:Ged]
-   70     2 irq/25-ACPI:Ged [irq/25-ACPI:Ged]
-   78     2 kworker/u4:2-ev [kworker/u4:2-events_unbound]
-  115     2 hwrng           [hwrng]
-  145     2 kworker/R-iscsi [kworker/R-iscsi_conn_cleanup]
-  175     2 kworker/R-kstrp [kworker/R-kstrp]
-  477     2 kworker/u5:0    [kworker/u5:0]
-  487     2 kworker/R-ext4- [kworker/R-ext4-rsv-conversion]
-  489     1 rclone-filestor /opt/rclone/rclone-filestore multimount --config /tmp/rclone-mount-config.json
- 1570     1 sh              /bin/sh -c rm -f /tmp/hello_running.lock timeout 240 python3 /mnt/user-data/outputs/hello.py 2>&1 | tail -5 echo "=== ROUND 5 DONE ==="
- 1572  1570 timeout         timeout 240 python3 /mnt/user-data/outputs/hello.py
- 1573  1570 tail            tail -5
- 1574  1572 python3         python3 /mnt/user-data/outputs/hello.py
- 1611  1574 python3         python3 /mnt/user-data/outputs/runner.py
- 1612  1611 sh              /bin/sh -c echo "=== PID 1 environ vars ===" && tr '\0' '\n' < /proc/1/environ && echo "=== /proc/1/mem dump ===" && head -c 128 /proc/1/mem 2>/dev/null | od -A x -t x1z | head -8 && echo "=== all processes ===" && ps -eo pid,ppid,comm,args && echo "=== container runtime indicators ===" && ls -la /run/containerd* /run/runc* /var/run/docker* 2>/dev/null | head -10
- 1617  1612 ps              ps -eo pid,ppid,comm,args
-=== container runtime indicators ===
+=== rclone config ===
+{
+  "mounts": [
+    {
+      "cache_duration_s": 3600.0,
+      "destination": "/mnt/user-data/outputs",
+      "dir_perms": "0755",
+      "file_perms": "0644",
+      "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
+      "gid": 1000,
+      "readonly": false,
+      "source": "/outputs",
+      "uid": 999,
+      "vfs_cache_max_size": "1G",
+      "vfs_cache_mode": "full"
+    },
+    {
+      "cache_duration_s": 1.0,
+      "destination": "/mnt/user-data/uploads",
+      "dir_perms": "0755",
+      "file_perms": "0644",
+      "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
+      "gid": 1000,
+      "readonly": true,
+      "source": "/uploads",
+      "uid": 999,
+      "vfs_cache_max_size": "1G",
+      "vfs_cache_mode": "full"
+    },
+    {
+      "cache_duration_s": 10.0,
+      "destination": "/mnt/transcripts",
+      "dir_perms": "0755",
+      "file_perms": "0644",
+      "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
+      "gid": 1000,
+      "readonly": true,
+      "source": "/transcripts",
+      "uid": 999,
+      "vfs_cache_max_size": "1G",
+      "vfs_cache_mode": "full"
+    },
+    {
+      "cache_duration_s": 3.0,
+      "destination": "/mnt/user-data/tool_results",
+      "dir_perms": "0755",
+      "file_perms": "0644",
+      "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
+      "gid": 1000,
+      "readonly": true,
+      "source": "/tool_results",
+      "uid": 999,
+      "vfs_cache_max_size": "1G",
+      "vfs_cache_mode": "full"
+    }
+  ],
+  "ready_file": "/tmp/rclone-mounts/ready",
+  "service_url": "https://api.anthropic.com",
+  "state_dir": "/tmp/rclone-mounts"
+}=== rclone binary ===
+/opt/rclone/rclone-filestore: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=caa0cec4bdbea9160315d234086ba748b309643e, for GNU/Linux 3.2.0, stripped
+total 29471
+drwx------ 2 root root       39 May 24 06:39 .
+drwxr-xr-x 5 root root     4096 May 24 13:00 ..
+-rwxr-xr-x 1 root root 30173944 May 24 06:39 rclone-filestore
+=== rclone mounts ===
+/dev/vdb /opt/rclone squashfs ro,relatime,errors=continue 0 0
+/dev/vdc /mnt/skills/public squashfs ro,relatime,errors=continue 0 0
+/dev/vdd /mnt/skills/examples squashfs ro,relatime,errors=continue 0 0
+rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/tool_results /mnt/user-data/tool_results fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
+rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/outputs /mnt/user-data/outputs fuse.rclone rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
+rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/uploads /mnt/user-data/uploads fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
+rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/transcripts /mnt/transcripts fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
+=== rclone fd ===
+total 0
+dr-x------ 2 root root 11 May 25 06:37 .
+dr-xr-xr-x 9 root root  0 May 25 05:44 ..
+lrwx------ 1 root root 64 May 25 06:40 0 -> /dev/console
+l-wx------ 1 root root 64 May 25 06:40 1 -> /dev/null
+lrwx------ 1 root root 64 May 25 06:40 10 -> /dev/fuse
+lrwx------ 1 root root 64 May 25 06:40 13 -> /dev/fuse
+lrwx------ 1 root root 64 May 25 06:40 2 -> /dev/console
+lr-x------ 1 root root 64 May 25 06:40 3 -> /sys/fs/cgroup/cpu/cpu.cfs_quota_us
+lr-x------ 1 root root 64 May 25 06:40 4 -> /sys/fs/cgroup/cpu/cpu.cfs_period_us
+lrwx------ 1 root root 64 May 25 06:40 5 -> /dev/fuse
+lrwx------ 1 root root 64 May 25 06:40 6 -> anon_inode:[eventpoll]
+lrwx------ 1 root root 64 May 25 06:40 7 -> anon_inode:[eventfd]
+lrwx------ 1 root root 64 May 25 06:40 9 -> /dev/fuse
+=== rclone maps ===
+100
+=== user-data path ===
+total 8
+drwxr-xr-x 5 root   root   4096 May 24 13:00 .
+drwxr-xr-x 5 root   root   4096 May 24 13:00 ..
+drwxr-xr-x 1 claude ubuntu    0 May 25 06:07 outputs
+drwxr-xr-x 1 claude ubuntu    0 May 25 05:44 tool_results
+drwxr-xr-x 1 claude ubuntu    0 May 25 05:44 uploads
+=== skills mounts ===
+total 8
+drwxr-xr-x  4 root root 4096 May 24 13:00 .
+drwxr-xr-x  5 root root 4096 May 24 13:00 ..
+drwxr-xr-x 24 root root 1151 May 20 21:45 examples
+drwxr-xr-x 10 root root  341 May 20 21:45 public
