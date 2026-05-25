@@ -1,31 +1,13 @@
-=== established connection details ===
-   3: 020200C0:07E8 010200C0:BE22 01 00000000:00000000 00:00000000 00000000     0        0 6170 1 000000004fccb7c8 20 4 28 4 -1                      
-=== connection state ===
-=== process_api network activity ===
-   0: 00000000:07E8 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 600 1 00000000ec8748a8 100 0 0 10 0                       
-   1: 00000000:07E9 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 601 1 00000000878e3de6 100 0 0 10 0                       
-   2: 020200C0:07E8 010200C0:BA00 01 00000000:00000000 00:00000000 00000000     0        0 9492 1 000000007d315bc2 20 4 28 12 -1                     
-   3: 020200C0:07E8 010200C0:BE22 01 00000000:00000000 00:00000000 00000000     0        0 6170 1 000000004fccb7c8 20 4 28 4 -1                      
-=== auth key location ===
-/etc/ca-certificates
-/etc/java-21-openjdk/security/blocked.certs
-/etc/ca-certificates.conf
-/etc/apt/auth.conf.d
-/etc/pam.d/common-auth
-/etc/default/cacerts
-/etc/ssl/certs
-/etc/ssl/certs/ACCVRAIZ1.pem
-/etc/ssl/certs/AC_RAIZ_FNMT-RCM.pem
-/etc/ssl/certs/AC_RAIZ_FNMT-RCM_SERVIDORES_SEGUROS.pem
-/etc/ssl/certs/ANF_Secure_Server_Root_CA.pem
-/etc/ssl/certs/Actalis_Authentication_Root_CA.pem
-/etc/ssl/certs/AffirmTrust_Commercial.pem
-/etc/ssl/certs/AffirmTrust_Networking.pem
-/etc/ssl/certs/AffirmTrust_Premium.pem
-=== process_api logs ===
-[    0.000000] Command line: console=ttyS0 reboot=k panic=1 nomodule random.trust_cpu=1 ipv6.disable=1 swiotlb=noforce rdinit=/process_api init_on_free=1 -- --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-[    0.255890] Kernel command line: console=ttyS0 reboot=k panic=1 nomodule random.trust_cpu=1 ipv6.disable=1 swiotlb=noforce rdinit=/process_api init_on_free=1 -- --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-[   19.072238] acpi PNP0A08:00: PCIe port services disabled; not requesting _OSC control
-[   19.076115] acpi PNP0A08:00: _OSC: platform retains control of PCIe features (AE_NOT_FOUND)
-[   19.529557] Run /process_api as init process
-[   19.530815]     /process_api
+=== ptrace check ===
+yama not loaded
+=== maps ===
+39
+=== mem readable? ===
+=== environ readable ===
+2
+=== fdinfo for socket 6170 ===
+pos:	0
+flags:	02004002
+mnt_id:	11
+ino:	6170
+/bin/sh: 1: xxd: not found
