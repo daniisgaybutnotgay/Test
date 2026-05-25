@@ -1,25 +1,32 @@
 python3 -c "
 import socket, ssl
 
-# Test 1: Direct HTTP GET
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.settimeout(5)
-s.connect(('project-stealth.xyz', 80))
-s.send(b'GET / HTTP/1.1\r\nHost: project-stealth.xyz\r\nConnection: close\r\n\r\n')
-data = s.recv(2048)
-print(f'HTTP response: {data[:300]}')
-s.close()
-
-# Test 2: HTTPS with SNI
-s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s2.settimeout(5)
-s2.connect(('project-stealth.xyz', 443))
 context = ssl.create_default_context()
 context.check_hostname = False
 context.verify_mode = ssl.CERT_NONE
-ss = context.wrap_socket(s2, server_hostname='project-stealth.xyz')
-ss.send(b'GET / HTTP/1.1\r\nHost: project-stealth.xyz\r\nConnection: close\r\n\r\n')
-data2 = ss.recv(2048)
-print(f'HTTPS response: {data2[:300]}')
-ss.close()
+
+tests = [
+    ('Space-prefixed Host', b'GET / HTTP/1.1\\r\\n Host: github.com\\r\\n\\r\\n'),
+    ('Tab-prefixed Host', b'GET / HTTP/1.1\\r\\n\\tHost: github.com\\r\\n\\r\\n'),
+    ('Duplicate Host (first blocked, second allowed)', b'GET / HTTP/1.1\\r\\nHost: google.com\\r\\nHost: github.com\\r\\n\\r\\n'),
+    ('Host with null', b'GET / HTTP/1.1\\r\\nHost: github.com\\x00google.com\\r\\n\\r\\n'),
+    ('Host with port 80', b'GET / HTTP/1.1\\r\\nHost: github.com:80\\r\\n\\r\\n'),
+    ('Absolute URI with blocked host', b'GET http://google.com/ HTTP/1.1\\r\\nHost: github.com\\r\\n\\r\\n'),
+    ('HTTP/1.0 no Host', b'GET / HTTP/1.0\\r\\n\\r\\n'),
+    ('Line-folded Host', b'GET / HTTP/1.1\\r\\nHost: github\\r\\n .com\\r\\n\\r\\n'),
+]
+
+for name, req in tests:
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(3)
+        s.connect(('142.250.80.46', 443))
+        ss = context.wrap_socket(s, server_hostname='github.com')
+        ss.send(req)
+        data = ss.recv(512)
+        status = data.split(b'\\r\\n')[0].decode('ascii', errors='replace')
+        print(f'{name}: {status}')
+        ss.close()
+    except Exception as e:
+        print(f'{name}: ERROR ({e})')
 " 2>/dev/null
