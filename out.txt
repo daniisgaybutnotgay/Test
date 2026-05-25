@@ -1,21 +1,30 @@
-=== ptrace memory read ===
-no strace
-=== gdb ===
-/usr/bin/gdb
-=== process_api maps ===
-55556d428000-55556d429000 ---p 00000000 00:00 0                          [heap]
-55556d429000-55556d42b000 rw-p 00000000 00:00 0                          [heap]
-7fbdcd4da000-7fbdcd4db000 ---p 00000000 00:00 0 
-7fbdcd4db000-7fbdcd4de000 rw-p 00000000 00:00 0 
-7fbdcd4de000-7fbdcd4e0000 ---p 00000000 00:00 0 
-7fbdcd4e0000-7fbdcd6e1000 rw-p 00000000 00:00 0 
-7fbdcd6e1000-7fbdcd6e3000 ---p 00000000 00:00 0 
-7fbdcd6e3000-7fbdcd8ed000 rw-p 00000000 00:00 0 
-7fbdcd8ed000-7fbdcd8ee000 ---p 00000000 00:00 0 
-7fbdcd8ee000-7fbdcd8f1000 rw-p 00000000 00:00 0 
-=== process_api writable regions ===
-55556d429000-55556d42b000 rw-p 00000000 00:00 0                          [heap]
-7fbdcd4db000-7fbdcd4de000 rw-p 00000000 00:00 0 
-7fbdcd4e0000-7fbdcd6e1000 rw-p 00000000 00:00 0 
-7fbdcd6e3000-7fbdcd8ed000 rw-p 00000000 00:00 0 
-7fbdcd8ee000-7fbdcd8f1000 rw-p 00000000 00:00 0 
+=== gdb batch test ===
+[New LWP 675]
+[New LWP 674]
+[New LWP 525]
+[New LWP 484]
+[New LWP 483]
+[New LWP 482]
+[New LWP 481]
+0x00007fbdce78e816 in ?? ()
+process 1
+Mapped address spaces:
+
+          Start Addr           End Addr       Size     Offset  Perms  objfile
+      0x55556d428000     0x55556d429000     0x1000        0x0  ---p   [heap]
+      0x55556d429000     0x55556d42b000     0x2000        0x0  rw-p   [heap]
+      0x7fbdcd4da000     0x7fbdcd4db000     0x1000        0x0  ---p   
+      0x7fbdcd4db000     0x7fbdcd4de000     0x3000        0x0  rw-p   
+      0x7fbdcd4de000     0x7fbdcd4e0000     0x2000        0x0  ---p   
+      0x7fbdcd4e0000     0x7fbdcd6e1000   0x201000        0x0  rw-p   
+      0x7fbdcd6e1000     0x7fbdcd6e3000     0x2000        0x0  ---p   
+      0x7fbdcd6e3000     0x7fbdcd8ed000   0x20a000        0x0  rw-p   
+=== /proc/1/mem at heap ===
+Read 64 bytes: 01a92d13f1d5f6b700a0426d5555000065000000000000001890426d55550000
+=== /proc/1/mem at binary ===
+Binary start: 0000000000000000000000000000000000000000000000000000000000000000
+=== process_api stack ===
+VmRSS:	    4904 kB
+Threads:	8
+voluntary_ctxt_switches:	196
+nonvoluntary_ctxt_switches:	55
