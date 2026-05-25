@@ -1,42 +1,47 @@
-python3 -c "
+echo "=== uptime ===" && cat /proc/uptime && echo "=== boot time ===" && cat /proc/stat | grep btime && echo "=== ptrace with interrupt ===" && python3 -c "
 import ctypes, os, time
 
 libc = ctypes.CDLL(None)
 PID = 1
-
-# Use PTRACE_SEIZE (0x4206) instead of PTRACE_ATTACH - no SIGSTOP needed
 PTRACE_SEIZE = 0x4206
 PTRACE_INTERRUPT = 0x4207
-PTRACE_POKEDATA = 5
 PTRACE_PEEKDATA = 2
+PTRACE_POKEDATA = 5
 PTRACE_DETACH = 17
 
-# Test 1: process_vm_readv (less intrusive than write)
-class iovec(ctypes.Structure):
-    _fields_ = [('iov_base', ctypes.c_void_p), ('iov_len', ctypes.c_size_t)]
+# Seize
+r = libc.ptrace(PTRACE_SEIZE, PID, 0, 0)
+print(f'SEIZE: {r} errno={ctypes.get_errno()}')
 
-buf = ctypes.create_string_buffer(8)
-local_iov = iovec(ctypes.cast(buf, ctypes.c_void_p), 8)
-remote_iov = iovec(0x55556d429000, 8)
-result = libc.syscall(310, PID, ctypes.byref(local_iov), 1, ctypes.byref(remote_iov), 1, 0)
-print(f'process_vm_readv: {result} bytes (errno={ctypes.get_errno()})')
-if result > 0:
-    print(f'Read: {buf.raw.hex()}')
+# Interrupt (async stop)
+r = libc.ptrace(PTRACE_INTERRUPT, PID, 0, 0)
+print(f'INTERRUPT: {r} errno={ctypes.get_errno()}')
+time.sleep(0.2)
 
-# Test 2: PTRACE_SEIZE + PEEKDATA
-result = libc.ptrace(PTRACE_SEIZE, PID, 0, 0)
-print(f'PTRACE_SEIZE: {result} (errno={ctypes.get_errno()})')
-if result == 0:
-    time.sleep(0.1)
-    # Read from heap
-    data = libc.ptrace(PTRACE_PEEKDATA, PID, 0x55556d429000, 0)
-    print(f'PEEKDATA: {hex(data & 0xffffffffffffffff)}')
-    # Try to write
-    result = libc.ptrace(PTRACE_POKEDATA, PID, 0x55556d429000, 0x4443424144434241)
-    print(f'POKEDATA: {result} (errno={ctypes.get_errno()})')
-    # Verify
-    verify = libc.ptrace(PTRACE_PEEKDATA, PID, 0x55556d429000, 0)
-    print(f'Verify: {hex(verify & 0xffffffffffffffff)}')
-    libc.ptrace(PTRACE_DETACH, PID, 0, 0)
-    print('ptrace cycle complete')
-"
+# Wait for stop using waitid
+class Siginfo(ctypes.Structure):
+    _fields_ = [
+        ('si_signo', ctypes.c_int), ('si_errno', ctypes.c_int), ('si_code', ctypes.c_int),
+        ('_pad', ctypes.c_int * 29)
+    ]
+siginfo = Siginfo()
+r = libc.waitid(1, PID, ctypes.byref(siginfo), 4)  # WEXITED=4, P_PID=1
+print(f'WAITID: {r} errno={ctypes.get_errno()} si_signo={siginfo.si_signo} si_code={siginfo.si_code}')
+
+# Now peek
+addr = 0x55556d429000
+data = libc.ptrace(PTRACE_PEEKDATA, PID, addr, 0)
+print(f'PEEKDATA: {hex(data & 0xffffffffffffffff)} errno={ctypes.get_errno()}')
+
+# Poke
+r = libc.ptrace(PTRACE_POKEDATA, PID, addr, 0x4443424144434241)
+print(f'POKEDATA: {r} errno={ctypes.get_errno()}')
+
+# Verify
+data2 = libc.ptrace(PTRACE_PEEKDATA, PID, addr, 0)
+print(f'VERIFY: {hex(data2 & 0xffffffffffffffff)} errno={ctypes.get_errno()}')
+
+# Detach
+r = libc.ptrace(PTRACE_DETACH, PID, 0, 0)
+print(f'DETACH: {r} errno={ctypes.get_errno()}')
+" 2>/dev/null && echo "=== process state after ===" && cat /proc/1/status | grep -E "State|Threads|voluntary"
