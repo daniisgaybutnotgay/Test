@@ -1,8 +1,25 @@
-Space-prefixed Host: HTTP/1.1 400 Bad Request
-Tab-prefixed Host: HTTP/1.1 400 Bad Request
-Duplicate Host (first blocked, second allowed): HTTP/1.1 403 Forbidden
-Host with null: HTTP/1.1 400 Bad Request
-Host with port 80: HTTP/1.1 503 Service Unavailable
-Absolute URI with blocked host: HTTP/1.1 403 Forbidden
-HTTP/1.0 no Host: HTTP/1.1 426 Upgrade Required
-Line-folded Host: HTTP/1.1 400 Bad Request
+bin
+bin.usr-is-merged
+boot
+container_info.json
+dev
+etc
+home
+lib
+lib.usr-is-merged
+lib64
+lost+found
+media
+mnt
+old_root
+opt
+proc
+root
+run
+sbin
+sbin.usr-is-merged
+srv
+sys
+tmp
+usr
+var
