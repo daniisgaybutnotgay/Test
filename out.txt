@@ -1,2 +1,17 @@
-=== PCI config ===
-=== modules_disabled ===
+A
+modules_disabled unreadable
+B
+/sys/bus/pci/devices/0000:00:01.0/config
+C
+11000101101110110000000000000100100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+D
+2
+E
+crw------- 1 root root 4, 64 May 25 07:13 /dev/ttyS0
+F
+0
+G
+0
+H
+I
+2
