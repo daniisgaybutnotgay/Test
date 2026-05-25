@@ -1,25 +1,30 @@
-bin
-bin.usr-is-merged
-boot
-container_info.json
-dev
-etc
-home
-lib
-lib.usr-is-merged
-lib64
-lost+found
-media
-mnt
-old_root
-opt
-proc
-root
-run
-sbin
-sbin.usr-is-merged
-srv
-sys
-tmp
-usr
-var
+=== IOMMU status ===
+[    0.003724]   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+[    0.003743]   DMA32    [mem 0x0000000001000000-0x00000000ffffffff]
+[    0.003840] On node 0, zone DMA: 1 pages in unavailable ranges
+[    0.004493] On node 0, zone DMA: 97 pages in unavailable ranges
+[   10.458174] iommu: Default domain type: Translated
+[   10.459522] iommu: DMA domain TLB invalidation policy: lazy mode
+[   10.515640] PCI-DMA: Using software bounce buffering for IO (SWIOTLB)
+=== PCI command reg ===
+000004 06 04
+000006
+=== PCI after write ===
+000000 f4 1a 42 10 06 04 10 00 01 00 80 01 00 00 00 00
+000010 04 00 00 00 40 00 00 00 00 00 00 00 00 00 00 00
+000020 00 00 00 00 00 00 00 00 00 00 00 00 f4 1a 42 10
+=== virtio driver override ===
+no driver_override
+=== virtio remove ===
+remove blocked
+=== virtio rescan ===
+rescan OK
+=== device still present ===
+device
+driver
+features
+=== fork indicator ===
+[    8.299812] Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+[   10.462398] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[   11.996364] random: crng reseeded due to virtual machine fork
+/bin/sh: 1: cannot create /sys/bus/virtio/devices/virtio4/remove: Permission denied
