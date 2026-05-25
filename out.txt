@@ -1,4 +1,6 @@
-Running: runner.py
+Running: reader.py
+Command: timeout 3600 python3 /mnt/user-data/outputs/hello.py
+Output: Running: runner.py
 Command: timeout 3600 python3 /mnt/user-data/outputs/hello.py
 Traceback (most recent call last):
   File "/mnt/user-data/outputs/hello.py", line 13, in <module>
@@ -17,3 +19,22 @@ Traceback (most recent call last):
   File "/usr/lib/python3.12/subprocess.py", line 2045, in _wait
     raise TimeoutExpired(self.args, timeout)
 subprocess.TimeoutExpired: Command '['python3', '/mnt/user-data/outputs/runner.py']' timed out after 4.999988294999866 seconds
+
+Written to out.txt: https://github.com/daniisgaybutnotgay/Test/blob/main/out.txt
+Traceback (most recent call last):
+  File "/mnt/user-data/outputs/hello.py", line 13, in <module>
+    subprocess.run(["python3", os.path.join(folder, pick)], timeout=5)
+  File "/usr/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2141, in _communicate
+    self.wait(timeout=self._remaining_time(endtime))
+  File "/usr/lib/python3.12/subprocess.py", line 1264, in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2045, in _wait
+    raise TimeoutExpired(self.args, timeout)
+subprocess.TimeoutExpired: Command '['python3', '/mnt/user-data/outputs/reader.py']' timed out after 4.999988677999909 seconds
