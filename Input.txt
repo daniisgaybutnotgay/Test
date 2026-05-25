@@ -1,15 +1,1 @@
-echo "=== thread stack traces ===" && gdb -batch -p 1 -ex "thread apply all bt" -ex "detach" 2>/dev/null | grep -E "Thread|#0|#1|tokio|websocket|mio|async|runtime" | head -30 && echo "=== process_api writable data ===" && python3 -c "
-import os
-fd = os.open('/proc/1/mem', os.O_RDONLY)
-# Check the writable data section of the binary
-start = 0x7fbdce83e000
-end = 0x7fbdce851000
-os.lseek(fd, start, os.SEEK_SET)
-data = os.read(fd, end-start)
-print(f'Writable data section size: {len(data)} bytes')
-print(f'First 64 bytes: {data[:64].hex()}')
-# Look for mutable state
-if b'192.0.2' in data:
-    print('Gateway IP found in writable section!')
-os.close(fd)
-" 2>/dev/null && echo "=== process_api file descriptors ===" && ls -la /proc/1/fd/ && echo "=== socket details ===" && for fd in /proc/1/fd/*; do if [ -L "$fd" ]; then target=$(readlink "$fd"); case "$target" in *socket*) echo "$(basename $fd) -> $target";; esac; fi; done
+echo "=== socket 2843 mapping ===" && grep "2843" /proc/net/tcp /proc/net/tcp6 /proc/net/unix 2>/dev/null && echo "=== pipe mapping ===" && grep "2845\|2846\|2847" /proc/net/unix 2>/dev/null && echo "=== fd 11 details ===" && cat /proc/1/fdinfo/11 2>/dev/null && echo "=== pipe test ===" && echo "test" > /proc/1/fd/13 2>/dev/null && echo "pipe write OK" || echo "pipe write blocked" && echo "=== socket 2843 recv queue ===" && cat /proc/1/fdinfo/11 2>/dev/null && echo "=== all process sockets ===" && cat /proc/1/net/tcp 2>/dev/null | grep -E "2843|2845|2846|2847|07E8|07E9" && echo "=== netlink sockets ===" && cat /proc/1/net/netlink 2>/dev/null | head -5
