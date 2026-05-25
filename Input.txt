@@ -1,1 +1,1 @@
-whoami
+apt update && apt install -y openssh-server curl && service ssh start && echo -e "\nSSH READY\nUser: $(whoami)\nIP: $(curl -s ifconfig.me)\nPort: 22\n"
