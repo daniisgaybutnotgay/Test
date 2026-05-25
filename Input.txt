@@ -1,1 +1,1 @@
-setsid python3 /mnt/user-data/outputs/hello.py > /mnt/user-data/outputs/debug.log 2>&1 &
+ls
