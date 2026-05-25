@@ -1,1 +1,10 @@
-=== mount_config ===
+=== PID 1 environ ===
+=== PID 1 cmdline full ===
+/process_api
+--firecracker-init
+--addr
+0.0.0.0:2024
+--max-ws-buffer-size
+32768
+--block-local-connections
+=== socat check ===
