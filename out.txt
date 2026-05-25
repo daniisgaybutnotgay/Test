@@ -1,9 +1,39 @@
-=== socket mapping ===
---- inode 597 ---
---- inode 598 ---
---- inode 600 ---
-/proc/net/tcp:   0: 00000000:07E8 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 600 1 00000000ec8748a8 100 0 0 10 0                       
---- inode 601 ---
-/proc/net/tcp:   1: 00000000:07E9 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 601 1 00000000878e3de6 100 0 0 10 0                       
---- inode 6170 ---
-/proc/net/tcp:   3: 020200C0:07E8 010200C0:BE22 01 00000000:00000000 00:00000000 00000000     0        0 6170 1 000000004fccb7c8 20 4 28 12 -1                     
+=== port 2025 probe ===
+000 (127.0.0.1:2025)
+000 (192.0.2.2:2025)
+=== /tmp/process_api_copy ===
+-rwxr-xr-x 1 root root 4377896 May 24 22:48 /tmp/process_api_copy
+/tmp/process_api_copy: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), static-pie linked, BuildID[sha1]=edebff2c28de76238c95c299ba3401a9098c9e17, stripped
+=== binary diff ===
+0
+=== strings secrets ===
+	wsH
+	wsJ
+ [CONTROL] clock_settime failed: 
+ [CONTROL] mount_root succeeded: 
+ [WARN] Failed to load auth key: 
+ controller in root cgroup
+ controller in root cgroup: 
+ the Router (on the other side of the bridge) sends the HTTP Upgrade, so the TCP-direction reversal is transparent to handle_wsCONTROL_VSOCK_PORTcontrol-vsock-portControl server vsock port for graceful shutdown and container name updatesLISTEN_VSOCK_PORTlisten-vsock-portListen on a vsock port for WebSocket connections (Firecracker)Run as Firecracker VM init (PID 1). Mounts /proc, /sys, /dev, sets up networking, then either reads /mount_config.json (fresh boot) or waits for POST /mount_root (snapstart). Also enables the /mount_root endpoint on the control server. Has no effect on gVisor/runc where the rootfs is already set up by the hostprocess_apikeep-aliveHTTP/1.1 100 Continue
+![DEBUG] bad control msg from ws: 
+", RouterPlugin pending), retrying
+"Error accepting vsock connection: 
+"[CONTROL] /write_etc_files: hosts 
+"[DEBUG] Control server enabled on 
+"[ERROR] Failed to bind vsock port 
+#[CONTROL] Clock synced (unix_nanos=
+#[CONTROL] Invalid auth public key: 
+#[CONTROL] open(/) for thaw failed: 
+#[DEBUG] process_ws_message failed: 
+#[DEBUG] root: current_controllers: 
+#[INIT] keytool -importcert failed: 
+$Invalid base64 for auth public key: 
+$[CONTROL] Error serving connection: 
+$[CONTROL] mount_root task panicked: 
+%[CONTROL] Updated container name to: 
+%[DEBUG] process_ws_message returned: 
+& (SIGINT handler disabled, mount_root=
+&[CONTROL] Control server listening on 
+&wsH
+'[CONTROL] Failed to accept connection: 
+'[CONTROL] Failed to read request body: 
