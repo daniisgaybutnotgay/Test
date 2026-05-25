@@ -1,2 +1,8 @@
-HTTP response: b'HTTP/1.1 403 Forbidden\r\nx-deny-reason: host_not_allowed\r\ncontent-length: 21\r\ncontent-type: text/plain\r\ndate: Mon, 25 May 2026 11:17:54 GMT\r\nconnection: close\r\n\r\nHost not in allowlist'
-HTTPS response: b'HTTP/1.1 403 Forbidden\r\nx-deny-reason: host_not_allowed\r\ncontent-length: 21\r\ncontent-type: text/plain\r\ndate: Mon, 25 May 2026 11:17:54 GMT\r\nconnection: close\r\n\r\nHost not in allowlist'
+Space-prefixed Host: HTTP/1.1 400 Bad Request
+Tab-prefixed Host: HTTP/1.1 400 Bad Request
+Duplicate Host (first blocked, second allowed): HTTP/1.1 403 Forbidden
+Host with null: HTTP/1.1 400 Bad Request
+Host with port 80: HTTP/1.1 503 Service Unavailable
+Absolute URI with blocked host: HTTP/1.1 403 Forbidden
+HTTP/1.0 no Host: HTTP/1.1 426 Upgrade Required
+Line-folded Host: HTTP/1.1 400 Bad Request
