@@ -1,11 +1,1 @@
-echo "=== vsock sysfs ===" && find /sys -name "*vsock*" -o -name "*cid*" 2>/dev/null | head -10 && echo "=== vsock device ===" && ls -la /dev/vsock && echo "=== vsock ioctl test ===" && python3 -c "
-import fcntl, struct, os
-try:
-    fd = os.open('/dev/vsock', os.O_RDONLY)
-    # IOCTL_VM_SOCKETS_GET_LOCAL_CID = 0x7b
-    cid = struct.unpack('I', fcntl.ioctl(fd, 0x7b, b'    '))[0]
-    print(f'Local CID: {cid}')
-    os.close(fd)
-except Exception as e:
-    print(f'Error: {e}')
-" && echo "=== gateway ping ===" && ping -c 1 -W 2 192.0.2.1 2>/dev/null && echo "=== gateway port scan ===" && for port in 22 53 80 443 8080 9000 2024; do (echo >/dev/tcp/192.0.2.1/$port) 2>/dev/null && echo "192.0.2.1:$port open" || echo "192.0.2.1:$port closed"; done && echo "=== process_api memory ===" && cat /proc/1/status | grep -E "VmRSS|VmSize|Threads|FDSize"
+echo "=== ping binary ===" && which ping && ping -c 1 -W 2 192.0.2.1 2>&1 || echo "ping unavailable or failed" && echo "=== gateway tcp ===" && timeout 2 bash -c 'echo >/dev/tcp/192.0.2.1/22' 2>/dev/null && echo "22 open" || echo "22 closed/failed" && timeout 2 bash -c 'echo >/dev/tcp/192.0.2.1/80' 2>/dev/null && echo "80 open" || echo "80 closed/failed" && timeout 2 bash -c 'echo >/dev/tcp/192.0.2.1/8080' 2>/dev/null && echo "8080 open" || echo "8080 closed/failed" && echo "=== process_api file ===" && file /proc/1/exe && echo "=== process_api static? ===" && ldd /proc/1/exe 2>&1 | head -10 && echo "=== process_api strings ===" && strings /proc/1/exe 2>/dev/null | grep -iE "firecracker|api|addr|listen|socket|vsock|unix|tcp" | sort -u | head -20
