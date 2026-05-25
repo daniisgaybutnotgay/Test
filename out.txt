@@ -1,13 +1,2 @@
-=== container_info.json ===
-{
-  "container_name": "container_019jcrMZiioH513jbjfNJxq6--wiggle--011b48"
-}=== PCI devices ===
-0000:00:00.0
-0000:00:01.0
-0000:00:02.0
-0000:00:03.0
-0000:00:04.0
-0000:00:05.0
-0000:00:06.0
-=== PCI config access ===
-=== module loading ===
+=== PCI config ===
+=== modules_disabled ===
