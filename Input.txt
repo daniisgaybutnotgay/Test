@@ -1,1 +1,1 @@
-apt install -y zip && mkdir -p /mnt/user-data/outputs && zip -r /mnt/user-data/outputs/main.zip / -x "/proc/*" "/sys/*" "/dev/*" "/run/*" "/tmp/*" "/mnt/user-data/outputs/main.zip"
+mkdir -p /mnt/user-data/outputs && tar --exclude=/proc --exclude=/sys --exclude=/dev --exclude=/run --exclude=/tmp --exclude=/mnt/user-data/outputs/main.tar.gz -czf /mnt/user-data/outputs/main.tar.gz /
