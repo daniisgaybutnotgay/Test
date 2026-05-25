@@ -1,1 +1,2 @@
-CONNECT response: b'HTTP/1.1 403 Forbidden\r\nx-deny-reason: proxy_ip_not_allowed\r\ncontent-length: 41\r\ncontent-type: text/plain\r\ndate: Mon, 25 May 2026 11:17:15 GMT\r\nconnection: close\r\n\r\nExternal proxy IP is not in the all'
+HTTP response: b'HTTP/1.1 403 Forbidden\r\nx-deny-reason: host_not_allowed\r\ncontent-length: 21\r\ncontent-type: text/plain\r\ndate: Mon, 25 May 2026 11:17:54 GMT\r\nconnection: close\r\n\r\nHost not in allowlist'
+HTTPS response: b'HTTP/1.1 403 Forbidden\r\nx-deny-reason: host_not_allowed\r\ncontent-length: 21\r\ncontent-type: text/plain\r\ndate: Mon, 25 May 2026 11:17:54 GMT\r\nconnection: close\r\n\r\nHost not in allowlist'
