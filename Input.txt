@@ -1,1 +1,41 @@
-echo "=== socket 2843 mapping ===" && grep "2843" /proc/net/tcp /proc/net/tcp6 /proc/net/unix 2>/dev/null && echo "=== pipe mapping ===" && grep "2845\|2846\|2847" /proc/net/unix 2>/dev/null && echo "=== fd 11 details ===" && cat /proc/1/fdinfo/11 2>/dev/null && echo "=== pipe test ===" && echo "test" > /proc/1/fd/13 2>/dev/null && echo "pipe write OK" || echo "pipe write blocked" && echo "=== socket 2843 recv queue ===" && cat /proc/1/fdinfo/11 2>/dev/null && echo "=== all process sockets ===" && cat /proc/1/net/tcp 2>/dev/null | grep -E "2843|2845|2846|2847|07E8|07E9" && echo "=== netlink sockets ===" && cat /proc/1/net/netlink 2>/dev/null | head -5
+python3 -c "
+import ctypes, os
+
+libc = ctypes.CDLL(None)
+PID = 1
+
+# Test 1: process_vm_writev to PID 1 heap
+class iovec(ctypes.Structure):
+    _fields_ = [('iov_base', ctypes.c_void_p), ('iov_len', ctypes.c_size_t)]
+
+buf = b'TEST1234'
+local_iov = iovec(ctypes.cast(buf, ctypes.c_void_p), len(buf))
+remote_iov = iovec(0x55556d429000, len(buf))
+result = libc.syscall(311, PID, ctypes.byref(local_iov), 1, ctypes.byref(remote_iov), 1, 0)
+print(f'process_vm_writev: {result} (errno={ctypes.get_errno()})')
+
+# Test 2: ptrace register read
+class user_regs_struct(ctypes.Structure):
+    _fields_ = [
+        ('r15', ctypes.c_ulonglong), ('r14', ctypes.c_ulonglong), ('r13', ctypes.c_ulonglong),
+        ('r12', ctypes.c_ulonglong), ('rbp', ctypes.c_ulonglong), ('rbx', ctypes.c_ulonglong),
+        ('r11', ctypes.c_ulonglong), ('r10', ctypes.c_ulonglong), ('r9', ctypes.c_ulonglong),
+        ('r8', ctypes.c_ulonglong), ('rax', ctypes.c_ulonglong), ('rcx', ctypes.c_ulonglong),
+        ('rdx', ctypes.c_ulonglong), ('rsi', ctypes.c_ulonglong), ('rdi', ctypes.c_ulonglong),
+        ('orig_rax', ctypes.c_ulonglong), ('rip', ctypes.c_ulonglong), ('cs', ctypes.c_ulonglong),
+        ('eflags', ctypes.c_ulonglong), ('rsp', ctypes.c_ulonglong), ('ss', ctypes.c_ulonglong),
+        ('fs_base', ctypes.c_ulonglong), ('gs_base', ctypes.c_ulonglong), ('ds', ctypes.c_ulonglong),
+        ('es', ctypes.c_ulonglong), ('fs', ctypes.c_ulonglong), ('gs', ctypes.c_ulonglong),
+    ]
+
+libc.ptrace(0, PID, 0, 0)
+os.waitpid(PID, 0)
+regs = user_regs_struct()
+result = libc.ptrace(12, PID, 0, ctypes.byref(regs))
+print(f'PTRACE_GETREGS: {result} (errno={ctypes.get_errno()})')
+if result == 0:
+    print(f'RIP={hex(regs.rip)} RSP={hex(regs.rsp)} RAX={hex(regs.rax)}')
+libc.ptrace(17, PID, 0, 0)
+os.waitpid(PID, 0)
+print('ptrace cycle complete')
+"
