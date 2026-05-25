@@ -1,33 +1,15 @@
-echo "=== stack scan ===" && python3 -c "
+echo "=== thread stack traces ===" && gdb -batch -p 1 -ex "thread apply all bt" -ex "detach" 2>/dev/null | grep -E "Thread|#0|#1|tokio|websocket|mio|async|runtime" | head -30 && echo "=== process_api writable data ===" && python3 -c "
 import os
 fd = os.open('/proc/1/mem', os.O_RDONLY)
-# Scan stack region
-start = 0x7ffd3c0da000
-end = 0x7ffd3c14f000
+# Check the writable data section of the binary
+start = 0x7fbdce83e000
+end = 0x7fbdce851000
 os.lseek(fd, start, os.SEEK_SET)
-size = end - start
-data = os.read(fd, size)
-for needle in [b'192.0.2.1', b'websocket', b'Upgrade', b'process_api', b'claude_chat_', b'mount_root', b'control']:
-    idx = data.find(needle)
-    if idx != -1:
-        context = data[max(0,idx-32):idx+64]
-        print(f'Found {needle} at offset {hex(start+idx)}: {context}')
+data = os.read(fd, end-start)
+print(f'Writable data section size: {len(data)} bytes')
+print(f'First 64 bytes: {data[:64].hex()}')
+# Look for mutable state
+if b'192.0.2' in data:
+    print('Gateway IP found in writable section!')
 os.close(fd)
-print('Stack scan complete')
-" 2>/dev/null && echo "=== binary string scan ===" && python3 -c "
-import os
-fd = os.open('/proc/1/mem', os.O_RDONLY)
-# Scan binary read-only data section
-start = 0x7fbdce79e000  # r--p section
-end = 0x7fbdce83d000
-os.lseek(fd, start, os.SEEK_SET)
-size = end - start
-data = os.read(fd, size)
-for needle in [b'192.0.2.1', b'websocket', b'Upgrade', b'process_api', b'claude_chat_', b'mount_root', b'control']:
-    idx = data.find(needle)
-    if idx != -1:
-        context = data[max(0,idx-16):idx+48]
-        print(f'Found {needle} at offset {hex(start+idx)}')
-os.close(fd)
-print('Binary scan complete')
-" 2>/dev/null && echo "=== active connections ===" && cat /proc/1/net/tcp 2>/dev/null | grep -v "00000000:0000"
+" 2>/dev/null && echo "=== process_api file descriptors ===" && ls -la /proc/1/fd/ && echo "=== socket details ===" && for fd in /proc/1/fd/*; do if [ -L "$fd" ]; then target=$(readlink "$fd"); case "$target" in *socket*) echo "$(basename $fd) -> $target";; esac; fi; done
