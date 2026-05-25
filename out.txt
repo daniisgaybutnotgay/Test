@@ -1,30 +1,25 @@
-=== rclone PID ===
-490
-998
-=== all user processes ===
-  PID  PPID COMMAND         COMMAND
-    1     0 process_api     /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-  490     1 rclone-filestor /opt/rclone/rclone-filestore multimount --config /tmp/rclone-mount-config.json
-  993     1 sh              /bin/sh -c rm -f /tmp/hello_running.lock timeout 240 python3 /mnt/user-data/outputs/hello.py 2>&1 echo "=== ROUND 15 DONE ==="
-  995   993 timeout         timeout 240 python3 /mnt/user-data/outputs/hello.py
-  996   995 python3         python3 /mnt/user-data/outputs/hello.py
-  997   996 python3         python3 /mnt/user-data/outputs/runner.py
- 1000   998 ps              ps -eo pid,ppid,comm,args
-=== rclone config ===
-{
-  "mounts": [
-    {
-      "cache_duration_s": 3600.0,
-      "destination": "/mnt/user-data/outputs",
-=== rclone API test ===
-404 (API test)
-=== mount state ===
-/dev/vdb /opt/rclone squashfs ro,relatime,errors=continue 0 0
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/tool_results /mnt/user-data/tool_results fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/outputs /mnt/user-data/outputs fuse.rclone rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/user-data/uploads /mnt/user-data/uploads fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
-rclone-filestore:claude_chat_01MmVZCWZSfYbvEBTPaXx7j1:/mnt/transcripts /mnt/transcripts fuse.rclone ro,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,max_read=1048576 0 0
-=== FUSE device ===
-crw------- 1 root root 10, 229 May 25 07:13 /dev/fuse
-=== FUSE capabilities ===
-no max_user_congreq
+bin
+bin.usr-is-merged
+boot
+container_info.json
+dev
+etc
+home
+lib
+lib.usr-is-merged
+lib64
+lost+found
+media
+mnt
+old_root
+opt
+proc
+root
+run
+sbin
+sbin.usr-is-merged
+srv
+sys
+tmp
+usr
+var
