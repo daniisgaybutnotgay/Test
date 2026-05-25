@@ -1,13 +1,10 @@
-=== interfaces ===
-eth0
-lo
-eth0: 02:fc:00:00:00:01 up
-lo: 00:00:00:00:00:00 unknown
-=== routes ===
-Iface	Destination	Gateway 	Flags	RefCnt	Use	Metric	Mask		MTU	Window	IRTT                                                       
-eth0	00000000	010200C0	0003	0	0	0	00000000	0	0	0                                                                               
-eth0	000200C0	00000000	0001	0	0	0	00FFFFFF	0	0	0                                                                               
-=== arp ===
-IP address       HW type     Flags       HW address            Mask     Device
-192.0.2.1        0x1         0x2         02:fc:00:00:00:05     *        eth0
-=== vsock CID ===
+=== vsock sysfs ===
+/sys/class/misc/vsock
+/sys/devices/virtual/misc/vsock
+/sys/bus/virtio/drivers/vmw_vsock_virtio_transport
+/sys/module/vsock
+=== vsock device ===
+crw------- 1 root root 10, 258 May 24 06:46 /dev/vsock
+=== vsock ioctl test ===
+Error: [Errno 25] Inappropriate ioctl for device
+=== gateway ping ===
