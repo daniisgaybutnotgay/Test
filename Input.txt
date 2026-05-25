@@ -1,9 +1,31 @@
-echo "=== current MAC ===" && cat /sys/class/net/eth0/address && echo "=== MAC change test ===" && ip link set eth0 address 02:fc:00:00:00:ff 2>/dev/null && cat /sys/class/net/eth0/address || echo "MAC change blocked" && echo "=== promiscuous mode ===" && ip link set eth0 promisc on 2>/dev/null && cat /sys/class/net/eth0/flags | grep -q "PROMISC" && echo "promisc ON" || echo "promisc blocked" && echo "=== raw socket test ===" && python3 -c "
-import socket
-try:
-    s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(3))
-    print('RAW socket OK')
-    s.close()
-except Exception as e:
-    print(f'RAW socket failed: {e}')
-" && echo "=== virtio-net stats ===" && cat /sys/class/net/eth0/statistics/rx_packets && cat /sys/class/net/eth0/statistics/tx_packets && echo "=== virtio-net config ===" && od -A x -t x1 /sys/bus/virtio/devices/virtio4/config 2>/dev/null | head -5 && echo "=== virtio-net features writable ===" && echo 0 > /sys/bus/virtio/devices/virtio4/features 2>/dev/null && echo "features writable" || echo "features read-only"
+echo "=== raw socket capabilities ===" && python3 -c "
+import socket, struct
+# Test raw socket with custom Ethernet header
+s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0800))
+print('Raw socket with ETH_P_IP: OK')
+s.close()
+# Test ICMP raw socket
+s2 = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
+print('Raw ICMP socket: OK')
+s2.close()
+# Test TCP raw socket
+s3 = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+print('Raw TCP socket: OK')
+s3.close()
+" && echo "=== scapy check ===" && python3 -c "import scapy.all; print('scapy available')" 2>/dev/null || echo "scapy not available" && echo "=== tcpdump check ===" && which tcpdump 2>/dev/null || echo "tcpdump not available" && echo "=== packet injection test ===" && python3 -c "
+import socket, struct
+# Craft a minimal Ethernet frame (destination, source, type, payload)
+eth_hdr = struct.pack('!6s6sH', b'\xff\xff\xff\xff\xff\xff', b'\x02\xfc\x00\x00\x00\x01', 0x0806)  # ARP
+arp_payload = struct.pack('!HHBBH6s4s6s4s',
+    1, 0x0800, 6, 4, 1,  # htype, ptype, hlen, plen, oper=request
+    b'\x02\xfc\x00\x00\x00\x01',  # sender MAC
+    bytes([192,0,2,2]),  # sender IP
+    b'\x00\x00\x00\x00\x00\x00',  # target MAC
+    bytes([192,0,2,1])  # target IP
+)
+s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.htons(0x0806))
+s.bind(('eth0', 0))
+s.send(eth_hdr + arp_payload)
+print('ARP packet injected')
+s.close()
+" 2>/dev/null && echo "=== arp table after ===" && cat /proc/net/arp | grep 192.0.2.1
