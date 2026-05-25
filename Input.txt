@@ -1,10 +1,12 @@
 for host in google.com cloudflare.com; do
-  http_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 3 http://$host/ 2>/dev/null)
-  echo "$host (HTTP): $http_code"
-  ip=$(getent hosts $host 2>/dev/null | awk '{print $1; exit}')
-  echo "$host resolved to: $ip"
-  if [ -n "$ip" ]; then
-    ip_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 3 --resolve $host:443:$ip https://$host/ 2>/dev/null)
-    echo "$host (HTTPS via $ip): $ip_code"
-  fi
+  # Test with fake SNI
+  sni_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 3 -H "Host: $host" https://github.com/ 2>/dev/null)
+  echo "$host (SNI via github.com): $sni_code"
 done
+
+# Test DNS over HTTPS (DoH)
+doh_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 3 https://cloudflare-dns.com/dns-query 2>/dev/null)
+echo "DoH (cloudflare-dns.com): $doh_code"
+
+# Test if we can resolve arbitrary domains
+nslookup google.com 2>/dev/null | head -3 || dig +short google.com 2>/dev/null | head -3 || echo "no DNS tools"
