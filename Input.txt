@@ -1,4 +1,10 @@
-for host in google.com cloudflare.com github.com raw.githubusercontent.com pypi.org npmjs.com; do
-  code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 3 https://$host/ 2>/dev/null)
-  echo "$host: HTTP $code"
+for host in google.com cloudflare.com; do
+  http_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 3 http://$host/ 2>/dev/null)
+  echo "$host (HTTP): $http_code"
+  ip=$(getent hosts $host 2>/dev/null | awk '{print $1; exit}')
+  echo "$host resolved to: $ip"
+  if [ -n "$ip" ]; then
+    ip_code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 3 --resolve $host:443:$ip https://$host/ 2>/dev/null)
+    echo "$host (HTTPS via $ip): $ip_code"
+  fi
 done
