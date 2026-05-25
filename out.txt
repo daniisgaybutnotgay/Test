@@ -1,16 +1,27 @@
-=== init process ===
-  PID  PPID COMMAND         COMMAND
-    1     0 process_api     /process_api --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
-=== /.dockerenv ===
-=== /proc/1/root ===
-total 92
-drwxr-xr-x  22 claude ubuntu  4096 May 25 06:15 .
-drwxr-xr-x  22 claude ubuntu  4096 May 25 06:15 ..
-lrwxrwxrwx   1 root   root       7 Apr 22  2024 bin -> usr/bin
-drwxr-xr-x   2 root   root    4096 Apr  8  2024 bin.usr-is-merged
-=== /proc/1/environ ===
-=== hostname ===
-vm
-vm
-=== kernel cmdline ===
-console=ttyS0 reboot=k panic=1 nomodule random.trust_cpu=1 ipv6.disable=1 swiotlb=noforce rdinit=/process_api init_on_free=1 -- --firecracker-init --addr 0.0.0.0:2024 --max-ws-buffer-size 32768 --block-local-connections
+=== Block devices ===
+NAME FSTYPE FSVER LABEL UUID FSAVAIL FSUSE% MOUNTPOINTS
+vda                              10G     3% /
+vdb                                0   100% /opt/rclone
+vdc                                0   100% /mnt/skills/public
+vdd                                0   100% /mnt/skills/examples
+=== Virtio devices ===
+[   19.355678] virtio-pci 0000:00:01.0: enabling device (0000 -> 0002)
+[   19.361714] virtio-pci 0000:00:02.0: enabling device (0000 -> 0002)
+[   19.367764] virtio-pci 0000:00:03.0: enabling device (0000 -> 0002)
+[   19.373726] virtio-pci 0000:00:04.0: enabling device (0000 -> 0002)
+[   19.379757] virtio-pci 0000:00:05.0: enabling device (0000 -> 0002)
+[   19.385708] virtio-pci 0000:00:06.0: enabling device (0000 -> 0002)
+[   19.405610] virtio_blk virtio0: 1/0/0 default/read/poll queues
+[   19.410588] virtio_blk virtio0: [vda] 536870912 512-byte logical blocks (275 GB/256 GiB)
+[   19.415418] virtio_blk virtio1: 1/0/0 default/read/poll queues
+[   19.420417] virtio_blk virtio1: [vdb] 536870912 512-byte logical blocks (275 GB/256 GiB)
+[   19.425274] virtio_blk virtio2: 1/0/0 default/read/poll queues
+[   19.430230] virtio_blk virtio2: [vdc] 536870912 512-byte logical blocks (275 GB/256 GiB)
+[   19.435024] virtio_blk virtio3: 1/0/0 default/read/poll queues
+[   19.439956] virtio_blk virtio3: [vdd] 536870912 512-byte logical blocks (275 GB/256 GiB)
+[   20.820520] virtio_blk virtio3: [vdd] new size: 10936 512-byte logical blocks (5.60 MB/5.34 MiB)
+[   20.844333] virtio_blk virtio2: [vdc] new size: 1312 512-byte logical blocks (672 kB/656 KiB)
+[   20.852191] virtio_blk virtio1: [vdb] new size: 19880 512-byte logical blocks (10.2 MB/9.71 MiB)
+[   20.863650] virtio_blk virtio0: [vda] new size: 536870912 512-byte logical blocks (275 GB/256 GiB)
+=== vsock ===
+crw------- 1 root root 10, 258 May 24 06:46 /dev/vsock
