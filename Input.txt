@@ -1,36 +1,40 @@
 python3 -c "
-import ctypes, os, time
+import os, socket, ctypes
 
 libc = ctypes.CDLL(None)
-PID = 490  # rclone
-PTRACE_SEIZE = 0x4206
-PTRACE_INTERRUPT = 0x4207
-PTRACE_PEEKDATA = 2
-PTRACE_POKEDATA = 5
-PTRACE_DETACH = 17
+PID = 1
 
-# Seize rclone
-r = libc.ptrace(PTRACE_SEIZE, PID, 0, 0)
-print(f'SEIZE rclone: {r} errno={ctypes.get_errno()}')
+# Try to dup the WebSocket socket from PID 1
+# First, check if we can use pidfd_getfd
+PIDFD_GETFD = 438  # syscall number on x86_64
 
-if r == 0:
-    libc.ptrace(PTRACE_INTERRUPT, PID, 0, 0)
-    time.sleep(0.2)
-    os.waitpid(PID, 0)
-    
-    # Read from rclone heap
-    addr = 0x7f306a400000
-    data = libc.ptrace(PTRACE_PEEKDATA, PID, addr, 0)
-    print(f'PEEK rclone heap: {hex(data & 0xffffffffffffffff)} errno={ctypes.get_errno()}')
-    
-    # Try write
-    r = libc.ptrace(PTRACE_POKEDATA, PID, addr, 0x4443424144434241)
-    print(f'POKE rclone: {r} errno={ctypes.get_errno()}')
-    
-    verify = libc.ptrace(PTRACE_PEEKDATA, PID, addr, 0)
-    print(f'VERIFY rclone: {hex(verify & 0xffffffffffffffff)}')
-    
-    libc.ptrace(PTRACE_DETACH, PID, 0, 0)
-    os.waitpid(PID, 0)
-    print('rclone ptrace complete')
+# Open a pidfd
+pidfd = os.pidfd_open(PID, 0)
+print(f'pidfd_open: {pidfd}')
+
+# Try to duplicate fd 11 (the WebSocket socket)
+try:
+    dup_fd = libc.syscall(PIDFD_GETFD, pidfd, 11, 0)
+    print(f'pidfd_getfd(11): {dup_fd} errno={ctypes.get_errno()}')
+    if dup_fd > 0:
+        s = socket.socket(fileno=dup_fd)
+        print(f'Socket type: {s.getsockopt(socket.SOL_SOCKET, socket.SO_TYPE)}')
+        s.close()
+except Exception as e:
+    print(f'pidfd_getfd failed: {e}')
+
+os.close(pidfd)
+
+# Also test splice/tee on the socket
+try:
+    # Create a pipe
+    r, w = os.pipe()
+    # Try to splice from PID 1's socket to our pipe
+    SPLICE_F_MOVE = 1
+    result = libc.splice(11, 0, w, 0, 4096, SPLICE_F_MOVE)
+    print(f'splice from fd 11: {result} errno={ctypes.get_errno()}')
+    os.close(r)
+    os.close(w)
+except Exception as e:
+    print(f'splice test: {e}')
 "
