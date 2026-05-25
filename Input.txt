@@ -1,16 +1,16 @@
-echo "=== ptrace memory read ===" && python3 -c "
-import ctypes, os
-libc = ctypes.CDLL(None)
-PID = 1
-# Attach
-libc.ptrace(0, PID, 0, 0)
-os.waitpid(PID, 0)
-# Read from typical PIE base
-addr = 0x400000
-data = libc.ptrace(2, PID, addr, 0)
-print(f'Memory at {hex(addr)}: {hex(data & 0xffffffffffffffff)}')
-# Detach
-libc.ptrace(17, PID, 0, 0)
-os.waitpid(PID, 0)
-print('ptrace cycle complete')
-" 2>/dev/null && echo "=== strace ===" && which strace 2>/dev/null || echo "no strace" && echo "=== gdb ===" && which gdb 2>/dev/null || echo "no gdb" && echo "=== process_api maps ===" && cat /proc/1/maps 2>/dev/null | head -10 && echo "=== process_api writable regions ===" && cat /proc/1/maps 2>/dev/null | grep "rw-p" | head -5
+echo "=== gdb batch test ===" && gdb -batch -p 1 -ex "info proc mappings" -ex "detach" 2>/dev/null | head -20 || echo "gdb attach failed" && echo "=== /proc/1/mem at heap ===" && python3 -c "
+import os
+fd = os.open('/proc/1/mem', os.O_RDONLY)
+# Seek to heap start
+os.lseek(fd, 0x55556d429000, os.SEEK_SET)
+data = os.read(fd, 64)
+print(f'Read {len(data)} bytes: {data[:32].hex()}')
+os.close(fd)
+" 2>/dev/null && echo "=== /proc/1/mem at binary ===" && python3 -c "
+import os
+fd = os.open('/proc/1/mem', os.O_RDONLY)
+os.lseek(fd, 0x55556d428000, os.SEEK_SET)
+data = os.read(fd, 64)
+print(f'Binary start: {data[:32].hex()}')
+os.close(fd)
+" 2>/dev/null && echo "=== process_api stack ===" && cat /proc/1/status 2>/dev/null | grep -E "VmRSS|Threads|voluntary_ctxt_switches"
