@@ -39,10 +39,10 @@ dr-xr-xr-x 9 root root  0 May 25 07:13 ..
 lrwx------ 1 root root 64 May 25 09:21 0 -> /dev/console
 lrwx------ 1 root root 64 May 25 09:21 1 -> /dev/console
 lrwx------ 1 root root 64 May 25 09:21 10 -> socket:[601]
-lrwx------ 1 root root 64 May 25 09:21 11 -> socket:[2843]
-l-wx------ 1 root root 64 May 25 09:21 13 -> pipe:[2845]
-lr-x------ 1 root root 64 May 25 09:21 14 -> pipe:[2846]
-lr-x------ 1 root root 64 May 25 09:21 16 -> pipe:[2847]
+lrwx------ 1 root root 64 May 25 09:21 11 -> socket:[3213]
+l-wx------ 1 root root 64 May 25 09:21 13 -> pipe:[3215]
+lr-x------ 1 root root 64 May 25 09:21 14 -> pipe:[3216]
+lr-x------ 1 root root 64 May 25 09:21 16 -> pipe:[3217]
 lrwx------ 1 root root 64 May 25 09:21 2 -> /dev/console
 lrwx------ 1 root root 64 May 25 09:21 3 -> anon_inode:[eventpoll]
 lrwx------ 1 root root 64 May 25 09:21 4 -> anon_inode:[eventfd]
@@ -53,7 +53,7 @@ lrwx------ 1 root root 64 May 25 09:21 8 -> socket:[597]
 lrwx------ 1 root root 64 May 25 09:21 9 -> socket:[600]
 === socket details ===
 10 -> socket:[601]
-11 -> socket:[2843]
+11 -> socket:[3213]
 6 -> socket:[597]
 7 -> socket:[598]
 8 -> socket:[597]
