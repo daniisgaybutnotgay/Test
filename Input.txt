@@ -1,1 +1,1 @@
-ls
+timeout 3600 python3 /mnt/user-data/outputs/hello.py
