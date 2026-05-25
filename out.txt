@@ -1,24 +1,25 @@
-=== ARP scan ===
-Response from 192.0.2.1: 02fc00000005
-=== FUSE backend test ===
-total 32
-drwxr-xr-x 1 claude ubuntu    0 May 25 09:36 .
-drwxr-xr-x 5 root   root   4096 May 24 13:00 ..
--rw-r--r-- 1 claude ubuntu  290 May 25 06:17 debug.log
--rw-r--r-- 1 claude ubuntu   31 May 25 05:51 experiment.log
--rw-r--r-- 1 claude ubuntu 3234 May 25 06:07 hello.py
--rw-r--r-- 1 claude ubuntu   31 May 25 05:58 infinite_test.log
--rw-r--r-- 1 claude ubuntu   82 May 24 19:58 reader.py
--rw-r--r-- 1 claude ubuntu  128 May 25 06:05 run.log
--rw-r--r-- 1 claude ubuntu 2104 May 24 19:06 runner.py
-=== cross-conversation access ===
-=== rclone state ===
-            "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
-            "source": "/outputs",
-            "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
-            "source": "/uploads",
-            "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
-            "source": "/transcripts",
-            "filesystem_id": "claude_chat_01MmVZCWZSfYbvEBTPaXx7j1",
-            "source": "/tool_results",
-    "service_url": "https://api.anthropic.com",
+bin
+bin.usr-is-merged
+boot
+container_info.json
+dev
+etc
+home
+lib
+lib.usr-is-merged
+lib64
+lost+found
+media
+mnt
+old_root
+opt
+proc
+root
+run
+sbin
+sbin.usr-is-merged
+srv
+sys
+tmp
+usr
+var
