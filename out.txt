@@ -1,60 +1,18 @@
-=== thread stack traces ===
-Thread 8 (LWP 481 "tokio-rt-worker"):
-#0  0x00007fbdce79638a in ?? ()
-#1  0x00007fbdce78bef9 in ?? ()
-Thread 7 (LWP 482 "tokio-rt-worker"):
-#0  0x00007fbdce78e816 in ?? ()
-#1  0x00007fbdce1bd730 in ?? ()
-#10 0x0000000000000000 in ?? ()
-Thread 6 (LWP 483 "tokio-rt-worker"):
-#0  0x00007fbdce78e816 in ?? ()
-#1  0x00007fbdcdfb4730 in ?? ()
-#10 0x0000000000000000 in ?? ()
-Thread 5 (LWP 484 "tokio-rt-worker"):
-#0  0x00007fbdce78e816 in ?? ()
-#1  0x00007fbdcddab730 in ?? ()
-#10 0x0000000000000000 in ?? ()
-Thread 4 (LWP 525 "tokio-rt-worker"):
-#0  0x00007fbdce78e816 in ?? ()
-#1  0x00007fbdcdaf3730 in ?? ()
-#10 0x0000000000000000 in ?? ()
-Thread 3 (LWP 674 "tokio-rt-worker"):
-#0  0x00007fbdce78e816 in ?? ()
-#1  0x00007fbdcd8e3730 in ?? ()
-#10 0x0000000000000000 in ?? ()
-Thread 2 (LWP 675 "tokio-rt-worker"):
-#0  0x00007fbdce78e816 in ?? ()
-#1  0x00007fbdcd6e0730 in ?? ()
-#10 0x0000000000000000 in ?? ()
-Thread 1 (LWP 1 "process_api"):
-#0  0x00007fbdce78e816 in ?? ()
-#1  0x00007fbdce40a8d8 in ?? ()
-=== process_api writable data ===
-Writable data section size: 77824 bytes
-First 64 bytes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-=== process_api file descriptors ===
-total 0
-dr-x------ 2 root root 15 May 25 09:21 .
-dr-xr-xr-x 9 root root  0 May 25 07:13 ..
-lrwx------ 1 root root 64 May 25 09:21 0 -> /dev/console
-lrwx------ 1 root root 64 May 25 09:21 1 -> /dev/console
-lrwx------ 1 root root 64 May 25 09:21 10 -> socket:[601]
-lrwx------ 1 root root 64 May 25 09:21 11 -> socket:[3213]
-l-wx------ 1 root root 64 May 25 09:21 13 -> pipe:[3215]
-lr-x------ 1 root root 64 May 25 09:21 14 -> pipe:[3216]
-lr-x------ 1 root root 64 May 25 09:21 16 -> pipe:[3217]
-lrwx------ 1 root root 64 May 25 09:21 2 -> /dev/console
-lrwx------ 1 root root 64 May 25 09:21 3 -> anon_inode:[eventpoll]
-lrwx------ 1 root root 64 May 25 09:21 4 -> anon_inode:[eventfd]
-lrwx------ 1 root root 64 May 25 09:21 5 -> anon_inode:[eventpoll]
-lrwx------ 1 root root 64 May 25 09:21 6 -> socket:[597]
-lrwx------ 1 root root 64 May 25 09:21 7 -> socket:[598]
-lrwx------ 1 root root 64 May 25 09:21 8 -> socket:[597]
-lrwx------ 1 root root 64 May 25 09:21 9 -> socket:[600]
-=== socket details ===
-10 -> socket:[601]
-11 -> socket:[3213]
-6 -> socket:[597]
-7 -> socket:[598]
-8 -> socket:[597]
-9 -> socket:[600]
+=== socket 2843 mapping ===
+pipe write blocked
+=== socket 2843 recv queue ===
+pos:	0
+flags:	02004002
+mnt_id:	11
+ino:	3213
+=== all process sockets ===
+   0: 00000000:07E9 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 601 1 00000000fe752f52 100 0 0 10 0                       
+   1: 00000000:07E8 00000000:0000 0A 00000000:00000000 00:00000000 00000000     0        0 600 1 000000007dea1c96 100 0 0 10 0                       
+   2: 020200C0:07E8 010200C0:95CC 01 00000000:00000000 00:00000000 00000000     0        0 3213 1 00000000b5a75010 20 5 29 12 -1                     
+   3: 020200C0:07E8 010200C0:A2C0 06 00000000:00000000 03:00000AEB 00000000     0        0 0 3 0000000025255fb9                                      
+=== netlink sockets ===
+sk               Eth Pid        Groups   Rmem     Wmem     Dump  Locks    Drops    Inode
+0000000042045329 0   0          00000000 0        0        0     2        0        3       
+000000007af2b930 4   0          00000000 0        0        0     2        0        549     
+00000000baea66b3 6   0          00000000 0        0        0     2        0        551     
+00000000bc7c66d3 7   0          00000000 0        0        0     2        0        36      
