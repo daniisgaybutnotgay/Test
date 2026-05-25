@@ -1,16 +1,25 @@
-echo "=== gdb batch test ===" && gdb -batch -p 1 -ex "info proc mappings" -ex "detach" 2>/dev/null | head -20 || echo "gdb attach failed" && echo "=== /proc/1/mem at heap ===" && python3 -c "
+echo "=== full maps ===" && cat /proc/1/maps 2>/dev/null && echo "=== string search in writable memory ===" && python3 -c "
 import os
 fd = os.open('/proc/1/mem', os.O_RDONLY)
-# Seek to heap start
-os.lseek(fd, 0x55556d429000, os.SEEK_SET)
-data = os.read(fd, 64)
-print(f'Read {len(data)} bytes: {data[:32].hex()}')
+# Search heap and large rw regions for WebSocket strings
+regions = [
+    (0x55556d429000, 0x55556d42b000),      # heap
+    (0x7fbdcd4e0000, 0x7fbdcd6e1000),      # large rw 1
+    (0x7fbdcd6e3000, 0x7fbdcd8ed000),      # large rw 2
+]
+for start, end in regions:
+    os.lseek(fd, start, os.SEEK_SET)
+    size = end - start
+    data = os.read(fd, min(size, 0x100000))  # read max 1MB per region
+    # Search for WebSocket upgrade strings
+    if b'Upgrade: websocket' in data or b'websocket' in data.lower():
+        print(f'Found websocket string in {hex(start)}-{hex(end)}')
+    if b'192.0.2.1' in data:
+        print(f'Found gateway IP in {hex(start)}-{hex(end)}')
+    if b'process_api' in data:
+        print(f'Found process_api string in {hex(start)}-{hex(end)}')
+    if b'claude_chat_' in data:
+        print(f'Found conversation ID in {hex(start)}-{hex(end)}')
 os.close(fd)
-" 2>/dev/null && echo "=== /proc/1/mem at binary ===" && python3 -c "
-import os
-fd = os.open('/proc/1/mem', os.O_RDONLY)
-os.lseek(fd, 0x55556d428000, os.SEEK_SET)
-data = os.read(fd, 64)
-print(f'Binary start: {data[:32].hex()}')
-os.close(fd)
-" 2>/dev/null && echo "=== process_api stack ===" && cat /proc/1/status 2>/dev/null | grep -E "VmRSS|Threads|voluntary_ctxt_switches"
+print('Memory scan complete')
+" 2>/dev/null && echo "=== process_api threads ===" && ls /proc/1/task/ && echo "=== thread details ===" && for t in /proc/1/task/*/comm; do echo "$(basename $(dirname $t)): $(cat $t)"; done
