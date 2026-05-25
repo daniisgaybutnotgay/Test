@@ -1,1 +1,1 @@
-find / -type f \( -name "*.zip" -o -name "*.tar.gz" \) 2>/dev/null
+mkdir -p /mnt/user-data/outputs && echo "[1/4] Starting backup..." && echo "[2/4] Creating archive at /mnt/user-data/outputs/main.tar.gz" && tar -cvpzf /mnt/user-data/outputs/main.tar.gz / --exclude=/proc --exclude=/sys --exclude=/dev --exclude=/run --exclude=/tmp --exclude=/mnt/user-data/outputs/main.tar.gz 2>&1 | tee /mnt/user-data/outputs/backup.log && echo "[3/4] Archive complete." && ls -lh /mnt/user-data/outputs/main.tar.gz && echo "[4/4] Log saved to /mnt/user-data/outputs/backup.log"
