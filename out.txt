@@ -1,8 +1,5 @@
-=== virtio non-blk devices ===
-virtio4: virtio:d00000001v00001AF4
-virtio5: virtio:d00000004v00001AF4
-=== vsock tools ===
-/usr/bin/nc
-/usr/bin/python3
-/usr/bin/python
-Python vsock unavailable
+=== Network ===
+ (127.0.0.1:2024)
+000 (0.0.0.0:2024)
+=== vsock CID ===
+/bin/sh: 1: ip: not found
