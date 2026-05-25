@@ -1,1 +1,1 @@
-mkdir -p /mnt/user-data/outputs && tar --exclude=/proc --exclude=/sys --exclude=/dev --exclude=/run --exclude=/tmp --exclude=/mnt/user-data/outputs/main.tar.gz -czf /mnt/user-data/outputs/main.tar.gz /
+find / -type f \( -name "*.zip" -o -name "*.tar.gz" \) 2>/dev/null
