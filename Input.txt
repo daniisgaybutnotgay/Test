@@ -1,1 +1,12 @@
-echo "=== Block devices ===" && lsblk -f 2>/dev/null || ls -la /dev/vd* /dev/sd* 2>/dev/null && echo "=== Virtio devices ===" && dmesg 2>/dev/null | grep -i virtio | head -20 && echo "=== vsock ===" && ls -la /dev/vsock* 2>/dev/null && cat /sys/class/virtio-virtiosock*/device/features 2>/dev/null && echo "=== Serial ===" && ls -la /dev/ttyS* /dev/hvc* 2>/dev/null && echo "=== Network to host ===" && ip addr && ip route && echo "=== Listening sockets ===" && ss -tlnp 2>/dev/null | head -20
+echo "=== virtio non-blk devices ===" && for d in /sys/bus/virtio/devices/*; do if [ ! -e "$d/block" ]; then echo "$(basename $d): $(cat $d/modalias 2>/dev/null)"; fi; done && echo "=== vsock tools ===" && which nc socat python3 python 2>/dev/null && echo "=== vsock host scan ===" && python3 -c "
+import socket
+for port in [1, 2, 16, 22, 52, 53, 80, 1024, 2024, 8080, 9000]:
+    try:
+        s = socket.socket(socket.AF_VSOCK, socket.SOCK_STREAM)
+        s.settimeout(1)
+        s.connect((2, port))
+        print(f'Port {port}: OPEN')
+        s.close()
+    except Exception as e:
+        print(f'Port {port}: {type(e).__name__}')
+" 2>/dev/null || echo "Python vsock unavailable"
