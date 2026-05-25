@@ -1,6 +1,1 @@
-echo "=== FUSE mount test ===" && mkdir -p /tmp/fuse_test && python3 -c "
-import os, subprocess
-# Test if we can create a FUSE filesystem
-result = subprocess.run(['fusermount3', '-V'], capture_output=True, text=True)
-print(f'fusermount3: {result.stdout.strip()[:50]}')
-" 2>/dev/null && echo "=== rclone supervision ===" && cat /proc/1/status | grep -E "PPid|Threads" && echo "=== rclone parent ===" && cat /proc/490/status | grep -E "PPid|State" && echo "=== rclone network ===" && cat /proc/490/net/tcp 2>/dev/null | grep -v "00000000:0000" && echo "=== rclone environ ===" && tr '\0' '\n' < /proc/490/environ 2>/dev/null | grep -iE "auth|token|key|secret|api|url|mount" | head -10 && echo "=== process_api children ===" && ps -eo pid,ppid,comm,args | awk '$2==1 {print}' && echo "=== hello.py content ===" && head -20 /mnt/user-data/outputs/hello.py 2>/dev/null
+ls
